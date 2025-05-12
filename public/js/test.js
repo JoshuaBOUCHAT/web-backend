@@ -1,0 +1,1 @@
+document.getElementById("to-insert").innerText = "hello from JS";
