@@ -3,7 +3,7 @@ CREATE TABLE products(
    Id_products INTEGER,
    description TEXT,
    name TEXT,
-   price NUMERIC,
+   price REAL,
    image_url TEXT,
    PRIMARY KEY(Id_products)
 );
