@@ -5,6 +5,8 @@ mod components {
     pub mod welcome;
 }
 pub mod auth_middleware;
+mod models;
+mod schema;
 
 pub use crate::components::welcome::WelcomeBuilder;
 use crate::traits::Responseable;
