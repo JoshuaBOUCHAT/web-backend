@@ -1,10 +1,11 @@
 mod traits;
 mod components {
     pub mod dashboard;
-    pub mod login;
     pub mod welcome;
 }
-pub mod auth_middleware;
+pub mod middlewares {
+    pub mod auth_middleware;
+}
 mod schema;
 pub mod models {
     pub mod category;
@@ -21,12 +22,9 @@ pub mod controller {
 pub use crate::components::welcome::WelcomeBuilder;
 use actix_session::{SessionMiddleware, config::PersistentSession, storage::CookieSessionStore};
 use actix_web::{App, HttpServer, cookie::Key, web::scope};
-use auth_middleware::AuthMiddleware;
-use components::{
-    dashboard::dashboard_get,
-    login::{login_get, login_post},
-};
-use controller::auth::auth_get;
+use components::dashboard::dashboard_get;
+use controller::auth::{auth_get, login_post, register_post};
+use middlewares::auth_middleware::AuthMiddleware;
 use once_cell::sync::Lazy;
 use tera::Tera;
 
@@ -68,7 +66,7 @@ async fn main() -> std::io::Result<()> {
             .service(actix_files::Files::new("/css", "public/css"))
             .service(actix_files::Files::new("/img", "public/images"))
             .service(actix_files::Files::new("/js", "public/js"))
-            .service(login_get)
+            .service(register_post)
             .service(login_post)
             .service(auth_get)
             .service(scope("").wrap(AuthMiddleware).service(dashboard_get))

@@ -1,14 +1,13 @@
 use actix_session::Session;
 use actix_web::{HttpResponse, Responder, get, post, web::Form};
 use serde::{Deserialize, Serialize};
-use tera::Context;
 
 use crate::{
-    TERA,
+    models::user::User,
     traits::{Renderable, Responseable},
 };
 
-#[derive(Serialize)]
+#[derive(Serialize, Default)]
 pub struct Auth {}
 impl Renderable for Auth {
     fn render(&self) -> Result<String, tera::Error> {
@@ -17,16 +16,10 @@ impl Renderable for Auth {
 }
 impl Responseable for Auth {}
 
-impl Auth {
-    pub fn new() -> Self {
-        Self {}
-    }
-}
 #[get("/auth")]
 async fn auth_get() -> impl Responder {
-    Auth::new().into_response()
+    Auth::default().into_response()
 }
-struct LoginForm {}
 
 #[derive(Deserialize)]
 struct RegisterForm {
@@ -34,10 +27,52 @@ struct RegisterForm {
     phone: String,
     password: String,
 }
-/*#[post("/login")]
-async fn login_post() -> impl Responder {
-    todo!()
+
+#[derive(Deserialize)]
+struct LoginForm {
+    mail: String,
+    password: String,
+}
+
+#[post("/login")]
+pub async fn login_post(form: Form<LoginForm>, session: Session) -> impl Responder {
+    let data = form.into_inner();
+    let maybe_user = User::verfify_login(&data.mail, &data.password);
+    let location = if let Some(id_user) = maybe_user {
+        if let Err(err) = session.insert("id_user", id_user) {
+            eprintln!("Error during session attribution :{}", err)
+        }
+        "/"
+    } else {
+        "/auth"
+    };
+    HttpResponse::SeeOther()
+        .append_header(("Location", location))
+        .finish()
 }
 
 #[post("/register")]
-async fn register_post(form: Form<RegisterForm>) -> impl Responder {}*/
+pub async fn register_post(form: Form<RegisterForm>, session: Session) -> impl Responder {
+    let data = form.into_inner();
+    let maybe_user = User::add_user(&data.mail, &data.phone, &data.password);
+    let location = if let Ok(user) = maybe_user {
+        if let Err(err) = session.insert("id_user", user.id_users) {
+            eprintln!("Error during session attribution :{}", err)
+        }
+        "/"
+    } else {
+        "/auth"
+    };
+    HttpResponse::SeeOther()
+        .append_header(("Location", location))
+        .finish()
+}
+#[get("/logout")]
+pub async fn logout_get(session: Session) -> impl Responder {
+    if session.get::<i32>("id_user").is_ok() {
+        session.remove("id_user");
+    }
+    HttpResponse::Found()
+        .append_header(("Location", "/auth"))
+        .finish()
+}

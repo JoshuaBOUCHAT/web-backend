@@ -42,14 +42,14 @@ where
 
     fn call(&self, req: ServiceRequest) -> Self::Future {
         let session = req.get_session();
-        let is_logged_in = session.get::<i32>("user_id").unwrap_or(None).is_some();
+        let is_logged_in = session.get::<i32>("id_user").unwrap_or(None).is_some();
 
         if !is_logged_in {
             println!("🔒 Redirecting to login");
 
             let (req, _pl) = req.into_parts();
             let res = HttpResponse::Found()
-                .append_header(("Location", "/login"))
+                .append_header(("Location", "/auth"))
                 .finish()
                 .map_into_right_body(); // 👈 wrap as EitherBody::Right
 

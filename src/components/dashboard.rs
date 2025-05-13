@@ -22,7 +22,7 @@ impl Renderable for Dashboard {
 }
 impl Responseable for Dashboard {}
 
-#[get("/dashboard")]
+#[get("/")]
 async fn dashboard_get(session: Session) -> impl Responder {
     println!("handle connexion\nsession:{:?}", session.entries());
     if let Some(id) = session.get::<i32>("user_id").unwrap() {

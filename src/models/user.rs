@@ -1,7 +1,7 @@
 use crate::DB_POOL;
 
 use crate::schema::users::dsl::*;
-use crate::schema::users::{self, phone_number};
+use crate::schema::users::{self};
 use ::password_hash::rand_core::OsRng;
 use argon2::{
     Argon2,
@@ -12,7 +12,6 @@ use diesel::ExpressionMethods;
 use diesel::RunQueryDsl;
 use diesel::prelude::{Insertable, Queryable};
 use diesel::query_dsl::methods::*;
-use once_cell::sync::Lazy;
 
 use diesel::result::Error as DieselError;
 use serde::{Deserialize, Serialize};
