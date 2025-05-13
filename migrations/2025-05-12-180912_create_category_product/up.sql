@@ -1,8 +1,8 @@
 -- Your SQL goes here
 CREATE TABLE category_product(
-   Id_products INTEGER,
-   Id_categories INTEGER,
-   PRIMARY KEY(Id_products, Id_categories),
-   FOREIGN KEY(Id_products) REFERENCES products(Id_products),
-   FOREIGN KEY(Id_categories) REFERENCES categories(Id_categories)
+   id_products INTEGER,
+   id_categories INTEGER,
+   PRIMARY KEY(id_products, id_categories),
+   FOREIGN KEY(id_products) REFERENCES products(id_products),
+   FOREIGN KEY(id_categories) REFERENCES categories(id_categories)
 );

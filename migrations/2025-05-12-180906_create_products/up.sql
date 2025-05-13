@@ -1,9 +1,9 @@
 -- Your SQL goes here
-CREATE TABLE products(
-   Id_products INTEGER,
-   description TEXT,
-   name TEXT,
-   price REAL,
-   image_url TEXT,
-   PRIMARY KEY(Id_products)
+CREATE TABLE products (
+    id_products INTEGER PRIMARY KEY AUTOINCREMENT,
+    description TEXT NOT NULL,
+    name TEXT NOT NULL,
+    price REAL NOT NULL,
+    image_url TEXT,
+    properties TEXT
 );
