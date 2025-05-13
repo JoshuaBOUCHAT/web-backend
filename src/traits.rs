@@ -1,7 +1,4 @@
 use actix_web::HttpResponse;
-use derive_builder::Builder;
-use tera::{Context, Tera};
-
 pub trait Renderable {
     fn render(&self) -> Result<String, tera::Error>;
 }

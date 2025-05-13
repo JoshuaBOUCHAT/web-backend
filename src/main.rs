@@ -5,26 +5,30 @@ mod components {
     pub mod welcome;
 }
 pub mod auth_middleware;
-mod models;
 mod schema;
+pub mod models {
+    pub mod category;
+    pub mod category_product;
+    pub mod order;
+    pub mod order_product;
+    pub mod product;
+    pub mod user;
+}
+pub mod controller {
+    pub mod auth;
+}
 
 pub use crate::components::welcome::WelcomeBuilder;
-use crate::traits::Responseable;
 use actix_session::{SessionMiddleware, config::PersistentSession, storage::CookieSessionStore};
-use actix_web::{
-    App, HttpServer, Responder,
-    cookie::Key,
-    get, post,
-    web::{self, scope},
-};
+use actix_web::{App, HttpServer, cookie::Key, web::scope};
 use auth_middleware::AuthMiddleware;
 use components::{
     dashboard::dashboard_get,
     login::{login_get, login_post},
 };
+use controller::auth::auth_get;
 use once_cell::sync::Lazy;
 use tera::Tera;
-use traits::Renderable;
 
 static TERA: Lazy<Tera> = Lazy::new(|| {
     let tera = Tera::new("html/*.html").expect("Failed to load templates");
@@ -66,6 +70,7 @@ async fn main() -> std::io::Result<()> {
             .service(actix_files::Files::new("/js", "public/js"))
             .service(login_get)
             .service(login_post)
+            .service(auth_get)
             .service(scope("").wrap(AuthMiddleware).service(dashboard_get))
 
         //.route("/hey", web::get().to(manual_hello))

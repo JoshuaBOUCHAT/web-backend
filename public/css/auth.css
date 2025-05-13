@@ -1,0 +1,88 @@
+ :root {
+     --background: #f5f0e6;
+     --panel: #fffaf3;
+     --brown: #6e4b3a;
+     --accent: #d2a679;
+     --text: #3e2c23;
+ }
+
+ body {
+     margin: 0;
+     font-family: 'Georgia', serif;
+     background-color: var(--background);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 100vh;
+ }
+
+ .container {
+     background-color: var(--panel);
+     padding: 2rem;
+     border-radius: 1rem;
+     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+     width: 350px;
+ }
+
+ h2 {
+     text-align: center;
+     color: var(--brown);
+     margin-bottom: 1rem;
+ }
+
+ .tab {
+     display: flex;
+     justify-content: space-around;
+     margin-bottom: 1.5rem;
+     cursor: pointer;
+ }
+
+ .tab div {
+     padding: 0.5rem 1rem;
+     border-bottom: 2px solid transparent;
+     transition: border 0.3s;
+     color: var(--text);
+ }
+
+ .tab div.active {
+     border-color: var(--accent);
+     font-weight: bold;
+ }
+
+ form {
+     display: none;
+     flex-direction: column;
+ }
+
+ form.active {
+     display: flex;
+ }
+
+ input {
+     padding: 0.5rem;
+     margin-bottom: 1rem;
+     border: 1px solid #ccc;
+     border-radius: 0.5rem;
+     font-size: 1rem;
+ }
+
+ button {
+     padding: 0.6rem;
+     background-color: var(--brown);
+     color: white;
+     border: none;
+     border-radius: 0.5rem;
+     cursor: pointer;
+     transition: background 0.3s;
+ }
+
+ button:hover {
+     background-color: #5a3f30;
+ }
+
+ .footer {
+     text-align: center;
+     margin-top: 1rem;
+     font-size: 0.85rem;
+     color: #777;
+ }

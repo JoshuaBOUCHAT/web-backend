@@ -5,14 +5,14 @@ edition = "2024"
 
 [dependencies]
 actix-session = { version = "0.10.1", features = ["cookie-session"] }
-actix-web = { version = "4.10.2", features = ["rustls"] }
+actix-web = { version = "4.11.0", features = ["rustls"] }
 derive_builder = "0.20.2"
 futures-util = "0.3.31"
 once_cell = "1.21.3"
 serde = { version = "1.0.219", features = ["derive"] }
 tera = "1.20.0"
 diesel = { version = "2.1", features = ["sqlite", "r2d2", "chrono"] }
-dotenvy = "0.15"  # Optional, for reading `.env`
+dotenvy = "0.15"                                                      # Optional, for reading `.env`
 actix-files = "0.6.6"
 password-hash = "0.5.0"
 argon2 = "0.5.3"

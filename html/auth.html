@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boulangerie Traditionnelle - Login/Register</title>
+    <link href="/css/auth.css" rel="stylesheet" />
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h2>Boulangerie La Traditionnelle</h2>
+            <div class="tab">
+                <div id="login-tab" class="active">Login</div>
+                <div id="register-tab">Register</div>
+            </div>
+
+            <form id="login-form" class="active" method="post" action="/login">
+                <input type="email" placeholder="Email" required />
+                <input type="password" placeholder="Mot De Pass" required />
+                <button type="submit">Login</button>
+            </form>
+
+            <form id="register-form" method="post" action="/register">
+                <input type="email" placeholder="Email" required name="mail" />
+                <input type="text" placeholder="Numéro de télephone" required name="phone" />
+                <input type="password" placeholder="Mot de Passe" required name="password" />
+                <button type="submit">Créer le Compte</button>
+            </form>
+
+            <div class="footer">Bienvenue à notre boulangerie artisanale 🥖</div>
+        </div>
+        <script src="/js/auth.js"></script>
+    </main>
+</body>
+
+</html>
