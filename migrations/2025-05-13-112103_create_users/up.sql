@@ -5,6 +5,7 @@ CREATE TABLE users(
    phone_number TEXT NOT NULL,
    password_hash TEXT NOT NULL,
    date_creation TEXT,
+   admin INTEGER DEFAULT 0,
    PRIMARY KEY(id_users)
 );
 

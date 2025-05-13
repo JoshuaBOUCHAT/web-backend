@@ -31,6 +31,7 @@ table! {
         phone_number -> Text,
         password_hash -> Text,
         date_creation -> Text, // SQLite stores NUMERIC loosely
+        admin->Integer
     }
 }
 
