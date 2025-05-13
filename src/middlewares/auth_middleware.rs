@@ -56,6 +56,17 @@ where
             let service_response = ServiceResponse::new(req, res);
             return Box::pin(async move { Ok(service_response) });
         }
+        let path = req.path();
+        if path == "/auth" || path == "/login" || path == "/register" {
+            let (req, _pl) = req.into_parts();
+            let res = HttpResponse::Found()
+                .append_header(("Location", "/"))
+                .finish()
+                .map_into_right_body();
+
+            let service_response = ServiceResponse::new(req, res);
+            return Box::pin(async move { Ok(service_response) });
+        }
 
         let fut = self.service.call(req);
         Box::pin(async move {

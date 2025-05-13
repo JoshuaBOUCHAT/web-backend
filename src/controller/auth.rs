@@ -53,14 +53,17 @@ pub async fn login_post(form: Form<LoginForm>, session: Session) -> impl Respond
 
 #[post("/register")]
 pub async fn register_post(form: Form<RegisterForm>, session: Session) -> impl Responder {
+    eprintln!("Handling registration");
     let data = form.into_inner();
     let maybe_user = User::add_user(&data.mail, &data.phone, &data.password);
     let location = if let Ok(user) = maybe_user {
+        println!("adding user worked");
         if let Err(err) = session.insert("id_user", user.id_users) {
             eprintln!("Error during session attribution :{}", err)
         }
         "/"
     } else {
+        println!("adding user failed");
         "/auth"
     };
     HttpResponse::SeeOther()

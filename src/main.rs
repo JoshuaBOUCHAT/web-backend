@@ -2,7 +2,6 @@ mod schema;
 mod traits;
 mod components {
     pub mod dashboard;
-    pub mod welcome;
 }
 pub mod middlewares {
     pub mod auth_middleware;
@@ -18,13 +17,14 @@ pub mod models {
 }
 pub mod controller {
     pub mod auth;
+    pub mod welcome;
 }
 
-pub use crate::components::welcome::WelcomeBuilder;
+pub use crate::controller::welcome::WelcomeBuilder;
 use actix_session::{SessionMiddleware, config::PersistentSession, storage::CookieSessionStore};
 use actix_web::{App, HttpServer, cookie::Key, web::scope};
 use components::dashboard::dashboard_get;
-use controller::auth::{auth_get, login_post, register_post};
+use controller::auth::{auth_get, login_post, logout_get, register_post};
 use middlewares::auth_middleware::AuthMiddleware;
 use once_cell::sync::Lazy;
 use tera::Tera;
@@ -43,7 +43,7 @@ use diesel::r2d2::{self, ConnectionManager};
 type DbPool = r2d2::Pool<ConnectionManager<SqliteConnection>>;
 
 fn establish_connection() -> DbPool {
-    let manager = ConnectionManager::<SqliteConnection>::new("db.sqlite");
+    let manager = ConnectionManager::<SqliteConnection>::new("database.db");
     r2d2::Pool::builder()
         .build(manager)
         .expect("Failed to create pool.")
@@ -70,7 +70,12 @@ async fn main() -> std::io::Result<()> {
             .service(register_post)
             .service(login_post)
             .service(auth_get)
-            .service(scope("").wrap(AuthMiddleware).service(dashboard_get))
+            .service(
+                scope("")
+                    .wrap(AuthMiddleware)
+                    .service(dashboard_get)
+                    .service(logout_get),
+            )
 
         //.route("/hey", web::get().to(manual_hello))
     })

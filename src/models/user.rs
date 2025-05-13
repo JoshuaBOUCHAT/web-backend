@@ -78,15 +78,21 @@ impl User {
             password_hash: &hashed_password,
             date_creation: &Utc::now().format("%Y-%m-%d %H:%M:%S").to_string(),
         };
+        eprintln!("build the user try inserting");
 
-        diesel::insert_into(users::table)
+        let res = diesel::insert_into(users::table)
             .values(&new_user)
-            .execute(&mut conn)?;
+            .execute(&mut conn);
+        println!("Result of insertion:{:?}", res);
 
         // Return inserted user (simplified way to get back)
         users
             .filter(mail.eq(mail_input))
             .order(id_users.desc())
             .first::<User>(&mut conn)
+    }
+    pub fn get(id_user: i32) -> Option<Self> {
+        let mut conn = DB_POOL.get().ok()?;
+        users.find(id_user).first(&mut conn).ok()
     }
 }
