@@ -2,7 +2,7 @@ use crate::schema::products;
 use diesel::prelude::{Insertable, Queryable};
 use serde::{Deserialize, Serialize};
 #[derive(Queryable, Insertable, Serialize, Deserialize)]
-#[table_name = "products"]
+#[diesel(table_name = products)]
 pub struct Product {
     pub id_products: i32,
     pub description: String,

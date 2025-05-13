@@ -17,7 +17,7 @@ use diesel::result::Error as DieselError;
 use serde::{Deserialize, Serialize};
 
 #[derive(Queryable, Serialize, Insertable, Deserialize)]
-#[table_name = "users"]
+#[diesel(table_name = users)]
 pub struct User {
     pub id_users: i32,
     pub mail: String,
@@ -64,7 +64,7 @@ impl User {
 
         // Insertable struct (without id as it's auto-incremented)
         #[derive(Insertable)]
-        #[table_name = "users"]
+        #[diesel(table_name = users)]
         struct NewUser<'a> {
             mail: &'a str,
             phone_number: &'a str,

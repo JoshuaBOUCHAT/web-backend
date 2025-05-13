@@ -1,3 +1,4 @@
+mod schema;
 mod traits;
 mod components {
     pub mod dashboard;
@@ -6,7 +7,7 @@ mod components {
 pub mod middlewares {
     pub mod auth_middleware;
 }
-mod schema;
+
 pub mod models {
     pub mod category;
     pub mod category_product;
