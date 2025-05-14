@@ -1,8 +1,11 @@
+pub mod routes;
 mod schema;
 mod traits;
-mod components {
-    pub mod dashboard;
-}
+use actix_web::web::{get, post};
+use controllers::static_component::static_route_get;
+use controllers::welcome::welcome_get;
+use routes::*;
+
 pub mod middlewares {
     pub mod auth_middleware;
 }
@@ -15,22 +18,24 @@ pub mod models {
     pub mod product;
     pub mod user;
 }
-pub mod controller {
+pub mod controllers {
     pub mod auth;
+    pub mod dashboard;
+    pub mod static_component;
     pub mod welcome;
 }
 
-pub use crate::controller::welcome::WelcomeBuilder;
+pub use crate::controllers::welcome::WelcomeBuilder;
 use actix_session::{SessionMiddleware, config::PersistentSession, storage::CookieSessionStore};
 use actix_web::{App, HttpServer, cookie::Key, web::scope};
-use components::dashboard::dashboard_get;
-use controller::auth::{auth_get, login_post, logout_get, register_post};
+use controllers::auth::{login_post, logout_get, register_post};
+use controllers::dashboard::dashboard_get;
 use middlewares::auth_middleware::AuthMiddleware;
 use once_cell::sync::Lazy;
 use tera::Tera;
 
 static TERA: Lazy<Tera> = Lazy::new(|| {
-    let tera = Tera::new("html/*.html").expect("Failed to load templates");
+    let tera = Tera::new("html/**/*.html").expect("Failed to load templates");
     println!(
         "Loaded templates: {:?}",
         tera.get_template_names().collect::<Vec<_>>()
@@ -64,20 +69,28 @@ async fn main() -> std::io::Result<()> {
                 .build();
         App::new()
             .wrap(sessionmiddleware)
-            .service(actix_files::Files::new("/css", "public/css"))
-            .service(actix_files::Files::new("/img", "public/images"))
-            .service(actix_files::Files::new("/js", "public/js"))
-            .service(register_post)
-            .service(login_post)
-            .service(auth_get)
+            .service(actix_files::Files::new(
+                ROUTE_CSS.web_path,
+                ROUTE_CSS.file_path,
+            ))
+            .service(actix_files::Files::new(
+                ROUTE_IMAGES.web_path,
+                ROUTE_IMAGES.file_path,
+            ))
+            .service(actix_files::Files::new(
+                ROUTE_JS.web_path,
+                ROUTE_JS.file_path,
+            ))
+            .route(ROUTE_REGISTER, post().to(register_post))
+            .route(ROUTE_LOGIN, post().to(login_post))
+            .route(ROUTE_STATICS, get().to(static_route_get))
+            .route(ROUTE_WELCOME.web_path, get().to(welcome_get))
             .service(
                 scope("")
                     .wrap(AuthMiddleware)
-                    .service(dashboard_get)
-                    .service(logout_get),
+                    .route(ROUTE_DASHBOARD.web_path, get().to(dashboard_get))
+                    .route(ROUTE_LOGOUT, get().to(logout_get)),
             )
-
-        //.route("/hey", web::get().to(manual_hello))
     })
     .bind(("0.0.0.0", 8080))?
     .run()

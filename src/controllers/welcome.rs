@@ -1,21 +1,24 @@
+use actix_web::Responder;
 use derive_builder::Builder;
 use serde::Serialize;
 use tera::Context;
 
 use crate::{
     TERA,
+    routes::{ROUTE_CONTEXT, ROUTE_WELCOME},
     traits::{Renderable, Responseable},
 };
 
 #[derive(Builder, Serialize)]
-pub struct Welcome {
-    name: String,
-}
+pub struct Welcome {}
 impl Renderable for Welcome {
     fn render(&self) -> Result<String, tera::Error> {
-        let mut context = Context::new();
-        context.insert("welcome", self);
-        TERA.render("welcome.html", &context)
+        let context = ROUTE_CONTEXT.clone();
+        TERA.render(ROUTE_WELCOME.file_path, &context)
     }
 }
 impl Responseable for Welcome {}
+
+pub async fn welcome_get() -> impl Responder {
+    Welcome {}.into_response()
+}
