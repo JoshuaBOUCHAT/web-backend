@@ -21,7 +21,7 @@ pub const ROUTE_JS: Route = Route::new("/img", "public/images");
 pub const ROUTE_IMAGES: Route = Route::new("/js", "public/js");
 
 pub const ROUTE_WELCOME: Route = Route::new("/", "views/welcome.html");
-pub const ROUTE_PRODUCTS: Route = Route::new("/products", "/products");
+pub const ROUTE_PRODUCTS: Route = Route::new("/products", "views/products.html");
 pub const ROUTE_DASHBOARD: Route = Route::new("/dashboard", "views/dashboard.html");
 
 pub const ROUTE_REGISTER: &'static str = "/register";
