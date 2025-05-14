@@ -1,0 +1,28 @@
+.header-title {
+    text-align: center;
+    padding-top: 300px;
+    font-family: 'Playfair Display', serif;
+    /* or any elegant font */
+    color: #3e2f1c;
+    /* deep brown like fresh bread crust */
+}
+
+#header-title-1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+#header-title-2 {
+    font-size: 34px;
+    font-weight: 400;
+    font-style: italic;
+    color: #a0522d;
+    /* warm tone */
+    margin-top: 10px;
+}
+
+header {
+    padding-bottom: 200px;
+}

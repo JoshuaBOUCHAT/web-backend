@@ -1,0 +1,33 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+    /* ou space-between */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.nav-link:hover {
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* subtle shadow */
+    z-index: 1000;
+    /* stays on top */
+}

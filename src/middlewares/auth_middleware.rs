@@ -7,6 +7,8 @@ use actix_web::{
 use futures_util::future::LocalBoxFuture;
 use std::future::{Ready, ready};
 
+use crate::routes::{ROUTE_AUTH, ROUTE_LOGIN, ROUTE_REGISTER};
+
 pub struct AuthMiddleware;
 
 impl<S, B> Transform<S, ServiceRequest> for AuthMiddleware
@@ -42,22 +44,37 @@ where
 
     fn call(&self, req: ServiceRequest) -> Self::Future {
         let session = req.get_session();
-        let is_logged_in = session.get::<i32>("id_user").unwrap_or(None).is_some();
+        let maybe_id = session.get::<i32>("id_user").unwrap_or(None);
 
-        if !is_logged_in {
-            println!("🔒 Redirecting to login");
+        let have_id = maybe_id.is_some();
+        let path = req.path();
+        println!("mid manage req at: {path}");
+        let is_auth_page =
+            path == ROUTE_AUTH.web_path || path == ROUTE_LOGIN || path == ROUTE_REGISTER;
+
+        if !have_id {
+            if is_auth_page {
+                println!("authentification");
+                let fut = self.service.call(req);
+                return Box::pin(async move {
+                    let res = fut.await?.map_into_left_body();
+                    Ok(res)
+                });
+            }
+            println!("Redirecting to login");
 
             let (req, _pl) = req.into_parts();
             let res = HttpResponse::Found()
-                .append_header(("Location", "/auth"))
+                .append_header(("Location", ROUTE_AUTH.web_path))
                 .finish()
-                .map_into_right_body(); // 👈 wrap as EitherBody::Right
+                .map_into_right_body();
 
             let service_response = ServiceResponse::new(req, res);
             return Box::pin(async move { Ok(service_response) });
         }
-        let path = req.path();
-        if path == "/auth" || path == "/login" || path == "/register" {
+
+        println!("path: {path}");
+        if path == ROUTE_AUTH.web_path || path == ROUTE_LOGIN || path == ROUTE_REGISTER {
             let (req, _pl) = req.into_parts();
             let res = HttpResponse::Found()
                 .append_header(("Location", "/"))
@@ -67,7 +84,6 @@ where
             let service_response = ServiceResponse::new(req, res);
             return Box::pin(async move { Ok(service_response) });
         }
-
         let fut = self.service.call(req);
         Box::pin(async move {
             let res = fut.await?.map_into_left_body();

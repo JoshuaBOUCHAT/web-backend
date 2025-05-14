@@ -1,0 +1,56 @@
+/* Section avec fond pleine largeur */
+#about {
+    background-color: #f5f1e3;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 30px;
+    align-items: center;
+}
+
+/* Section générale */
+/* Conteneur interne, pour les éléments empilés */
+#about .about-left {
+    margin-bottom: 40px;
+    /* Ajoute de l’espace entre les éléments */
+}
+
+/* Titre de la section (gros titre) */
+.about-title {
+    font-size: 48px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #a0522d;
+    /* Couleur "rustique" du pain et du levain */
+    margin-bottom: 20px;
+}
+
+/* Sous-titre */
+.about-subtitile {
+    font-size: 24px;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 30px;
+    color: #8b5e3c;
+    /* Nuance plus douce mais chaleureuse */
+}
+
+/* Paragraphe principal */
+#about p {
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Georgia', serif;
+    /* Police lisible et classique */
+    color: #4e342e;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+img {
+    align-self: center;
+}
