@@ -6,7 +6,8 @@ use tera::Context;
 
 use crate::{
     TERA,
-    traits::{Renderable, Responseable},
+    routes::ROUTE_DASHBOARD,
+    utilities::{Renderable, Responseable},
 };
 
 #[derive(Builder, Serialize)]
@@ -17,7 +18,7 @@ impl Renderable for Dashboard {
     fn render(&self) -> Result<String, tera::Error> {
         let mut context = Context::new();
         context.insert("dashboard", self);
-        TERA.render("dashboard.html", &context)
+        TERA.render(ROUTE_DASHBOARD.file_path, &context)
     }
 }
 impl Responseable for Dashboard {}

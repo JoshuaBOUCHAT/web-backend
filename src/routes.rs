@@ -20,6 +20,10 @@ pub const ROUTE_CSS: Route = Route::new("/css", "public/css");
 pub const ROUTE_JS: Route = Route::new("/img", "public/images");
 pub const ROUTE_IMAGES: Route = Route::new("/js", "public/js");
 
+pub const ROUTE_EDIT_PRODUCT: Route =
+    Route::new("/products/{id_product}", "partials/edit_product.html");
+pub const ROUTE_DELETE_PRODUCT: &'static str = "/delete/{id_product}";
+
 pub const ROUTE_WELCOME: Route = Route::new("/", "views/welcome.html");
 pub const ROUTE_PRODUCTS: Route = Route::new("/products", "views/products.html");
 pub const ROUTE_DASHBOARD: Route = Route::new("/dashboard", "views/dashboard.html");
@@ -31,25 +35,26 @@ pub const ROUTE_LOGOUT: &'static str = "/logout";
 pub const ROUTE_FOOTER: Route = Route::new("/static/footer", "static/footer.html");
 pub const ROUTE_NAV: Route = Route::new("/static/footer", "nav/footer.html");
 pub const ROUTE_ABOUT: Route = Route::new("/static/about", "static/about.html");
-pub const ROUTE_AUTH: Route = Route::new("/static/auth", "static/auth.html");
+pub const ROUTE_AUTH: Route = Route::new("/auth", "views/auth.html");
 
 pub const ROUTE_STATICS: &'static str = "/static/{route}";
 
 pub const STATIC_ROUTES: [Route; 4] = [ROUTE_FOOTER, ROUTE_NAV, ROUTE_ABOUT, ROUTE_AUTH];
 
 fn get_route_context() -> Context {
-    let mut routes: HashMap<String, String> = HashMap::new();
+    let mut routes: HashMap<&str, &str> = HashMap::new();
 
-    routes.insert("welcome".into(), ROUTE_WELCOME.web_path.into());
-    routes.insert("products".into(), ROUTE_PRODUCTS.web_path.into());
-    routes.insert("auth".into(), ROUTE_AUTH.web_path.into());
-    routes.insert("dashboard".into(), ROUTE_DASHBOARD.web_path.into());
-    routes.insert("register".into(), ROUTE_REGISTER.into());
-    routes.insert("login".into(), ROUTE_LOGIN.into());
-    routes.insert("logout".into(), ROUTE_LOGOUT.into());
-    routes.insert("footer".into(), ROUTE_FOOTER.web_path.into());
-    routes.insert("nav".into(), ROUTE_NAV.web_path.into());
-    routes.insert("about".into(), ROUTE_ABOUT.web_path.into());
+    routes.insert("welcome", ROUTE_WELCOME.web_path);
+    routes.insert("products", ROUTE_PRODUCTS.web_path);
+    routes.insert("auth", ROUTE_AUTH.web_path);
+    routes.insert("dashboard", ROUTE_DASHBOARD.web_path);
+    routes.insert("register", ROUTE_REGISTER);
+    routes.insert("login", ROUTE_LOGIN);
+    routes.insert("logout", ROUTE_LOGOUT);
+    routes.insert("footer", ROUTE_FOOTER.web_path);
+    routes.insert("nav", ROUTE_NAV.web_path);
+    routes.insert("about", ROUTE_ABOUT.web_path);
+    routes.insert("edit_product", ROUTE_EDIT_PRODUCT.web_path);
 
     let mut context = Context::new();
     context.insert("routes", &routes);
@@ -57,20 +62,6 @@ fn get_route_context() -> Context {
     context
 }
 pub static ROUTE_CONTEXT: LazyLock<Context> = LazyLock::new(|| get_route_context());
-
-pub fn render_to_response(render: tera::Result<String>) -> HttpResponse {
-    match render {
-        Ok(s) => HttpResponse::Ok()
-            .content_type("text/html; charset=utf-8")
-            .body(s),
-        Err(err) => {
-            eprintln!("error during rendering err:\n{err}");
-            HttpResponse::InternalServerError()
-                .content_type("text/html; charset=utf-8")
-                .body(err.to_string())
-        }
-    }
-}
 
 /*pub const WEB_ROUTES: [&'static str; 13] = [
     ROUTE_WELCOME.web_path,

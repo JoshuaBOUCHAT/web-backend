@@ -3,7 +3,8 @@ use serde::Serialize;
 
 use crate::{
     TERA,
-    routes::{ROUTE_CONTEXT, STATIC_ROUTES, render_to_response},
+    routes::{ROUTE_CONTEXT, STATIC_ROUTES},
+    utilities::render_to_response,
 };
 
 #[derive(Serialize)]
