@@ -6,10 +6,14 @@
     <title>StageApp</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="fav.jpg">
+    <link rel="icon" type="image/x-icon" href="/img/fav.jpg">
     <link href="/css/product.css" rel="stylesheet">
     <link href="/css/products.css" rel="stylesheet">
+    <link href="/css/products-modal.css" rel="stylesheet">
+    <script src="/js/products.js"></script>
 </head>
+
+{% include "partials/products-modal.html" %}
 
 <body>
     {% include "static/header.html" %}

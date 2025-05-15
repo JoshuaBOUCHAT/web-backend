@@ -3,7 +3,12 @@
     <div class="product-card__info">
         <div class="product-card__name">Nom du produit</div>
         <div class="product-card__price">29.99 €</div>
-        <button class="product-card__button">Shop</button>
+        <button class="product-card__button product-card__button--edit" data-action="edit" data-id="123">Edit</button>
+
+        <button class="product-card__button" data-action="shop" data-id="123" data-name="Nom du produit">Shop</button>
+
+        <button class="product-card__button product-card__button--delete" data-action="delete"
+            data-id="123">Delete</button>
     </div>
     <div class="product-card__description">
         Voici une description du produit. Elle s'affiche proprement sous la carte, sans masquer le contenu.

@@ -4,6 +4,6 @@ use serde::{Deserialize, Serialize};
 #[derive(Queryable, Insertable, Serialize, Deserialize)]
 #[diesel(table_name = category_product)]
 pub struct CategoryProduct {
-    pub id_products: i32,
-    pub id_categories: i32,
+    pub id_product: i32,
+    pub id_category: i32,
 }

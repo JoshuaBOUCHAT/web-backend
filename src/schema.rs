@@ -1,23 +1,23 @@
 use diesel::table;
 
 table! {
-    categories (id_categories) {
-        id_categories -> Integer,
+    categories (id_category) {
+        id_category -> Integer,
         name -> Text,
         description -> Text,
     }
 }
 
 table! {
-    category_product (id_products, id_categories) {
-        id_products -> Integer,
-        id_categories -> Integer,
+    category_product (id_product, id_category) {
+        id_product -> Integer,
+        id_category -> Integer,
     }
 }
 
 table! {
-    products (id_products) {
-        id_products -> Integer,
+    products (id_product) {
+        id_product -> Integer,
         description -> Text,
         name -> Text,
         price -> Double,
@@ -25,8 +25,8 @@ table! {
     }
 }
 table! {
-    users (id_users) {
-        id_users -> Integer,
+    users (id_user) {
+        id_user -> Integer,
         mail -> Text,
         phone_number -> Text,
         password_hash -> Text,
@@ -36,26 +36,21 @@ table! {
 }
 
 table! {
-    orders (id_orders) {
-        id_orders -> Integer,
+    orders (id_order) {
+        id_order -> Integer,
         date_order -> Text,
         date_retrieve -> Text,
-        id_users -> Integer,
+        id_user -> Integer,
     }
 }
 
 table! {
-    order_product (id_orders, id_products) {
-        id_orders -> Integer,
-        id_products -> Integer,
-        nombre -> Integer,
+    order_product (id_order, id_product) {
+        id_order -> Integer,
+        id_product -> Integer,
+        quantity -> Integer,
     }
 }
 
 diesel::allow_tables_to_appear_in_same_query!(categories, category_product, products,);
-diesel::allow_tables_to_appear_in_same_query!(
-    users,
-    orders,
-    order_product,
-    products, // assuming you already have a `products` table defined
-);
+diesel::allow_tables_to_appear_in_same_query!(users, orders, order_product, products,);

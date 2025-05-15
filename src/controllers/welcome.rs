@@ -5,7 +5,7 @@ use serde::Serialize;
 use crate::{
     TERA,
     routes::{ROUTE_CONTEXT, ROUTE_WELCOME},
-    traits::{Renderable, Responseable},
+    utilities::{Renderable, Responseable},
 };
 
 #[derive(Builder, Serialize)]

@@ -1,0 +1,30 @@
+<h2>Modify Product</h2>
+<form id="edit-form" data-id="{{id_product}}" enctype="multipart/form-data">
+    <label>
+        Name:
+        <input name="name" value="{{name}}" required>
+    </label><br>
+
+    <label>
+        Description:
+        <textarea name="description" required>{{description}}</textarea>
+    </label><br>
+
+    <label>
+        Price (€):
+        <input name="price" type="number" step="0.01" value="{{price}}" required>
+    </label><br>
+
+    <label>
+        Current Image:
+        <img id="current-image-preview" src="{{image_url}}" alt="Current image"
+            style="max-width: 100px; display: block; margin: 5px 0;">
+    </label><br>
+
+    <label>
+        Upload new image:
+        <input name="image_file" type="file" accept="image/*" id="image-upload">
+    </label><br>
+
+    <button type="submit">Save changes</button>
+</form>

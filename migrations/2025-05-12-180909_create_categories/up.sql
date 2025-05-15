@@ -1,7 +1,8 @@
 -- Your SQL goes here
 CREATE TABLE categories(
-   id_categories INTEGER,
+   id_category INTEGER PRIMARY KEY AUTOINCREMENT,
    name TEXT NOT NULL,
-   description TEXT NOT NULL,
-   PRIMARY KEY(id_categories)
+   description TEXT,
+   id_category_1 INTEGER,
+   FOREIGN KEY(id_category_1) REFERENCES categories(id_category)
 );

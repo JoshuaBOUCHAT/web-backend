@@ -3,6 +3,7 @@ use crate::DB_POOL;
 use crate::schema::users::dsl::*;
 use crate::schema::users::{self};
 use ::password_hash::rand_core::OsRng;
+use actix_web::web::get;
 use argon2::{
     Argon2,
     password_hash::{PasswordHash, PasswordHasher, PasswordVerifier, SaltString},
@@ -19,7 +20,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Queryable, Serialize, Insertable, Deserialize)]
 #[diesel(table_name = users)]
 pub struct User {
-    pub id_users: i32,
+    pub id_user: i32,
     pub mail: String,
     pub phone_number: String,
     pub password_hash: String,
@@ -42,7 +43,7 @@ impl User {
             .verify_password(password_input.as_bytes(), &hashed_pasword)
             .is_ok()
         {
-            return Some(user.id_users);
+            return Some(user.id_user);
         }
         return None;
     }
@@ -88,11 +89,21 @@ impl User {
         // Return inserted user (simplified way to get back)
         users
             .filter(mail.eq(mail_input))
-            .order(id_users.desc())
+            .order(id_user.desc())
             .first::<User>(&mut conn)
     }
-    pub fn get(id_user: i32) -> Option<Self> {
+    pub fn get(user_id: i32) -> Option<Self> {
         let mut conn = DB_POOL.get().ok()?;
-        users.find(id_user).first(&mut conn).ok()
+        users.find(user_id).first(&mut conn).ok()
+    }
+    /// If the user neither existe or not an admin return false. If user exist and he's a admin true
+    pub fn is_user_admin(user_id: i32) -> bool {
+        if let Some(user) = Self::get(user_id) {
+            return user.admin != 0;
+        }
+        false
+    }
+    pub fn exist(user_id: i32) -> bool {
+        User::get(user_id).is_some()
     }
 }

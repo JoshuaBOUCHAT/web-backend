@@ -1,13 +1,15 @@
 pub mod routes;
 mod schema;
-mod traits;
+mod utilities;
 use actix_web::web::{get, post};
-use controllers::products::products_get;
+use controllers::products::{product_id_get, products_get};
 use controllers::static_component::static_route_get;
 use controllers::welcome::welcome_get;
+use middlewares::admin_middleware::AdminMiddleware;
 use routes::*;
 
 pub mod middlewares {
+    pub mod admin_middleware;
     pub mod auth_middleware;
 }
 
@@ -94,7 +96,8 @@ async fn main() -> std::io::Result<()> {
                 scope("")
                     .wrap(AuthMiddleware)
                     .route(ROUTE_DASHBOARD.web_path, get().to(dashboard_get))
-                    .route(ROUTE_LOGOUT, get().to(logout_get)),
+                    .route(ROUTE_LOGOUT, get().to(logout_get)) //.service(scope("").wrap(AdminMiddleware).route(ROUTE_, route)),
+                    .route(ROUTE_EDIT_PRODUCT.web_path, get().to(product_id_get)),
             )
     })
     .bind(("0.0.0.0", 8080))?

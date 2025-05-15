@@ -1,10 +1,13 @@
 use actix_session::Session;
 use actix_web::{HttpResponse, Responder, web::Form};
 use serde::Deserialize;
+use tera::Tera;
 
 use crate::{
+    TERA,
     models::user::User,
-    routes::{ROUTE_AUTH, ROUTE_DASHBOARD},
+    routes::{ROUTE_AUTH, ROUTE_CONTEXT, ROUTE_DASHBOARD, ROUTE_PRODUCTS},
+    utilities::{is_connected, render_to_response},
 };
 
 #[derive(Deserialize)]
@@ -18,6 +21,16 @@ pub struct RegisterForm {
 pub struct LoginForm {
     mail: String,
     password: String,
+}
+
+pub async fn auth_get(session: Session) -> impl Responder {
+    if is_connected(&session) {
+        return HttpResponse::Found()
+            .append_header(("Location", ROUTE_PRODUCTS.web_path))
+            .finish();
+    }
+
+    render_to_response(TERA.render(ROUTE_AUTH.file_path, &ROUTE_CONTEXT))
 }
 
 pub async fn login_post(form: Form<LoginForm>, session: Session) -> impl Responder {
@@ -44,7 +57,7 @@ pub async fn register_post(form: Form<RegisterForm>, session: Session) -> impl R
     let maybe_user = User::add_user(&data.mail, &data.phone, &data.password);
     let location = if let Ok(user) = maybe_user {
         println!("adding user worked");
-        if let Err(err) = session.insert("id_user", user.id_users) {
+        if let Err(err) = session.insert("id_user", user.id_user) {
             eprintln!("Error during session attribution :{}", err)
         }
         ROUTE_DASHBOARD.web_path
