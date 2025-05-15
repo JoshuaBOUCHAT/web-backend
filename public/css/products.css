@@ -1,0 +1,53 @@
+/* ====================== Layout général ====================== */
+.shop-page {
+    display: flex;
+    gap: 24px;
+    /* espace colonne filtre / colonne cartes */
+    padding: 24px;
+    font-family: Arial, sans-serif;
+    /* Police locale à la page si souhaité */
+}
+
+/* ====================== Colonne filtres ===================== */
+.filters {
+    flex: 0 0 260px;
+    /* largeur fixe ≈260 px */
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    max-height: 90vh;
+    /* si liste longue, on scrolle à l’intérieur */
+    overflow-y: auto;
+}
+
+.filters__title {
+    margin: 0 0 16px;
+    font-size: 1.25rem;
+}
+
+.filter-group {
+    margin-bottom: 16px;
+}
+
+.filter-group__item {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.filter-group__sub {
+    margin-left: 16px;
+    /* retrait visuel des sous-catégories */
+}
+
+/* ====================== Grille de cartes ==================== */
+.products {
+    flex: 1;
+    /* prend tout l’espace restant */
+    display: grid;
+    gap: 24px;
+    /* Auto-fill = autant de colonnes que possible, min 240 px chacune */
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+/* Aucune règle ici pour <custom-card> : tu utilises déjà son style interne */

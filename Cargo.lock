@@ -2438,7 +2438,6 @@ dependencies = [
  "diesel",
  "dotenvy",
  "futures-util",
- "once_cell",
  "password-hash",
  "rand_core 0.9.3",
  "serde",

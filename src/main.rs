@@ -35,10 +35,10 @@ use actix_web::{App, HttpServer, cookie::Key, web::scope};
 use controllers::auth::{login_post, logout_get, register_post};
 use controllers::dashboard::dashboard_get;
 use middlewares::auth_middleware::AuthMiddleware;
-use once_cell::sync::Lazy;
+use std::sync::LazyLock;
 use tera::Tera;
 
-static TERA: Lazy<Tera> = Lazy::new(|| {
+static TERA: LazyLock<Tera> = LazyLock::new(|| {
     let tera = Tera::new("html/**/*.html").expect("Failed to load templates");
     println!(
         "Loaded templates: {:?}",
@@ -58,7 +58,7 @@ fn establish_connection() -> DbPool {
         .expect("Failed to create pool.")
 }
 
-static DB_POOL: Lazy<DbPool> = Lazy::new(|| establish_connection());
+static DB_POOL: LazyLock<DbPool> = LazyLock::new(|| establish_connection());
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
