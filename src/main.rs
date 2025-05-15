@@ -2,6 +2,7 @@ pub mod routes;
 mod schema;
 mod traits;
 use actix_web::web::{get, post};
+use controllers::products::products_get;
 use controllers::static_component::static_route_get;
 use controllers::welcome::welcome_get;
 use routes::*;
@@ -9,6 +10,8 @@ use routes::*;
 pub mod middlewares {
     pub mod auth_middleware;
 }
+
+pub mod components {}
 
 pub mod models {
     pub mod category;
@@ -21,6 +24,7 @@ pub mod models {
 pub mod controllers {
     pub mod auth;
     pub mod dashboard;
+    pub mod products;
     pub mod static_component;
     pub mod welcome;
 }
@@ -31,10 +35,10 @@ use actix_web::{App, HttpServer, cookie::Key, web::scope};
 use controllers::auth::{login_post, logout_get, register_post};
 use controllers::dashboard::dashboard_get;
 use middlewares::auth_middleware::AuthMiddleware;
-use once_cell::sync::Lazy;
+use std::sync::LazyLock;
 use tera::Tera;
 
-static TERA: Lazy<Tera> = Lazy::new(|| {
+static TERA: LazyLock<Tera> = LazyLock::new(|| {
     let tera = Tera::new("html/**/*.html").expect("Failed to load templates");
     println!(
         "Loaded templates: {:?}",
@@ -54,7 +58,7 @@ fn establish_connection() -> DbPool {
         .expect("Failed to create pool.")
 }
 
-static DB_POOL: Lazy<DbPool> = Lazy::new(|| establish_connection());
+static DB_POOL: LazyLock<DbPool> = LazyLock::new(|| establish_connection());
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -85,6 +89,7 @@ async fn main() -> std::io::Result<()> {
             .route(ROUTE_LOGIN, post().to(login_post))
             .route(ROUTE_STATICS, get().to(static_route_get))
             .route(ROUTE_WELCOME.web_path, get().to(welcome_get))
+            .route(ROUTE_PRODUCTS.web_path, get().to(products_get))
             .service(
                 scope("")
                     .wrap(AuthMiddleware)

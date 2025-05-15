@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>StageApp</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="fav.jpg">
+    <link href="/css/product.css" rel="stylesheet">
+    <link href="/css/products.css" rel="stylesheet">
+</head>
+
+<body>
+    {% include "static/header.html" %}
+    <div class="shop-page">
+
+        <!-- ====== Filtre (colonne gauche) ====== -->
+        <aside class="filters">
+            <h2 class="filters__title">Catégories</h2>
+
+            <!-- Exemple de groupe principal -->
+            <section class="filter-group">
+                <label class="filter-group__item">
+                    <input type="checkbox"> Électronique
+                </label>
+                <div class="filter-group__sub">
+                    <label class="filter-group__item">
+                        <input type="checkbox"> Smartphones
+                    </label>
+                    <label class="filter-group__item">
+                        <input type="checkbox"> Tablettes
+                    </label>
+                    <label class="filter-group__item">
+                        <input type="checkbox"> Accessoires
+                    </label>
+                </div>
+            </section>
+
+            <!-- Autre groupe -->
+            <section class="filter-group">
+                <label class="filter-group__item">
+                    <input type="checkbox"> Maison &amp; Déco
+                </label>
+                <div class="filter-group__sub">
+                    <label class="filter-group__item">
+                        <input type="checkbox"> Cuisine
+                    </label>
+                    <label class="filter-group__item">
+                        <input type="checkbox"> Salon
+                    </label>
+                    <label class="filter-group__item">
+                        <input type="checkbox"> Jardin
+                    </label>
+                </div>
+            </section>
+
+            <!-- Ajoute autant de groupes > sous-groupes que nécessaire -->
+        </aside>
+
+        <!-- ====== Grille de produits (colonne droite) ====== -->
+        <main class="products" aria-label="Liste des produits">
+
+            <!-- Exemple : 12 cartes. Ajoute/enlève librement : la grille s'adapte -->
+            {% include "partials/product.html" %}
+            {% include "partials/product.html" %}
+            {% include "partials/product.html" %}
+            {% include "partials/product.html" %}
+            {% include "partials/product.html" %}
+            {% include "partials/product.html" %}
+            {% include "partials/product.html" %}
+            {% include "partials/product.html" %}
+            {% include "partials/product.html" %}
+            {% include "partials/product.html" %}
+            {% include "partials/product.html" %}
+            {% include "partials/product.html" %}
+
+        </main>
+
+    </div>
+    {% include "static/footer.html" %}
+</body>
+
+</html>

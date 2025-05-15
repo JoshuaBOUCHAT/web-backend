@@ -1,7 +1,6 @@
 use actix_web::Responder;
 use derive_builder::Builder;
 use serde::Serialize;
-use tera::Context;
 
 use crate::{
     TERA,
