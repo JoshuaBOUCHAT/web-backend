@@ -1,3 +1,4 @@
+{% import "partials/product.html" as comp %}
 <!doctype html>
 <html lang="en">
 
@@ -6,14 +7,15 @@
     <title>StageApp</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="/img/fav.jpg">
-    <link href="/css/product.css" rel="stylesheet">
-    <link href="/css/products.css" rel="stylesheet">
-    <link href="/css/products-modal.css" rel="stylesheet">
-    <script src="/js/products.js"></script>
+    <link rel="icon" type="image/x-icon" href="/public/images/fav.jpg">
+    <link href="/public/css/product.css" rel="stylesheet">
+    <link href="/public/css/products.css" rel="stylesheet">
+    <link href="/public/css/products-modal.css" rel="stylesheet">
+    <script src="/public/js/products.js"></script>
 </head>
 
 {% include "partials/products-modal.html" %}
+
 
 <body>
     {% include "static/header.html" %}
@@ -65,20 +67,11 @@
         <!-- ====== Grille de produits (colonne droite) ====== -->
         <main class="products" aria-label="Liste des produits">
 
-            <!-- Exemple : 12 cartes. Ajoute/enlève librement : la grille s'adapte -->
-            {% include "partials/product.html" %}
-            {% include "partials/product.html" %}
-            {% include "partials/product.html" %}
-            {% include "partials/product.html" %}
-            {% include "partials/product.html" %}
-            {% include "partials/product.html" %}
-            {% include "partials/product.html" %}
-            {% include "partials/product.html" %}
-            {% include "partials/product.html" %}
-            {% include "partials/product.html" %}
-            {% include "partials/product.html" %}
-            {% include "partials/product.html" %}
 
+            <!-- Exemple : 12 cartes. Ajoute/enlève librement : la grille s'adapte -->
+            {% for product in products %}
+            {{ comp::product(product=product) }}
+            {% endfor %}
         </main>
 
     </div>

@@ -76,17 +76,17 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(sessionmiddleware)
             .service(actix_files::Files::new(
-                ROUTE_CSS.web_path,
-                ROUTE_CSS.file_path,
+                ROUTE_PUBLIC.web_path,
+                ROUTE_PUBLIC.file_path,
             ))
-            .service(actix_files::Files::new(
+            /* .service(actix_files::Files::new(
                 ROUTE_IMAGES.web_path,
                 ROUTE_IMAGES.file_path,
             ))
             .service(actix_files::Files::new(
                 ROUTE_JS.web_path,
                 ROUTE_JS.file_path,
-            ))
+            ))*/
             .route(ROUTE_REGISTER, post().to(register_post))
             .route(ROUTE_LOGIN, post().to(login_post))
             .route(ROUTE_STATICS, get().to(static_route_get))

@@ -15,7 +15,7 @@ pub struct Product {
     pub description: String,
     pub name: String,
     pub price: f64,
-    pub image_url: Option<String>,
+    pub image_url: String,
 }
 impl Product {
     pub fn get(id: i32) -> Option<Self> {

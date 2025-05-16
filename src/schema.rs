@@ -21,7 +21,7 @@ table! {
         description -> Text,
         name -> Text,
         price -> Double,
-        image_url -> Nullable<Text>,
+        image_url -> Text,
     }
 }
 table! {

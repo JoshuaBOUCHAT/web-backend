@@ -20,6 +20,8 @@ pub const ROUTE_CSS: Route = Route::new("/css", "public/css");
 pub const ROUTE_JS: Route = Route::new("/img", "public/images");
 pub const ROUTE_IMAGES: Route = Route::new("/js", "public/js");
 
+pub const ROUTE_PUBLIC: Route = Route::new("/public", "public");
+
 pub const ROUTE_EDIT_PRODUCT: Route =
     Route::new("/products/{id_product}", "partials/edit_product.html");
 pub const ROUTE_DELETE_PRODUCT: &'static str = "/delete/{id_product}";

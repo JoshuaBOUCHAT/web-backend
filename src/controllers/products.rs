@@ -19,16 +19,14 @@ impl Renderable for Products {
     fn render(&self) -> Result<String, tera::Error> {
         let mut context = ROUTE_CONTEXT.clone();
         context.insert("products", &self.products);
-        context.insert("id_admin", &self.is_admin);
+        context.insert("is_admin", &self.is_admin);
         TERA.render(ROUTE_PRODUCTS.file_path, &context)
     }
 }
 impl Responseable for Products {}
 
 pub async fn products_get(session: Session) -> impl Responder {
-    let products = if let Some(p) = Product::all() {
-        p
-    } else {
+    let Some(products) = Product::all() else {
         return new_internal_error();
     };
 
@@ -53,7 +51,7 @@ pub async fn product_id_get(path: web::Path<i32>) -> impl Responder {
     context.insert("id_product", &product.id_product);
     context.insert("description", &product.description);
     context.insert("price", &product.price);
-    context.insert("image_url", &product.image_url.unwrap_or_default());
+    context.insert("image_url", &product.image_url);
 
     render_to_response(TERA.render(ROUTE_EDIT_PRODUCT.file_path, &context))
 }
