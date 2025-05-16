@@ -1,9 +1,10 @@
 use std::{collections::HashMap, io::Write};
 
-use crate::models::user::User;
+use crate::{DB_POOL, models::user::User};
 use actix_multipart::Multipart;
 use actix_session::Session;
 use actix_web::{Error, HttpResponse, web};
+use diesel::r2d2::{ConnectionManager, PooledConnection};
 use futures_util::TryStreamExt;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
@@ -47,6 +48,10 @@ pub fn is_connected(session: &Session) -> bool {
 }
 pub fn new_internal_error() -> HttpResponse {
     HttpResponse::InternalServerError().finish()
+}
+
+pub fn get_db() -> Option<PooledConnection<ConnectionManager<diesel::SqliteConnection>>> {
+    DB_POOL.get().ok()
 }
 
 /*pub async fn from_multipart<'a, T>(mut payload: Multipart) -> T

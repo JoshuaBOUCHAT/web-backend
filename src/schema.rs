@@ -5,6 +5,7 @@ table! {
         id_category -> Integer,
         name -> Text,
         description -> Text,
+        super_category -> Nullable< Integer>
     }
 }
 

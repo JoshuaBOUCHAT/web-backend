@@ -24,7 +24,7 @@ pub const ROUTE_PUBLIC: Route = Route::new("/public", "public");
 
 pub const ROUTE_EDIT_PRODUCT: Route =
     Route::new("/products/{id_product}", "partials/edit_product.html");
-pub const ROUTE_DELETE_PRODUCT: &'static str = "/delete/{id_product}";
+pub const ROUTE_DELETE_PRODUCT: &'static str = "/products/{id}";
 
 pub const ROUTE_WELCOME: Route = Route::new("/", "views/welcome.html");
 pub const ROUTE_PRODUCTS: Route = Route::new("/products", "views/products.html");

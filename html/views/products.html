@@ -20,55 +20,9 @@
 <body>
     {% include "static/header.html" %}
     <div class="shop-page">
+        {% include "partials/products-aside.html" %}
 
-        <!-- ====== Filtre (colonne gauche) ====== -->
-        <aside class="filters">
-            <h2 class="filters__title">Catégories</h2>
-
-            <!-- Exemple de groupe principal -->
-            <section class="filter-group">
-                <label class="filter-group__item">
-                    <input type="checkbox"> Viennoiseries
-                </label>
-                <div class="filter-group__sub">
-                    <label class="filter-group__item">
-                        <input type="checkbox"> Pain au chocolat
-                    </label>
-                    <label class="filter-group__item">
-                        <input type="checkbox"> Croissant
-                    </label>
-                    <label class="filter-group__item">
-                        <input type="checkbox"> Pain au raisin
-                    </label>
-                </div>
-            </section>
-
-            <!-- Autre groupe -->
-            <section class="filter-group">
-                <label class="filter-group__item">
-                    <input type="checkbox"> Patisseries
-                </label>
-                <div class="filter-group__sub">
-                    <label class="filter-group__item">
-                        <input type="checkbox"> Macaron
-                    </label>
-                    <label class="filter-group__item">
-                        <input type="checkbox"> tarte au citron
-                    </label>
-                    <label class="filter-group__item">
-                        <input type="checkbox"> &Eacute;clair
-                    </label>
-                </div>
-            </section>
-
-            <!-- Ajoute autant de groupes > sous-groupes que nécessaire -->
-        </aside>
-
-        <!-- ====== Grille de produits (colonne droite) ====== -->
         <main class="products" aria-label="Liste des produits">
-
-
-            <!-- Exemple : 12 cartes. Ajoute/enlève librement : la grille s'adapte -->
             {% for product in products %}
             {{ comp::product(product=product) }}
             {% endfor %}

@@ -1,0 +1,18 @@
+<aside class="filters">
+    <h2 class="filters__title">Catégories</h2>
+    {% for category_group in category_groups %}
+    <section class="filter-group">
+        <label class="filter-group__item">
+            <input type="checkbox"> {{category_group.parent.name}}
+        </label>
+        <div class="filter-group__sub">
+
+            {% for child in category_group.children %}
+            <label class="filter-group__item">
+                <input type="checkbox"> {{child.name}}
+            </label>
+            {% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+</aside>

@@ -34,9 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
       `);
             document.getElementById('confirm-del')
                 .addEventListener('click', async () => {
-                    await fetch('/products/' + id, { method: 'DELETE' });
-                    btn.closest('.product-card').remove();
-                    closeModal();
+                    await fetch('/products/' + id, { method: 'DELETE' })
+                        .then(r => r.text())
+                        .then(html => openModal(html))
+                        .catch(() => openModal('<p>Error loading form.</p>'));
+                    //btn.closest('.product-card').remove();
+                    //closeModal();
                 });
 
         } else if (action === 'edit') {

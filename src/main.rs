@@ -1,8 +1,8 @@
 pub mod routes;
 mod schema;
 mod utilities;
-use actix_web::web::{get, post};
-use controllers::products::{product_id_get, products_get};
+use actix_web::web::{delete, get, post};
+use controllers::products::{product_id_delete, product_id_get, products_get};
 use controllers::static_component::static_route_get;
 use controllers::welcome::welcome_get;
 use middlewares::admin_middleware::AdminMiddleware;
@@ -97,7 +97,8 @@ async fn main() -> std::io::Result<()> {
                     .wrap(AuthMiddleware)
                     .route(ROUTE_DASHBOARD.web_path, get().to(dashboard_get))
                     .route(ROUTE_LOGOUT, get().to(logout_get)) //.service(scope("").wrap(AdminMiddleware).route(ROUTE_, route)),
-                    .route(ROUTE_EDIT_PRODUCT.web_path, get().to(product_id_get)),
+                    .route(ROUTE_EDIT_PRODUCT.web_path, get().to(product_id_get))
+                    .route(ROUTE_DELETE_PRODUCT, delete().to(product_id_delete)),
             )
     })
     .bind(("0.0.0.0", 8080))?

@@ -1,5 +1,5 @@
 {% macro product(product) %}
-<div class="product-card">
+<div class="product-card" data-id="{{product.id_product}}" data-price="{{product.price}}">
     <img src="{{product.image_url}}" alt="Produit" class="product-card__image">
     <div class="product-card__info">
         <div class="product-card__name">{{product.name}}</div>
