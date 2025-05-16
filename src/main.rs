@@ -2,9 +2,9 @@ pub mod routes;
 mod schema;
 mod utilities;
 use actix_web::web::{delete, get, post};
-use controllers::products::{product_id_delete, product_id_get, products_get};
-use controllers::static_component::static_route_get;
-use controllers::welcome::welcome_get;
+use controllers::products_controller::{product_id_delete, product_id_get, products_get};
+use controllers::static_component_controller::static_route_get;
+use controllers::welcome_controller::welcome_get;
 use middlewares::admin_middleware::AdminMiddleware;
 use routes::*;
 
@@ -16,26 +16,26 @@ pub mod middlewares {
 pub mod components {}
 
 pub mod models {
-    pub mod category;
-    pub mod category_product;
-    pub mod order;
-    pub mod order_product;
-    pub mod product;
-    pub mod user;
+    pub mod category_model;
+    pub mod category_product_model;
+    pub mod order_model;
+    pub mod order_product_model;
+    pub mod product_model;
+    pub mod user_model;
 }
 pub mod controllers {
-    pub mod auth;
-    pub mod dashboard;
-    pub mod products;
-    pub mod static_component;
-    pub mod welcome;
+    pub mod auth_controller;
+    pub mod dashboard_controller;
+    pub mod products_controller;
+    pub mod static_component_controller;
+    pub mod welcome_controller;
 }
 
-pub use crate::controllers::welcome::WelcomeBuilder;
+pub use crate::controllers::welcome_controller::WelcomeBuilder;
 use actix_session::{SessionMiddleware, config::PersistentSession, storage::CookieSessionStore};
 use actix_web::{App, HttpServer, cookie::Key, web::scope};
-use controllers::auth::{login_post, logout_get, register_post};
-use controllers::dashboard::dashboard_get;
+use controllers::auth_controller::{login_post, logout_get, register_post};
+use controllers::dashboard_controller::dashboard_get;
 use middlewares::auth_middleware::AuthMiddleware;
 use std::sync::LazyLock;
 use tera::Tera;

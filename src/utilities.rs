@@ -1,6 +1,6 @@
 use std::{collections::HashMap, io::Write};
 
-use crate::{DB_POOL, models::user::User};
+use crate::{DB_POOL, models::user_model::User};
 use actix_multipart::Multipart;
 use actix_session::Session;
 use actix_web::{Error, HttpResponse, web};

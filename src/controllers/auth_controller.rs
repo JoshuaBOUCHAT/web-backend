@@ -5,7 +5,7 @@ use tera::Tera;
 
 use crate::{
     TERA,
-    models::user::User,
+    models::user_model::User,
     routes::{ROUTE_AUTH, ROUTE_CONTEXT, ROUTE_DASHBOARD, ROUTE_PRODUCTS},
     utilities::{is_connected, render_to_response},
 };

@@ -10,8 +10,8 @@ use uuid::uuid;
 use crate::{
     TERA,
     models::{
-        category::{Category, CategoryGroup},
-        product::Product,
+        category_model::{Category, CategoryGroup},
+        product_model::Product,
     },
     routes::{ROUTE_CONTEXT, ROUTE_EDIT_PRODUCT, ROUTE_PRODUCTS},
     utilities::{self, Renderable, Responseable, new_internal_error, render_to_response},
