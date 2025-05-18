@@ -1,17 +1,8 @@
-#![feature(unwrap_infallible)]
 mod macros;
 pub mod routes;
 mod schema;
 mod statics;
 mod utilities;
-use actix_web::web::{delete, get, post};
-use chrono::{Date, Utc};
-use controllers::products_controller::{product_id_delete, product_id_get, products_get};
-use controllers::static_component_controller::static_route_get;
-use controllers::welcome_controller::welcome_get;
-use middlewares::admin_middleware::AdminMiddleware;
-use routes::*;
-use utilities::now;
 
 pub mod middlewares {
     pub mod admin_middleware;
@@ -36,19 +27,17 @@ pub mod controllers {
     pub mod welcome_controller;
 }
 
-pub use crate::controllers::welcome_controller::WelcomeBuilder;
 use actix_session::{SessionMiddleware, config::PersistentSession, storage::CookieSessionStore};
+use actix_web::web::{delete, get, post};
 use actix_web::{App, HttpServer, cookie::Key, web::scope};
-use controllers::auth_controller::{login_post, logout_get, register_post};
+use controllers::auth_controller::{auth_get, login_post, logout_get, register_post};
 use controllers::dashboard_controller::dashboard_get;
+use controllers::products_controller::{product_id_delete, product_id_get, products_get};
+use controllers::static_component_controller::static_route_get;
+use controllers::welcome_controller::welcome_get;
+use middlewares::admin_middleware::AdminMiddleware;
 use middlewares::auth_middleware::AuthMiddleware;
-use std::fs::{File, OpenOptions};
-use std::io::{BufWriter, Write, stderr, stdout};
-use std::sync::{LazyLock, Mutex};
-use tera::Tera;
-
-use diesel::prelude::*;
-use diesel::r2d2::{self, ConnectionManager};
+use routes::*;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -68,19 +57,12 @@ async fn main() -> std::io::Result<()> {
                 ROUTE_PUBLIC.web_path,
                 ROUTE_PUBLIC.file_path,
             ))
-            /* .service(actix_files::Files::new(
-                ROUTE_IMAGES.web_path,
-                ROUTE_IMAGES.file_path,
-            ))
-            .service(actix_files::Files::new(
-                ROUTE_JS.web_path,
-                ROUTE_JS.file_path,
-            ))*/
             .route(ROUTE_REGISTER, post().to(register_post))
             .route(ROUTE_LOGIN, post().to(login_post))
             .route(ROUTE_STATICS, get().to(static_route_get))
             .route(ROUTE_WELCOME.web_path, get().to(welcome_get))
             .route(ROUTE_PRODUCTS.web_path, get().to(products_get))
+            .route(ROUTE_AUTH.web_path, get().to(auth_get))
             .service(
                 scope("")
                     .wrap(AuthMiddleware)
@@ -90,7 +72,7 @@ async fn main() -> std::io::Result<()> {
                     .route(ROUTE_DELETE_PRODUCT, delete().to(product_id_delete)),
             )
     })
-    .bind(("0.0.0.0", 8080))?
+    .bind(("0.0.0.0", 8040))?
     .run()
     .await
 }

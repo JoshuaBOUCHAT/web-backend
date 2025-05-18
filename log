@@ -1,2 +1,6 @@
 App start at:2025-05-16 21:16:18
 App start at:2025-05-18 17:27:00
+App start at:2025-05-18 18:00:33
+App start at:2025-05-18 18:03:30
+App start at:2025-05-18 18:06:39
+User User { id_user: 1, mail: "joshuabouchat@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$QLEIttuti9e9TTaUMmc8PQ$IeSovy3J1MZ7L4BSR4YqfQp+yh9GbFtKB1q0JwA3wbc", date_creation: "2025-05-18 18:07:14", admin: 1 } access auth page
