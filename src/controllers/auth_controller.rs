@@ -1,13 +1,14 @@
 use actix_session::Session;
 use actix_web::{HttpResponse, Responder, web::Form};
 use serde::Deserialize;
-use tera::Tera;
 
 use crate::{
-    TERA,
+    log,
     models::user_model::User,
     routes::{ROUTE_AUTH, ROUTE_CONTEXT, ROUTE_DASHBOARD, ROUTE_PRODUCTS},
-    utilities::{is_connected, render_to_response},
+    statics::TERA,
+    try_or_return,
+    utilities::{error_to_http_repsonse, render_to_response},
 };
 
 #[derive(Deserialize)]
@@ -24,7 +25,10 @@ pub struct LoginForm {
 }
 
 pub async fn auth_get(session: Session) -> impl Responder {
-    if is_connected(&session) {
+    let maybe_user = try_or_return!(error_to_http_repsonse(User::from_session(&session)));
+
+    if let Some(user) = maybe_user {
+        log!("User {:?} access auth page", &user);
         return HttpResponse::Found()
             .append_header(("Location", ROUTE_PRODUCTS.web_path))
             .finish();
@@ -36,11 +40,17 @@ pub async fn auth_get(session: Session) -> impl Responder {
 pub async fn login_post(form: Form<LoginForm>, session: Session) -> impl Responder {
     println!("handling login");
     let data = form.into_inner();
-    let maybe_user = User::verfify_login(&data.mail, &data.password);
-    let location = if let Some(id_user) = maybe_user {
-        println!("There is a user in the session");
-        if let Err(err) = session.insert("id_user", id_user) {
-            eprintln!("Error during session attribution :{}", err)
+    let maybe_user = try_or_return!(
+        error_to_http_repsonse(User::verify_login(&data.mail, &data.password)),
+        log!("Error during rendering login_post")
+    );
+    let location = if let Some(user) = maybe_user {
+        if let Err(err) = session.insert("id_user", user.id_user) {
+            log!(
+                "Error during session attribution :{} for user {:?}",
+                err,
+                &user
+            );
         }
         "/"
     } else {

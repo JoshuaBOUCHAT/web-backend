@@ -1,6 +1,5 @@
 use std::{collections::HashMap, sync::LazyLock};
 
-use actix_web::HttpResponse;
 use tera::Context;
 
 pub struct Route {

@@ -5,8 +5,8 @@ use serde::Serialize;
 use tera::Context;
 
 use crate::{
-    TERA,
     routes::ROUTE_DASHBOARD,
+    statics::TERA,
     utilities::{Renderable, Responseable},
 };
 

@@ -1,9 +1,12 @@
-use std::{collections::HashMap, io::Write};
+use std::{collections::HashMap, error::Error, io::Write};
 
-use crate::{DB_POOL, models::user_model::User};
+use crate::{
+    models::user_model::User,
+    statics::{APP_STATE, AppState, DB_POOL},
+};
 use actix_multipart::Multipart;
 use actix_session::Session;
-use actix_web::{Error, HttpResponse, web};
+use actix_web::{HttpResponse, web};
 use diesel::r2d2::{ConnectionManager, PooledConnection};
 use futures_util::TryStreamExt;
 use serde::{Deserialize, Serialize};
@@ -30,28 +33,37 @@ pub fn render_to_response(render: tera::Result<String>) -> HttpResponse {
         }
     }
 }
-pub fn is_admin(session: &Session) -> bool {
-    if let Ok(maybe_id_user) = session.get("id_user") {
-        if let Some(id_user) = maybe_id_user {
-            return User::is_user_admin(id_user);
-        }
-    }
-    false
-}
-pub fn is_connected(session: &Session) -> bool {
-    if let Ok(maybe_id_user) = session.get("id_user") {
-        if let Some(id_user) = maybe_id_user {
-            return User::exist(id_user);
-        }
-    }
-    false
-}
 pub fn new_internal_error() -> HttpResponse {
     HttpResponse::InternalServerError().finish()
 }
 
 pub fn get_db() -> Option<PooledConnection<ConnectionManager<diesel::SqliteConnection>>> {
     DB_POOL.get().ok()
+}
+
+pub fn now() -> String {
+    chrono::Utc::now().format("%Y-%m-%d %H:%M:%S").to_string()
+}
+
+/*trait ErrorToHttpResponse<T> {
+    fn handle_error(&self) -> Result<Option<T>, HttpResponse> {}
+}*/
+pub fn error_to_http_repsonse<T>(
+    result: Result<Option<T>, Box<dyn Error>>,
+) -> Result<Option<T>, HttpResponse> {
+    match result {
+        Ok(opt) => Ok(opt),
+        Err(err) => {
+            let ret_err = match *APP_STATE {
+                AppState::Dev => HttpResponse::InternalServerError()
+                    .body(format!("And error occure:<br><h2>{}</h2>", err)),
+                AppState::Prod => {
+                    HttpResponse::NotFound().body("Nos somme désolé une erreur est survenue")
+                }
+            };
+            return Err(ret_err);
+        }
+    }
 }
 
 /*pub async fn from_multipart<'a, T>(mut payload: Multipart) -> T

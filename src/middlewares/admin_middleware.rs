@@ -7,8 +7,11 @@ use actix_web::{
 use futures_util::future::LocalBoxFuture;
 use std::future::{Ready, ready};
 
-use crate::routes::{ROUTE_AUTH, ROUTE_WELCOME};
-use crate::utilities;
+use crate::{log, utilities};
+use crate::{
+    models::user_model::User,
+    routes::{ROUTE_AUTH, ROUTE_WELCOME},
+};
 
 pub struct AdminMiddleware;
 
@@ -45,11 +48,39 @@ where
 
     fn call(&self, req: ServiceRequest) -> Self::Future {
         let session = req.get_session();
-        let is_admin = utilities::is_admin(&session);
+
+        let (is_admin, is_connected) = match User::from_session(&session) {
+            Ok(Some(user)) => {
+                if user.admin == 0 {
+                    log!(
+                        "The user: \n{:?} try to access a admin protected route without being an admin req:\n{:?}",
+                        &user,
+                        &req
+                    );
+                    (false, true)
+                } else {
+                    log!("Admin :{:?} access the admin route :{:?}", &user, &req);
+                    (true, true)
+                }
+            }
+            Ok(None) => {
+                log!(
+                    "User tried to access admin protected route without being logged in req:\n{:?}",
+                    &req
+                );
+                (false, false)
+            }
+            Err(err) => {
+                log!(
+                    "Error inside the adminMiddleware when requesting the user:\n{:?}",
+                    err
+                );
+                (false, false)
+            }
+        };
 
         if !is_admin {
             let (req, _pl) = req.into_parts();
-            let is_connected = utilities::is_connected(&session);
 
             let location = if is_connected {
                 ROUTE_WELCOME.web_path

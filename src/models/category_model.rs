@@ -1,4 +1,4 @@
-use crate::schema::categories;
+use crate::{schema::categories, statics::DB_POOL};
 use diesel::prelude::{Insertable, Queryable};
 use serde::{Deserialize, Serialize};
 
@@ -20,9 +20,7 @@ use diesel::prelude::*;
 
 impl Category {
     pub fn all() -> diesel::QueryResult<Vec<Category>> {
-        let mut conn = crate::DB_POOL
-            .get()
-            .map_err(|_| diesel::result::Error::NotFound)?;
+        let mut conn = DB_POOL.get().map_err(|_| diesel::result::Error::NotFound)?;
         println!("tentative du desp");
 
         // 1. Récupérer toutes les catégories

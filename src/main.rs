@@ -1,12 +1,17 @@
+#![feature(unwrap_infallible)]
+mod macros;
 pub mod routes;
 mod schema;
+mod statics;
 mod utilities;
 use actix_web::web::{delete, get, post};
+use chrono::{Date, Utc};
 use controllers::products_controller::{product_id_delete, product_id_get, products_get};
 use controllers::static_component_controller::static_route_get;
 use controllers::welcome_controller::welcome_get;
 use middlewares::admin_middleware::AdminMiddleware;
 use routes::*;
+use utilities::now;
 
 pub mod middlewares {
     pub mod admin_middleware;
@@ -37,33 +42,17 @@ use actix_web::{App, HttpServer, cookie::Key, web::scope};
 use controllers::auth_controller::{login_post, logout_get, register_post};
 use controllers::dashboard_controller::dashboard_get;
 use middlewares::auth_middleware::AuthMiddleware;
-use std::sync::LazyLock;
+use std::fs::{File, OpenOptions};
+use std::io::{BufWriter, Write, stderr, stdout};
+use std::sync::{LazyLock, Mutex};
 use tera::Tera;
 
-static TERA: LazyLock<Tera> = LazyLock::new(|| {
-    let tera = Tera::new("html/**/*.html").expect("Failed to load templates");
-    println!(
-        "Loaded templates: {:?}",
-        tera.get_template_names().collect::<Vec<_>>()
-    );
-    tera
-});
 use diesel::prelude::*;
 use diesel::r2d2::{self, ConnectionManager};
 
-type DbPool = r2d2::Pool<ConnectionManager<SqliteConnection>>;
-
-fn establish_connection() -> DbPool {
-    let manager = ConnectionManager::<SqliteConnection>::new("database.db");
-    r2d2::Pool::builder()
-        .build(manager)
-        .expect("Failed to create pool.")
-}
-
-static DB_POOL: LazyLock<DbPool> = LazyLock::new(|| establish_connection());
-
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    log!("App start at:{}", utilities::now());
     HttpServer::new(move || {
         let sessionmiddleware =
             SessionMiddleware::builder(CookieSessionStore::default(), Key::from(&[0; 64]))

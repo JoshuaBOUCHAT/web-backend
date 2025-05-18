@@ -2,19 +2,25 @@ use std::ffi::OsStr;
 
 use actix_multipart::form::{MultipartForm, tempfile::TempFile, text::Text};
 use actix_session::Session;
-use actix_web::{HttpRequest, HttpResponse, Responder, web};
+use actix_web::{HttpResponse, Responder, web};
 use serde::Serialize;
 use tera::Context;
 use uuid::uuid;
 
 use crate::{
-    TERA,
+    log,
     models::{
         category_model::{Category, CategoryGroup},
         product_model::Product,
+        user_model::User,
     },
     routes::{ROUTE_CONTEXT, ROUTE_EDIT_PRODUCT, ROUTE_PRODUCTS},
-    utilities::{self, Renderable, Responseable, new_internal_error, render_to_response},
+    statics::TERA,
+    try_or_return,
+    utilities::{
+        self, Renderable, Responseable, error_to_http_repsonse, new_internal_error,
+        render_to_response,
+    },
 };
 #[derive(Serialize, Default)]
 pub struct Products {
@@ -44,9 +50,19 @@ pub async fn products_get(session: Session) -> impl Responder {
         return new_internal_error();
     };
 
+    let maybe_user = try_or_return!(
+        error_to_http_repsonse(User::from_session(&session)),
+        log!("Error happen during rendering of products_get while requesting User form session ")
+    );
+    let is_admin = if let Some(user) = maybe_user {
+        user.admin != 0
+    } else {
+        false
+    };
+
     let products_view = Products {
         products: products,
-        is_admin: utilities::is_admin(&session),
+        is_admin: is_admin,
         category_groups: category_groups,
     };
 

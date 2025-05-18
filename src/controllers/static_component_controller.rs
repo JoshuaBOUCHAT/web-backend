@@ -2,8 +2,8 @@ use actix_web::{HttpRequest, HttpResponse, Responder};
 use serde::Serialize;
 
 use crate::{
-    TERA,
     routes::{ROUTE_CONTEXT, STATIC_ROUTES},
+    statics::TERA,
     utilities::render_to_response,
 };
 

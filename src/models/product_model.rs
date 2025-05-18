@@ -1,5 +1,5 @@
-use crate::DB_POOL;
 use crate::schema::products;
+use crate::statics::DB_POOL;
 use crate::utilities::get_db;
 use diesel::dsl::sql;
 use diesel::prelude::{Insertable, Queryable};

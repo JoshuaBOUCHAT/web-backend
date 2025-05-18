@@ -1,6 +1,6 @@
-use crate::DB_POOL;
 use crate::schema::orders;
 use crate::schema::orders::dsl::*;
+use crate::statics::DB_POOL;
 use diesel::RunQueryDsl;
 use diesel::prelude::{Insertable, Queryable};
 use diesel::query_dsl::methods::FindDsl;

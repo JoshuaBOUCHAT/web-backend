@@ -3,8 +3,8 @@ use derive_builder::Builder;
 use serde::Serialize;
 
 use crate::{
-    TERA,
     routes::{ROUTE_CONTEXT, ROUTE_WELCOME},
+    statics::TERA,
     utilities::{Renderable, Responseable},
 };
 
