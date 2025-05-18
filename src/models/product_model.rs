@@ -1,6 +1,8 @@
+use std::error::Error;
+
 use crate::schema::products;
 use crate::statics::DB_POOL;
-use crate::utilities::get_db;
+use crate::utilities::{DynResult, get_db};
 use diesel::dsl::sql;
 use diesel::prelude::{Insertable, Queryable};
 use serde::{Deserialize, Serialize};
@@ -25,9 +27,9 @@ impl Product {
         let mut conn = DB_POOL.get().ok()?;
         products.find(id).first(&mut conn).ok()
     }
-    pub fn all() -> Option<Vec<Self>> {
-        let mut conn = DB_POOL.get().ok()?;
-        products.load(&mut conn).ok()
+    pub fn all() -> DynResult<Vec<Product>> {
+        let mut conn = DB_POOL.get()?;
+        Ok(products.load(&mut conn)?)
     }
     pub fn delete(id: i32) -> bool {
         get_db().map_or(false, |mut conn| {

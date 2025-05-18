@@ -8,7 +8,7 @@ use crate::{
     routes::{ROUTE_AUTH, ROUTE_CONTEXT, ROUTE_DASHBOARD, ROUTE_PRODUCTS},
     statics::TERA,
     try_or_return,
-    utilities::{error_to_http_repsonse, render_to_response},
+    utilities::{ExtractHttp, render_to_response},
 };
 
 #[derive(Deserialize)]
@@ -25,7 +25,7 @@ pub struct LoginForm {
 }
 
 pub async fn auth_get(session: Session) -> impl Responder {
-    let maybe_user = try_or_return!(error_to_http_repsonse(User::from_session(&session)));
+    let maybe_user = try_or_return!(User::from_session(&session).extract_http());
 
     if let Some(user) = maybe_user {
         log!("User {:?} access auth page", &user);
@@ -41,7 +41,7 @@ pub async fn login_post(form: Form<LoginForm>, session: Session) -> impl Respond
     println!("handling login");
     let data = form.into_inner();
     let maybe_user = try_or_return!(
-        error_to_http_repsonse(User::verify_login(&data.mail, &data.password)),
+        User::verify_login(&data.mail, &data.password).extract_http(),
         log!("Error during rendering login_post")
     );
     let location = if let Some(user) = maybe_user {

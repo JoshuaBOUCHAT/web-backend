@@ -17,10 +17,7 @@ use crate::{
     routes::{ROUTE_CONTEXT, ROUTE_EDIT_PRODUCT, ROUTE_PRODUCTS},
     statics::TERA,
     try_or_return,
-    utilities::{
-        self, Renderable, Responseable, error_to_http_repsonse, new_internal_error,
-        render_to_response,
-    },
+    utilities::{ExtractHttp, Renderable, Responseable, render_to_response},
 };
 #[derive(Serialize, Default)]
 pub struct Products {
@@ -41,17 +38,17 @@ impl Renderable for Products {
 impl Responseable for Products {}
 
 pub async fn products_get(session: Session) -> impl Responder {
-    let all = Product::all();
-    let Some(products) = all else {
-        return new_internal_error();
-    };
-    let Ok(category_groups) = Category::load_grouped_categories() else {
-        println!("the problem is here !");
-        return new_internal_error();
-    };
+    let products = try_or_return!(
+        Product::all().extract_http(),
+        log!("Error when loading products in products_get\n")
+    );
+    let category_groups = try_or_return!(
+        Category::load_grouped_categories().extract_http(),
+        log!("Error when loading categories in products_get\n")
+    );
 
     let maybe_user = try_or_return!(
-        error_to_http_repsonse(User::from_session(&session)),
+        User::from_session(&session).extract_http(),
         log!("Error happen during rendering of products_get while requesting User form session ")
     );
     let is_admin = if let Some(user) = maybe_user {

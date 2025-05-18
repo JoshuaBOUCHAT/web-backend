@@ -1,4 +1,4 @@
-use crate::{schema::categories, statics::DB_POOL};
+use crate::{schema::categories, statics::DB_POOL, utilities::DynResult};
 use diesel::prelude::{Insertable, Queryable};
 use serde::{Deserialize, Serialize};
 
@@ -30,7 +30,7 @@ impl Category {
         }
         temp
     }
-    pub fn load_grouped_categories() -> diesel::QueryResult<Vec<CategoryGroup>> {
+    pub fn load_grouped_categories() -> DynResult<Vec<CategoryGroup>> {
         println!("sheeeeehs");
         let all: Vec<Category> = Category::all()?;
         println!("get all worked");

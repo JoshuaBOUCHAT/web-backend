@@ -1,6 +1,7 @@
 use std::{collections::HashMap, error::Error, io::Write};
 
 use crate::{
+    log,
     models::user_model::User,
     statics::{APP_STATE, AppState, DB_POOL},
 };
@@ -33,9 +34,6 @@ pub fn render_to_response(render: tera::Result<String>) -> HttpResponse {
         }
     }
 }
-pub fn new_internal_error() -> HttpResponse {
-    HttpResponse::InternalServerError().finish()
-}
 
 pub fn get_db() -> Option<PooledConnection<ConnectionManager<diesel::SqliteConnection>>> {
     DB_POOL.get().ok()
@@ -48,7 +46,29 @@ pub fn now() -> String {
 /*trait ErrorToHttpResponse<T> {
     fn handle_error(&self) -> Result<Option<T>, HttpResponse> {}
 }*/
-pub fn error_to_http_repsonse<T>(
+pub trait ExtractHttp<T> {
+    /// Convert `Err(Box<dyn Error>)` to a suitable `HttpResponse`
+    fn extract_http(self) -> Result<T, HttpResponse>;
+}
+impl<T> ExtractHttp<T> for Result<T, Box<dyn Error>> {
+    fn extract_http(self) -> Result<T, HttpResponse> {
+        match self {
+            Ok(v) => Ok(v),
+            Err(err) => {
+                log!("error:{err}\n");
+                let resp = match *APP_STATE {
+                    AppState::Dev => HttpResponse::InternalServerError()
+                        .body(format!("An error occurred:<br><h2>{}</h2>", err)),
+                    AppState::Prod => HttpResponse::NotFound()
+                        .body("Nous sommes désolés, une erreur est survenue"),
+                };
+                Err(resp)
+            }
+        }
+    }
+}
+
+/*pub fn error_to_http_repsonse<T>(
     result: Result<Option<T>, Box<dyn Error>>,
 ) -> Result<Option<T>, HttpResponse> {
     match result {
@@ -64,7 +84,9 @@ pub fn error_to_http_repsonse<T>(
             return Err(ret_err);
         }
     }
-}
+}*/
+
+pub type DynResult<T> = Result<T, Box<dyn std::error::Error>>;
 
 /*pub async fn from_multipart<'a, T>(mut payload: Multipart) -> T
 where
