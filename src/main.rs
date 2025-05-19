@@ -38,10 +38,27 @@ use controllers::welcome_controller::welcome_get;
 use middlewares::admin_middleware::AdminMiddleware;
 use middlewares::auth_middleware::AuthMiddleware;
 use routes::*;
+use rustls::ServerConfig;
+use rustls::pki_types::CertificateDer;
+use rustls::pki_types::PrivateKeyDer;
+use rustls::pki_types::pem::PemObject;
+use statics::APP_STATE;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     log!("App start at:{}", utilities::now());
+    dotenvy::dotenv().expect("can't load the dotenv");
+    let Ok(string_port) = std::env::var("PORT") else {
+        panic!("APP_STATE do not existe or is not valide. Valide state are: prod, dev");
+    };
+    let Ok(port) = string_port.parse() else {
+        panic!("Le port n'est pas valide");
+    };
+    let allow_incoming = match *APP_STATE {
+        statics::AppState::Prod => "0.0.0.0",
+        statics::AppState::Dev => "127.0.0.1",
+    };
+
     HttpServer::new(move || {
         let sessionmiddleware =
             SessionMiddleware::builder(CookieSessionStore::default(), Key::from(&[0; 64]))
@@ -72,7 +89,26 @@ async fn main() -> std::io::Result<()> {
                     .route(ROUTE_DELETE_PRODUCT, delete().to(product_id_delete)),
             )
     })
-    .bind(("0.0.0.0", 8040))?
+    .bind((allow_incoming, port))?
     .run()
     .await
+}
+fn load_rustls_config() -> rustls::ServerConfig {
+    rustls::crypto::aws_lc_rs::default_provider()
+        .install_default()
+        .unwrap();
+
+    // load TLS key/cert files
+    let cert_chain = CertificateDer::pem_file_iter("cert.pem")
+        .unwrap()
+        .flatten()
+        .collect();
+
+    let key_der =
+        PrivateKeyDer::from_pem_file("key.pem").expect("Could not locate PKCS 8 private keys.");
+
+    ServerConfig::builder()
+        .with_no_client_auth()
+        .with_single_cert(cert_chain, key_der)
+        .unwrap()
 }
