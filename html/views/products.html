@@ -11,6 +11,7 @@
     <link href="/public/css/product.css" rel="stylesheet">
     <link href="/public/css/products.css" rel="stylesheet">
     <link href="/public/css/products-modal.css" rel="stylesheet">
+
     <script src="/public/js/products.js"></script>
 </head>
 
@@ -23,8 +24,15 @@
         {% include "partials/products-aside.html" %}
 
         <main class="products" aria-label="Liste des produits">
+            {% if is_admin %}
+            <div class="product-card product-card--add" data-action="add">
+                <img src="/public/images/add-to.svg" class="add-button-img">
+            </div>
+            {% endif %}
             {% for product in products %}
+            {% if is_admin or product.visible !=0 %}
             {{ comp::product(product=product) }}
+            {% endif %}
             {% endfor %}
         </main>
 

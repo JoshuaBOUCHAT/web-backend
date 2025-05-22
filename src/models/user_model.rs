@@ -1,13 +1,14 @@
 use std::error::Error;
 
-use crate::log;
+use crate::utilities::DynResult;
+use crate::{log, schema::orders};
 
+use crate::models::order_model::Order;
+use crate::schema::users;
 use crate::schema::users::dsl::*;
-use crate::schema::users::{self};
 use crate::statics::DB_POOL;
 use ::password_hash::rand_core::OsRng;
 use actix_session::Session;
-use actix_web::web::get;
 use argon2::{
     Argon2,
     password_hash::{PasswordHash, PasswordHasher, PasswordVerifier, SaltString},
@@ -16,7 +17,7 @@ use argon2::{
 use diesel::RunQueryDsl;
 use diesel::prelude::{Insertable, Queryable};
 use diesel::query_dsl::methods::*;
-use diesel::{ExpressionMethods, QueryResult};
+use diesel::{ExpressionMethods, OptionalExtension};
 
 use diesel::result::Error as DieselError;
 use serde::{Deserialize, Serialize};
@@ -142,5 +143,59 @@ impl User {
                 Err(Box::new(e))
             }
         }
+    }
+    pub fn from_session_infallible(session: &Session) -> Result<Self, Box<dyn Error>> {
+        match session.get::<i32>("id_user") {
+            // id_user présent → on tente le get
+            Ok(Some(uid)) => {
+                if let Some(user) = User::get(uid)? {
+                    Ok(user)
+                } else {
+                    Err(format!(
+                        "The id_user exist in the session but not user is related id:{uid}"
+                    ))?
+                }
+            }
+
+            // pas d'id_user en session → None
+            Ok(None) => Err("Infallible call failed fetach the user from session")?,
+
+            // erreur d'accès à la session
+            Err(e) => {
+                log!("error when accessing session id_user: {e}");
+                Err(Box::new(e))
+            }
+        }
+    }
+}
+impl User {
+    pub fn is_admin(&self) -> bool {
+        self.admin != 0
+    }
+    pub fn cart_id(&self) -> DynResult<i32> {
+        let mut conn = DB_POOL.get()?;
+        let result: Option<i32> = orders::table
+            .filter(orders::id_user.eq(self.id_user))
+            .filter(orders::date_order.is_null())
+            .filter(orders::date_retrieve.is_null())
+            .select(orders::id_order)
+            .first(&mut conn)
+            .optional()?;
+        if let Some(id) = result {
+            return Ok(id);
+        }
+        Ok(Order::create_order_for_user(self.id_user)?)
+    }
+}
+
+impl std::fmt::Display for User {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "User:( mail:{}, phone:{}, admin:{} )",
+            &self.mail,
+            &self.phone_number,
+            self.admin != 0
+        )
     }
 }

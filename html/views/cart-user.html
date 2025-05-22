@@ -1,0 +1,29 @@
+{% import "partials/cart-product.html" as product_cart %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>StageApp</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/public/images/fav.jpg">
+    <link rel="stylesheet" href="/public/css/cart.css">
+</head>
+
+<body>
+    {% include "static/header.html" %}
+    <div class="cart">
+        <div class="cart-title">Votre Panier</div>
+        <hr>
+
+        <div class="cart-items">
+            {% for item in items %}
+            {{product_cart::cart_product(item=item,id_order=id_order)}}
+            {% endfor %}
+        </div>
+    </div>
+    {% include "static/footer.html" %}
+</body>
+
+</html>

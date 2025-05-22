@@ -28,7 +28,7 @@ pub async fn auth_get(session: Session) -> impl Responder {
     let maybe_user = try_or_return!(User::from_session(&session).extract_http());
 
     if let Some(user) = maybe_user {
-        log!("User {:?} access auth page", &user);
+        log!("User {} access auth page", &user);
         return HttpResponse::Found()
             .append_header(("Location", ROUTE_PRODUCTS.web_path))
             .finish();
@@ -47,7 +47,7 @@ pub async fn login_post(form: Form<LoginForm>, session: Session) -> impl Respond
     let location = if let Some(user) = maybe_user {
         if let Err(err) = session.insert("id_user", user.id_user) {
             log!(
-                "Error during session attribution :{} for user {:?}",
+                "Error during session attribution :{} for user {}",
                 err,
                 &user
             );

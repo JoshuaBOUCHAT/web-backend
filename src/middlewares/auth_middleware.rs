@@ -74,7 +74,7 @@ where
         }
 
         println!("path: {path}");
-        if path == ROUTE_AUTH.web_path || path == ROUTE_LOGIN || path == ROUTE_REGISTER {
+        if is_auth_page {
             let (req, _pl) = req.into_parts();
             let res = HttpResponse::Found()
                 .append_header(("Location", "/"))

@@ -23,6 +23,7 @@ table! {
         name -> Text,
         price -> Double,
         image_url -> Text,
+        visible -> Integer
     }
 }
 table! {
@@ -39,8 +40,8 @@ table! {
 table! {
     orders (id_order) {
         id_order -> Integer,
-        date_order -> Text,
-        date_retrieve -> Text,
+        date_order -> Nullable<Text>,
+        date_retrieve -> Nullable<Text>,
         id_user -> Integer,
     }
 }

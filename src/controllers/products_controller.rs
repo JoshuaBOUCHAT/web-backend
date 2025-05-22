@@ -3,15 +3,15 @@ use std::ffi::OsStr;
 use actix_multipart::form::{MultipartForm, tempfile::TempFile, text::Text};
 use actix_session::Session;
 use actix_web::{HttpResponse, Responder, web};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use tera::Context;
-use uuid::uuid;
 
 use crate::{
     log,
     models::{
         category_model::{Category, CategoryGroup},
-        product_model::Product,
+        complex_request::{ProductWithCategories, load_products_with_categories},
+        product_model::{NewProduct, Product, ProductPatchBuilder},
         user_model::User,
     },
     routes::{ROUTE_CONTEXT, ROUTE_EDIT_PRODUCT, ROUTE_PRODUCTS},
@@ -21,7 +21,7 @@ use crate::{
 };
 #[derive(Serialize, Default)]
 pub struct Products {
-    products: Vec<Product>,
+    products: Vec<ProductWithCategories>,
     is_admin: bool,
     category_groups: Vec<CategoryGroup>,
 }
@@ -39,7 +39,7 @@ impl Responseable for Products {}
 
 pub async fn products_get(session: Session) -> impl Responder {
     let products = try_or_return!(
-        Product::all().extract_http(),
+        load_products_with_categories().extract_http(),
         log!("Error when loading products in products_get\n")
     );
     let category_groups = try_or_return!(
@@ -67,13 +67,15 @@ pub async fn products_get(session: Session) -> impl Responder {
 }
 
 pub async fn product_id_get(path: web::Path<i32>) -> impl Responder {
-    println!("product_id_get called");
     let mut context = Context::new();
     context.extend(ROUTE_CONTEXT.clone());
-    let product = if let Some(p) = Product::get(*path) {
-        p
-    } else {
-        return HttpResponse::NotFound().body("No product exist with the given id");
+    let maybe_product = try_or_return!(
+        Product::get(*path).extract_http(),
+        log!("Error happen while trying to render product_id_get")
+    );
+    let Some(product) = maybe_product else {
+        log!("Trying to access a non-existent product at id :{}", *path);
+        return HttpResponse::NotFound().body("Product not found");
     };
     context.insert("name", &product.name);
     context.insert("id_product", &product.id_product);
@@ -118,34 +120,132 @@ pub struct ProductEditForm {
     #[multipart(rename = "image_file", limit = "10MB")]
     pub image: Option<TempFile>,
 }
-async fn product_id_patch(MultipartForm(form): MultipartForm<ProductEditForm>) -> impl Responder {
+pub async fn product_id_patch(
+    MultipartForm(form): MultipartForm<ProductEditForm>,
+) -> impl Responder {
+    println!("pass at product_id_patch");
     let id = form.id_product.0;
     let name = form.name.0;
     let description = form.description.0;
-    let price = form.price.0;
     let uuid_part = uuid::Uuid::new_v4();
 
-    let image_path = if let Some(temp_image) = form.image {
-        let filename = format!(
-            "uploads/product_{uuid_part}.{}",
-            get_extension_from_filename(&temp_image.file_name.unwrap_or_default())
-                .unwrap_or_default()
-        );
-        temp_image.file.persist(&filename).unwrap();
-        Some(filename)
-    } else {
-        None
+    let image_path = match form.image {
+        // we have an actual file (non-zero size and a real filename)
+        Some(tmp) if tmp.size > 0 && tmp.file_name.as_deref().map_or(false, |n| !n.is_empty()) => {
+            let ext =
+                get_extension_from_filename(tmp.file_name.as_deref().unwrap()).unwrap_or("bin");
+            let filename = format!("public/uploads/product_{uuid_part}.{ext}");
+            tmp.file.persist(&filename).unwrap();
+            Some(filename)
+        }
+        _ => None, // no file chosen → keep current image
     };
+    let patch_product = ProductPatchBuilder::default()
+        .description(Some(description))
+        .image_url(image_path)
+        .name(Some(name))
+        .price(Some(form.price.0))
+        .build()
+        .unwrap();
+    let result = Product::patch(id, patch_product);
 
-    // 👉 Ici, tu peux appeler ton update Diesel avec id, name, description, price, image_path
-
-    HttpResponse::Ok().body(format!(
-        "Produit modifié : {} - {} - {} € - image: {:?}",
-        name, description, price, image_path
-    ))
+    let _ = try_or_return!(
+        result.extract_http(),
+        log!("Error append when patching a the product with id :{id}")
+    );
+    /*HttpResponse::SeeOther()
+    .append_header(("Location", ROUTE_PRODUCTS.web_path))
+    .finish()*/
+    HttpResponse::Ok().finish()
 }
 fn get_extension_from_filename(filename: &str) -> Option<&str> {
     std::path::Path::new(filename)
         .extension()
         .and_then(OsStr::to_str)
+}
+
+#[derive(Debug, MultipartForm)]
+pub struct ProductCreateForm {
+    pub name: Text<String>,
+    pub description: Text<String>,
+    pub price: Text<f64>,
+
+    #[multipart(rename = "image_file", limit = "10MB")]
+    pub image: TempFile,
+}
+
+pub async fn product_post(
+    MultipartForm(form): MultipartForm<ProductCreateForm>,
+    session: Session,
+) -> impl Responder {
+    println!("pass at product_post");
+    let form_desc = format!("{:?}", &form);
+    let name = &form.name.0;
+    let description = form.description.0;
+    let uuid_part = uuid::Uuid::new_v4();
+
+    let tmp = form.image;
+
+    let image_path = if tmp.size > 0 && tmp.file_name.as_deref().map_or(false, |n| !n.is_empty()) {
+        let ext = get_extension_from_filename(tmp.file_name.as_deref().unwrap()).unwrap_or("bin");
+        let filename = format!("public/uploads/product_{uuid_part}.{ext}");
+        tmp.file.persist(&filename).unwrap();
+        filename
+    } else {
+        let maybe_user = try_or_return!(User::from_session(&session).extract_http());
+        if let Some(user) = maybe_user {
+            log!(
+                "Tried to create a product wihout an image while it's required, the user is: {user}"
+            );
+        } else {
+            log!(
+                "Tried to create a product wihout an image while it's required, the user can't be found"
+            );
+        };
+        return HttpResponse::BadRequest().body("You need to provide an image");
+    }; // no file uploaded
+    let new_product = NewProduct {
+        description: description,
+        name: name.clone(),
+        image_url: image_path,
+        price: form.price.0,
+    };
+    let result = Product::create(new_product);
+
+    let _ = try_or_return!(
+        result.extract_http(),
+        log!(
+            "Error append when insering a new product the formData:{}",
+            form_desc
+        )
+    );
+    /*HttpResponse::SeeOther()
+    .append_header(("Location", ROUTE_PRODUCTS.web_path))
+    .finish()*/
+    HttpResponse::Ok().finish()
+}
+
+#[derive(Deserialize)]
+pub struct VisibilityPayload {
+    pub visible: i32,
+}
+
+pub async fn product_put_visibility(
+    path: web::Path<i32>,
+    payload: web::Json<VisibilityPayload>,
+) -> impl Responder {
+    let visibility_value: i32 = payload.visible;
+    if visibility_value != 0 && visibility_value != 1 {
+        return HttpResponse::BadRequest().body(format!(
+            "The provided visibility is wrong: {}",
+            visibility_value
+        ));
+    }
+    let b = try_or_return!(Product::update_visibility(*path, visibility_value).extract_http());
+
+    if b {
+        HttpResponse::Ok().body("The visibility of the product has change")
+    } else {
+        HttpResponse::BadRequest().body("The visibilty did not changed an error occure")
+    }
 }

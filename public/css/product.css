@@ -1,71 +1,3 @@
-/* .product-card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    text-align: center;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, max-height 0.3s ease;
-    max-height: 350px;
-    font-family: Arial, sans-serif;
-}
-
-.product-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-    max-height: 450px;
-}
-
-.product-card__image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.product-card__info {
-    padding: 15px;
-}
-
-.product-card__name {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.product-card__price {
-    color: #2ecc71;
-    font-size: 1.1em;
-    margin-bottom: 15px;
-}
-
-.product-card__button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.product-card__button:hover {
-    background-color: #2980b9;
-}
-
-.product-card__description {
-    max-height: 0;
-    overflow: hidden;
-    background-color: #333;
-    color: white;
-    padding: 0 15px;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    font-size: 0.9em;
-}
-
-.product-card:hover .product-card__description {
-    max-height: 100px;
-    padding: 15px;
-} */
 .product-card {
     background: white;
     border-radius: 16px;
@@ -150,4 +82,67 @@
 .product-card:hover .product-card__description {
     max-height: 100px;
     padding: 15px;
+}
+
+
+
+.product-card--add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4em;
+    font-weight: bold;
+    color: #3498db;
+    cursor: pointer;
+    background: #f9f9f9;
+    transition: background-color 0.3s, transform 0.3s ease;
+}
+
+.product-card--add:hover {
+    background-color: #ecf0f1;
+    transform: scale(1.05);
+}
+
+.add-button-img {
+    width: 50%;
+    /* or the height you use for all cards */
+    object-fit: cover;
+    /* this is key to cropping/filling the image nicely */
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    display: block;
+}
+
+.product-card {
+    position: relative;
+    /* pour positionner les yeux */
+}
+
+.product-card__visibility {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.visibility-toggle-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background-color .2s ease;
+}
+
+.visibility-toggle-button:hover {
+    background-color: rgba(0, 0, 0, .05);
+}
+
+.visibility-icon {
+    width: 20px;
+    height: 20px;
+    color: #666;
+}
+
+.is-hidden {
+    display: none !important;
 }

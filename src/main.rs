@@ -14,6 +14,7 @@ pub mod components {}
 pub mod models {
     pub mod category_model;
     pub mod category_product_model;
+    pub mod complex_request;
     pub mod order_model;
     pub mod order_product_model;
     pub mod product_model;
@@ -21,22 +22,30 @@ pub mod models {
 }
 pub mod controllers {
     pub mod auth_controller;
+    pub mod cart_controller;
     pub mod dashboard_controller;
+    pub mod order_controller;
     pub mod products_controller;
     pub mod static_component_controller;
     pub mod welcome_controller;
 }
 
 use actix_session::{SessionMiddleware, config::PersistentSession, storage::CookieSessionStore};
-use actix_web::web::{delete, get, post};
+use actix_web::web::{self, delete, get, patch, post, put};
 use actix_web::{App, HttpServer, cookie::Key, web::scope};
 use controllers::auth_controller::{auth_get, login_post, logout_get, register_post};
+use controllers::cart_controller::{self};
 use controllers::dashboard_controller::dashboard_get;
-use controllers::products_controller::{product_id_delete, product_id_get, products_get};
+use controllers::order_controller;
+use controllers::products_controller::{
+    product_id_delete, product_id_get, product_id_patch, product_post, product_put_visibility,
+    products_get,
+};
 use controllers::static_component_controller::static_route_get;
 use controllers::welcome_controller::welcome_get;
-use middlewares::admin_middleware::AdminMiddleware;
+//use middlewares::admin_middleware::AdminMiddleware;
 use middlewares::auth_middleware::AuthMiddleware;
+
 use routes::*;
 use rustls::ServerConfig;
 use rustls::pki_types::CertificateDer;
@@ -88,7 +97,12 @@ async fn main() -> std::io::Result<()> {
                     .route(ROUTE_DASHBOARD.web_path, get().to(dashboard_get))
                     .route(ROUTE_LOGOUT, get().to(logout_get)) //.service(scope("").wrap(AdminMiddleware).route(ROUTE_, route)),
                     .route(ROUTE_EDIT_PRODUCT.web_path, get().to(product_id_get))
-                    .route(ROUTE_DELETE_PRODUCT, delete().to(product_id_delete)),
+                    .route(ROUTE_DELETE_PRODUCT, delete().to(product_id_delete))
+                    .route(ROUTE_EDIT_PRODUCT.web_path, patch().to(product_id_patch))
+                    .route(ROUTE_PRODUCT_NEW, post().to(product_post))
+                    .route(ROUTE_PRODUCT_VISIBILITY, put().to(product_put_visibility))
+                    .route(ROUTE_CART.web_path, web::get().to(cart_controller::index))
+                    .route(ROUTE_ORDER, put().to(order_controller::update)),
             )
     })
     .bind_rustls_0_23((allow_incoming, port), config)?

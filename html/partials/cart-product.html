@@ -1,0 +1,17 @@
+{% macro cart_product(item,id_order) %}
+<div class="product-cart">
+    <img src="{{item.image_url}}">
+    <form action="/cart/{{id_order}}/{{item.id_product}}" method="post">
+        <input type="hidden" value="{{id_order}}" name="id_order">
+        <input type="hidden" value="{{item.id_product}}" name="id_product">
+        <input type="number" value="{{item.quantity}}" step="1" name="quantity">
+
+    </form>
+    <div class="price">
+        {{item.price}}€
+    </div>
+    <div class="product-cart-description">
+        {{item.description}}
+    </div>
+</div>
+{% endmacro %}

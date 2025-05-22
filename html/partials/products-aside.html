@@ -3,13 +3,13 @@
     {% for category_group in category_groups %}
     <section class="filter-group">
         <label class="filter-group__item">
-            <input type="checkbox"> {{category_group.parent.name}}
+            <input type="checkbox" data-id="{{category_group.parent.id_category}}"> {{category_group.parent.name}}
         </label>
         <div class="filter-group__sub">
 
             {% for child in category_group.children %}
             <label class="filter-group__item">
-                <input type="checkbox"> {{child.name}}
+                <input type="checkbox" data-id="{{child.id_category}}"> {{child.name}}
             </label>
             {% endfor %}
         </div>

@@ -20,10 +20,15 @@ pub const ROUTE_PUBLIC: Route = Route::new("/public", "public");
 pub const ROUTE_EDIT_PRODUCT: Route =
     Route::new("/products/{id_product}", "partials/edit_product.html");
 pub const ROUTE_DELETE_PRODUCT: &'static str = "/products/{id}";
+pub const ROUTE_PRODUCTS: Route = Route::new("/products", "views/products.html");
+pub const ROUTE_PRODUCT_NEW: &'static str = "/product";
+pub const ROUTE_PRODUCT_VISIBILITY: &'static str = "/product/{id}/visibility";
 
 pub const ROUTE_WELCOME: Route = Route::new("/", "views/welcome.html");
-pub const ROUTE_PRODUCTS: Route = Route::new("/products", "views/products.html");
+
 pub const ROUTE_DASHBOARD: Route = Route::new("/dashboard", "views/dashboard.html");
+pub const ROUTE_CART: Route = Route::new("/cart", "/views/cart.html");
+pub const ROUTE_ORDER: &'static str = "/order/{id}/{qty}";
 
 pub const ROUTE_REGISTER: &'static str = "/register";
 pub const ROUTE_LOGIN: &'static str = "/login";
@@ -52,6 +57,7 @@ fn get_route_context() -> Context {
     routes.insert("nav", ROUTE_NAV.web_path);
     routes.insert("about", ROUTE_ABOUT.web_path);
     routes.insert("edit_product", ROUTE_EDIT_PRODUCT.web_path);
+    routes.insert("cart", ROUTE_CART.web_path);
 
     let mut context = Context::new();
     context.insert("routes", &routes);

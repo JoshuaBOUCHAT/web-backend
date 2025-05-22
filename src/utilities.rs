@@ -1,18 +1,14 @@
-use std::{collections::HashMap, error::Error, io::Write};
+use std::{error::Error, fmt::Display};
 
 use crate::{
     log,
-    models::user_model::User,
     statics::{APP_STATE, AppState, DB_POOL},
 };
-use actix_multipart::Multipart;
-use actix_session::Session;
-use actix_web::{HttpResponse, web};
-use diesel::r2d2::{ConnectionManager, PooledConnection};
-use futures_util::TryStreamExt;
-use serde::{Deserialize, Serialize};
-use uuid::Uuid;
-
+use actix_web::HttpResponse;
+use diesel::{
+    QueryResult,
+    r2d2::{ConnectionManager, PooledConnection},
+};
 pub trait Renderable {
     fn render(&self) -> Result<String, tera::Error>;
 }
@@ -65,3 +61,17 @@ impl<T> ExtractHttp<T> for Result<T, Box<dyn Error>> {
 }
 
 pub type DynResult<T> = Result<T, Box<dyn std::error::Error>>;
+
+pub fn handle_optional_query_result<T>(
+    query_result: QueryResult<T>,
+    on_error_log: impl Display,
+) -> DynResult<Option<T>> {
+    return match query_result {
+        Ok(p) => Ok(Some(p)),
+        Err(diesel::result::Error::NotFound) => Ok(None),
+        Err(err) => {
+            log!("{on_error_log}:{}", err);
+            Err(Box::new(err))
+        }
+    };
+}

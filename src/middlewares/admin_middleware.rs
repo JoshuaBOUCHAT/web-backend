@@ -7,7 +7,7 @@ use actix_web::{
 use futures_util::future::LocalBoxFuture;
 use std::future::{Ready, ready};
 
-use crate::{log, utilities};
+use crate::log;
 use crate::{
     models::user_model::User,
     routes::{ROUTE_AUTH, ROUTE_WELCOME},

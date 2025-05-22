@@ -5,5 +5,5 @@ CREATE TABLE products (
     name TEXT NOT NULL,
     price REAL NOT NULL,
     image_url TEXT,
-    properties TEXT
+    visible NOT NULL DEFAULT 1
 );

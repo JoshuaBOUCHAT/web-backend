@@ -21,7 +21,6 @@ use diesel::prelude::*;
 impl Category {
     pub fn all() -> diesel::QueryResult<Vec<Category>> {
         let mut conn = DB_POOL.get().map_err(|_| diesel::result::Error::NotFound)?;
-        println!("tentative du desp");
 
         // 1. Récupérer toutes les catégories
         let temp = categories.load(&mut conn);
@@ -31,9 +30,7 @@ impl Category {
         temp
     }
     pub fn load_grouped_categories() -> DynResult<Vec<CategoryGroup>> {
-        println!("sheeeeehs");
         let all: Vec<Category> = Category::all()?;
-        println!("get all worked");
         let (parents, children): (Vec<_>, Vec<_>) =
             all.into_iter().partition(|c| c.super_category.is_none());
 
