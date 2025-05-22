@@ -59,6 +59,8 @@ async fn main() -> std::io::Result<()> {
         statics::AppState::Dev => "127.0.0.1",
     };
 
+    let config = load_rustls_config();
+
     HttpServer::new(move || {
         let sessionmiddleware =
             SessionMiddleware::builder(CookieSessionStore::default(), Key::from(&[0; 64]))
@@ -89,7 +91,7 @@ async fn main() -> std::io::Result<()> {
                     .route(ROUTE_DELETE_PRODUCT, delete().to(product_id_delete)),
             )
     })
-    .bind((allow_incoming, port))?
+    .bind_rustls_0_23((allow_incoming, port), config)?
     .run()
     .await
 }
