@@ -116,7 +116,7 @@ fn load_rustls_config() -> rustls::ServerConfig {
 
     // load TLS key/cert files
     let cert_chain = CertificateDer::pem_file_iter("cert.pem")
-        .unwrap()
+        .expect("Impossible de localiser le fichier cert.pem")
         .flatten()
         .collect();
 
