@@ -40,6 +40,29 @@
     /* retrait visuel des sous-catégories */
 }
 
+/* ====================== Styles pour les catégories orphelines ==================== */
+.orphan-category {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.orphan-category .filter-group__title {
+    font-size: 1rem;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.orphan-category .filter-group__sub {
+    margin-left: 0;
+}
+
+.orphan-category .filter-group__item {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
 /* ====================== Grille de cartes ==================== */
 .products {
     flex: 1;
@@ -49,5 +72,7 @@
     /* Auto-fill = autant de colonnes que possible, min 240 px chacune */
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
+
+/* Aucune règle ici pour <custom-card> : tu utilises déjà son style interne */
 
 /* Aucune règle ici pour <custom-card> : tu utilises déjà son style interne */

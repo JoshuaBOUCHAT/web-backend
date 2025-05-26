@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialiser les cases à cocher des super catégories
+    const superCategoryCheckboxes = document.querySelectorAll('.filter-group > label > input[type="checkbox"][data-id]');
+    superCategoryCheckboxes.forEach(checkbox => {
+        checkbox.checked = true;
+        checkbox.addEventListener('change', handleCategoryChange);
+    });
+
+    // Initialiser les cases à cocher des sous-catégories
+    const subCategoryCheckboxes = document.querySelectorAll('.filter-group__sub input[type="checkbox"][data-id]');
+    subCategoryCheckboxes.forEach(checkbox => {
+        checkbox.checked = true;
+        checkbox.addEventListener('change', handleCategoryChange);
+    });
+
     /* ---------- Modal helpers ---------- */
     const overlay = document.getElementById('modal-overlay');
     const box = document.getElementById('modal-box');
@@ -42,6 +56,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ---------- Handlers ---------- */
+    function handleCategoryChange() {
+        const uncheckedCategories = Array.from(subCategoryCheckboxes)
+            .filter(checkbox => !checkbox.checked)
+            .map(checkbox => checkbox.dataset.id);
+
+        // Sélectionner tous les produits
+        handleCategoryChangeWithId(uncheckedCategories);
+
+
+    }
+    function handleCategoryChangeWithId(uncheckedCategories) {
+        const products = document.querySelectorAll('.product-card');
+
+        products.forEach(product => {
+
+            if (product.classList.contains('product-card--add')) {
+                return;
+            }
+            // Récupérer les catégories du produit
+            const productCategories = product.dataset.categories?.split(',') || [];
+
+            // Vérifier si le produit doit être visible
+            const isVisible = !uncheckedCategories.some(categoryId =>
+                productCategories.includes(categoryId)
+            );
+
+            product.style.display = isVisible ? '' : 'none';
+        });
+    }
+
+
 
     function handleDelete(id, name) {
         openModal(`

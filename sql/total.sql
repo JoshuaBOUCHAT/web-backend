@@ -29,6 +29,23 @@ VALUES
   ('Éclair'         , 'Choux pastry filled with cream and icing'  ,
      (SELECT id_category FROM categories WHERE name = 'Patisseries'));
 
+
+-- Création de la catégorie orpheline spéciale (si elle n'existe pas déjà)
+INSERT INTO categories (name, description, super_category)
+SELECT '__orphan__', 'Catégorie virtuelle pour les catégories orphelines', NULL
+WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = '__orphan__');
+
+-- Ajout de quelques catégories orphelines de test
+INSERT INTO categories (name, description, super_category)
+SELECT 'sucré', 'Catégorie orpheline de test 1', 
+       (SELECT id_category FROM categories WHERE name = '__orphan__')
+WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'sucré');
+
+INSERT INTO categories (name, description, super_category)
+SELECT 'salé', 'Catégorie orpheline de test 2', 
+       (SELECT id_category FROM categories WHERE name = '__orphan__')
+WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'salé');
+
 /* ------------------------------------------------------------------ */
 /* 3. PRODUITS                                                        */
 /* ------------------------------------------------------------------ */
@@ -56,9 +73,9 @@ INSERT INTO category_product (id_category, id_product) VALUES
   ((SELECT id_category FROM categories WHERE name = 'Croissant')       , (SELECT id_product FROM products WHERE name = 'Produit 2')),
   ((SELECT id_category FROM categories WHERE name = 'Pain au raisin')  , (SELECT id_product FROM products WHERE name = 'Produit 3')),
   /* Produit 4 : viennoiserie générique */
-  ((SELECT id_category FROM categories WHERE name = 'Viennoiseries')   , (SELECT id_product FROM products WHERE name = 'Produit 4')),
+  ((SELECT id_category FROM categories WHERE name = 'salé')   , (SELECT id_product FROM products WHERE name = 'Produit 4')),
   /* Produit 9 : assortiment viennoiseries */
-  ((SELECT id_category FROM categories WHERE name = 'Viennoiseries')   , (SELECT id_product FROM products WHERE name = 'Produit 9'));
+  ((SELECT id_category FROM categories WHERE name = 'salé')   , (SELECT id_product FROM products WHERE name = 'Produit 9'));
 
 /* Produits rattachés aux pâtisseries */
 INSERT INTO category_product (id_category, id_product) VALUES
@@ -66,10 +83,26 @@ INSERT INTO category_product (id_category, id_product) VALUES
   ((SELECT id_category FROM categories WHERE name = 'Tarte au citron') , (SELECT id_product FROM products WHERE name = 'Produit 6')),
   ((SELECT id_category FROM categories WHERE name = 'Éclair')          , (SELECT id_product FROM products WHERE name = 'Produit 7')),
   /* Produit 8 : assortiment pâtisseries */
-  ((SELECT id_category FROM categories WHERE name = 'Patisseries')     , (SELECT id_product FROM products WHERE name = 'Produit 8')),
+  ((SELECT id_category FROM categories WHERE name = 'sucré')     , (SELECT id_product FROM products WHERE name = 'Produit 8')),
   /* Produit 10 : plateau mixte pâtisserie & viennoiserie */
-  ((SELECT id_category FROM categories WHERE name = 'Patisseries')     , (SELECT id_product FROM products WHERE name = 'Produit 10')),
-  ((SELECT id_category FROM categories WHERE name = 'Viennoiseries')   , (SELECT id_product FROM products WHERE name = 'Produit 10'));
+  ((SELECT id_category FROM categories WHERE name = 'sucré')     , (SELECT id_product FROM products WHERE name = 'Produit 10')),
+  ((SELECT id_category FROM categories WHERE name = 'salé')   , (SELECT id_product FROM products WHERE name = 'Produit 10'));
+
+/* ------------------------------------------------------------------ */
+/* 5. CATÉGORIE ORPHELINE ET CATÉGORIES ORPHELINES DE TEST            */
+/* ------------------------------------------------------------------ */
+
+
+
+-- Associer un produit existant à une catégorie orpheline pour le test
+INSERT INTO category_product (id_category, id_product)
+SELECT (SELECT id_category FROM categories WHERE name = 'sucré'), 
+       (SELECT id_product FROM products WHERE name = 'Produit 1')
+WHERE NOT EXISTS (
+    SELECT 1 FROM category_product 
+    WHERE id_category = (SELECT id_category FROM categories WHERE name = 'sucré')
+    AND id_product = (SELECT id_product FROM products WHERE name = 'Produit 1')
+);
 
   INSERT INTO users (mail,phone_number,password_hash,date_creation, admin) VALUES
 ("joshuabouchat@gmail.com","0783232757","$argon2id$v=19$m=19456,t=2,p=1$N//bAQZaSmOZiO6RoALLmw$jQK97KaEAr3c881uk01lP74vr85jebzd9utIdLl0LMk","2025-05-22 12:33:37",0),

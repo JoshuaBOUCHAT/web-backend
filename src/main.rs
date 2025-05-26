@@ -23,6 +23,7 @@ pub mod models {
 pub mod controllers {
     pub mod auth_controller;
     pub mod cart_controller;
+    pub mod category_controller;
     pub mod dashboard_controller;
     pub mod order_controller;
     pub mod products_controller;
