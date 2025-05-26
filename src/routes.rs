@@ -1,6 +1,12 @@
 use std::{collections::HashMap, sync::LazyLock};
 
+use actix_web::web::{self, get, post};
 use tera::Context;
+
+use crate::controllers::{
+    auth_controller, cart_controller, category_controller, dashboard_controller, order_controller,
+    products_controller, static_component_controller, welcome_controller,
+};
 
 pub struct Route {
     pub web_path: &'static str,
@@ -74,18 +80,83 @@ fn get_route_context() -> Context {
 }
 pub static ROUTE_CONTEXT: LazyLock<Context> = LazyLock::new(|| get_route_context());
 
-/*pub const WEB_ROUTES: [&'static str; 13] = [
-    ROUTE_WELCOME.web_path,
-    ROUTE_PRODUCTS.web_path,
-    ROUTE_CSS.web_path,
-    ROUTE_JS.web_path,
-    ROUTE_IMAGES.web_path,
-    ROUTE_AUTH.web_path,
-    ROUTE_DASHBOARD.web_path,
-    ROUTE_REGISTER,
-    ROUTE_LOGIN,
-    ROUTE_LOGOUT,
-    ROUTE_FOOTER.web_path,
-    ROUTE_NAV.web_path,
-    ROUTE_ABOUT.web_path,
-];*/
+//pub const ADMIN_ROUTES: [(&'static str, actix_web::Route); 8] = [()];
+
+pub fn configure_guess_routes(cfg: &mut actix_web::web::ServiceConfig) {
+    use actix_web::web::*;
+
+    cfg.route(ROUTE_REGISTER, post().to(auth_controller::register_post))
+        .route(ROUTE_LOGIN, post().to(auth_controller::login_post))
+        .route(
+            ROUTE_STATICS,
+            get().to(static_component_controller::static_route_get),
+        )
+        .route(
+            ROUTE_WELCOME.web_path,
+            get().to(welcome_controller::welcome_get),
+        )
+        .route(
+            ROUTE_PRODUCTS.web_path,
+            get().to(products_controller::products_get),
+        )
+        .route(ROUTE_AUTH.web_path, get().to(auth_controller::auth_get));
+}
+pub fn configure_auth_routes(cfg: &mut actix_web::web::ServiceConfig) {
+    use actix_web::web::*;
+    cfg.route(ROUTE_CART.web_path, web::get().to(cart_controller::index))
+        .route(ROUTE_LOGOUT, get().to(auth_controller::logout_get))
+        .route(ROUTE_ORDER, put().to(order_controller::update));
+}
+
+pub fn configure_admin_routes(cfg: &mut actix_web::web::ServiceConfig) {
+    use actix_web::web::*;
+    cfg.route(
+        ROUTE_DASHBOARD.web_path,
+        get().to(dashboard_controller::dashboard_get),
+    )
+    .route(
+        ROUTE_EDIT_PRODUCT.web_path,
+        get().to(products_controller::product_id_get),
+    )
+    .route(
+        ROUTE_DELETE_PRODUCT,
+        delete().to(products_controller::product_id_delete),
+    )
+    .route(
+        ROUTE_EDIT_PRODUCT.web_path,
+        patch().to(products_controller::product_id_patch),
+    )
+    .route(
+        ROUTE_PRODUCT_NEW,
+        post().to(products_controller::product_post),
+    )
+    .route(
+        ROUTE_PRODUCT_VISIBILITY,
+        put().to(products_controller::product_put_visibility),
+    )
+    .route(
+        ROUTE_CATEGORY_NEW.web_path,
+        post().to(category_controller::new_post),
+    )
+    .route(
+        ROUTE_CATEGORY_NEW.web_path,
+        get().to(category_controller::new_get),
+    )
+    .route(
+        ROUTE_CATEGORY_SELECT.web_path,
+        get().to(category_controller::select_get),
+    )
+    .route(
+        ROUTE_CATEGORY_EDIT.web_path,
+        get().to(category_controller::edit_get),
+    )
+    .route(
+        ROUTE_CATEGORY_DELETE,
+        delete().to(category_controller::destroy),
+    )
+    .route(
+        ROUTE_CATEGORY_EDIT.web_path,
+        post().to(category_controller::edit_post),
+    );
+}
+//pub const AUTH_ROUTES: [(&'static str, actix_web::Route); 3] = [()];

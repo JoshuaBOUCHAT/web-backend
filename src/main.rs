@@ -32,18 +32,10 @@ pub mod controllers {
 }
 
 use actix_session::{SessionMiddleware, config::PersistentSession, storage::CookieSessionStore};
-use actix_web::web::{self, delete, get, patch, post, put};
+
 use actix_web::{App, HttpServer, cookie::Key, web::scope};
-use controllers::auth_controller::{auth_get, login_post, logout_get, register_post};
-use controllers::cart_controller::{self};
-use controllers::dashboard_controller::dashboard_get;
-use controllers::products_controller::{
-    product_id_delete, product_id_get, product_id_patch, product_post, product_put_visibility,
-    products_get,
-};
-use controllers::static_component_controller::static_route_get;
-use controllers::welcome_controller::welcome_get;
-use controllers::{category_controller, order_controller};
+
+use middlewares::admin_middleware::AdminMiddleware;
 //use middlewares::admin_middleware::AdminMiddleware;
 use middlewares::auth_middleware::AuthMiddleware;
 
@@ -86,47 +78,15 @@ async fn main() -> std::io::Result<()> {
                 ROUTE_PUBLIC.web_path,
                 ROUTE_PUBLIC.file_path,
             ))
-            .route(ROUTE_REGISTER, post().to(register_post))
-            .route(ROUTE_LOGIN, post().to(login_post))
-            .route(ROUTE_STATICS, get().to(static_route_get))
-            .route(ROUTE_WELCOME.web_path, get().to(welcome_get))
-            .route(ROUTE_PRODUCTS.web_path, get().to(products_get))
-            .route(ROUTE_AUTH.web_path, get().to(auth_get))
+            .configure(configure_guess_routes)
             .service(
                 scope("")
                     .wrap(AuthMiddleware)
-                    .route(ROUTE_DASHBOARD.web_path, get().to(dashboard_get))
-                    .route(ROUTE_LOGOUT, get().to(logout_get)) //.service(scope("").wrap(AdminMiddleware).route(ROUTE_, route)),
-                    .route(ROUTE_EDIT_PRODUCT.web_path, get().to(product_id_get))
-                    .route(ROUTE_DELETE_PRODUCT, delete().to(product_id_delete))
-                    .route(ROUTE_EDIT_PRODUCT.web_path, patch().to(product_id_patch))
-                    .route(ROUTE_PRODUCT_NEW, post().to(product_post))
-                    .route(ROUTE_PRODUCT_VISIBILITY, put().to(product_put_visibility))
-                    .route(ROUTE_CART.web_path, web::get().to(cart_controller::index))
-                    .route(ROUTE_ORDER, put().to(order_controller::update))
-                    .route(
-                        ROUTE_CATEGORY_NEW.web_path,
-                        post().to(category_controller::new_post),
-                    )
-                    .route(
-                        ROUTE_CATEGORY_NEW.web_path,
-                        get().to(category_controller::new_get),
-                    )
-                    .route(
-                        ROUTE_CATEGORY_SELECT.web_path,
-                        get().to(category_controller::select_get),
-                    )
-                    .route(
-                        ROUTE_CATEGORY_EDIT.web_path,
-                        get().to(category_controller::edit_get),
-                    )
-                    .route(
-                        ROUTE_CATEGORY_DELETE,
-                        delete().to(category_controller::destroy),
-                    )
-                    .route(
-                        ROUTE_CATEGORY_EDIT.web_path,
-                        post().to(category_controller::edit_post),
+                    .configure(configure_auth_routes)
+                    .service(
+                        scope("")
+                            .wrap(AdminMiddleware)
+                            .configure(configure_admin_routes),
                     ),
             )
     })

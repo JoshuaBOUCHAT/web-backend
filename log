@@ -373,3 +373,385 @@ App start at:2025-05-26 20:45:19
 error:Record not found
 
 App start at:2025-05-26 21:27:27
+App start at:2025-05-26 22:20:04
+App start at:2025-05-26 22:56:09
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "origin": "https://localhost:8030"
+    "sec-fetch-dest": "empty"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+    "sec-gpc": "1"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "dnt": "1"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0"
+    "te": "trailers"
+    "content-length": "0"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "accept": "*/*"
+    "origin": "https://localhost:8030"
+    "dnt": "1"
+    "sec-gpc": "1"
+    "priority": "u=0"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-site": "same-origin"
+    "content-length": "0"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "referer": "https://localhost:8030/products"
+    "dnt": "1"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-gpc": "1"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "content-length": "0"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "origin": "https://localhost:8030"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "priority": "u=0"
+    "sec-gpc": "1"
+    "content-length": "0"
+    "referer": "https://localhost:8030/products"
+    "dnt": "1"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "origin": "https://localhost:8030"
+    "accept": "*/*"
+    "te": "trailers"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "sec-fetch-site": "same-origin"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-dest": "empty"
+    "content-length": "0"
+    "priority": "u=0"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "origin": "https://localhost:8030"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "dnt": "1"
+    "sec-gpc": "1"
+    "sec-fetch-mode": "cors"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "te": "trailers"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "origin": "https://localhost:8030"
+    "dnt": "1"
+    "sec-gpc": "1"
+    "content-length": "0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept": "*/*"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "dnt": "1"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "origin": "https://localhost:8030"
+    "te": "trailers"
+    "sec-gpc": "1"
+    "sec-fetch-mode": "cors"
+    "referer": "https://localhost:8030/products"
+    "content-length": "0"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "origin": "https://localhost:8030"
+    "dnt": "1"
+    "priority": "u=0"
+    "sec-gpc": "1"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "accept": "*/*"
+    "content-length": "0"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-mode": "cors"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "origin": "https://localhost:8030"
+    "sec-gpc": "1"
+    "dnt": "1"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "content-length": "0"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-mode": "cors"
+    "referer": "https://localhost:8030/products"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept": "*/*"
+    "sec-fetch-mode": "cors"
+    "origin": "https://localhost:8030"
+    "dnt": "1"
+    "sec-gpc": "1"
+    "priority": "u=0"
+    "content-length": "0"
+    "referer": "https://localhost:8030/products"
+    "te": "trailers"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "content-length": "0"
+    "dnt": "1"
+    "sec-fetch-site": "same-origin"
+    "referer": "https://localhost:8030/products"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "priority": "u=0"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept": "*/*"
+    "sec-fetch-mode": "cors"
+    "sec-gpc": "1"
+    "origin": "https://localhost:8030"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "origin": "https://localhost:8030"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "content-length": "0"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "sec-fetch-dest": "empty"
+    "dnt": "1"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-mode": "cors"
+    "accept": "*/*"
+    "priority": "u=0"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-gpc": "1"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-mode": "cors"
+    "te": "trailers"
+    "priority": "u=0"
+    "sec-gpc": "1"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+    "dnt": "1"
+    "sec-fetch-site": "same-origin"
+    "origin": "https://localhost:8030"
+    "sec-fetch-dest": "empty"
+    "content-length": "0"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "origin": "https://localhost:8030"
+    "sec-fetch-dest": "empty"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+    "dnt": "1"
+    "sec-gpc": "1"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "content-length": "0"
+    "te": "trailers"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "origin": "https://localhost:8030"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+    "content-length": "0"
+    "dnt": "1"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+    "sec-gpc": "1"
+    "accept": "*/*"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-mode": "cors"
+    "priority": "u=0"
+    "dnt": "1"
+    "origin": "https://localhost:8030"
+    "sec-gpc": "1"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+    "content-length": "0"
+    "te": "trailers"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "sec-gpc": "1"
+    "sec-fetch-dest": "empty"
+    "accept": "*/*"
+    "dnt": "1"
+    "origin": "https://localhost:8030"
+    "content-length": "0"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "referer": "https://localhost:8030/products"
+    "priority": "u=0"
+    "te": "trailers"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "content-length": "0"
+    "te": "trailers"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "dnt": "1"
+    "sec-gpc": "1"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "sec-fetch-mode": "cors"
+    "origin": "https://localhost:8030"
+    "sec-fetch-dest": "empty"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "dnt": "1"
+    "sec-fetch-dest": "empty"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "te": "trailers"
+    "sec-fetch-site": "same-origin"
+    "sec-gpc": "1"
+    "accept": "*/*"
+    "content-length": "0"
+    "sec-fetch-mode": "cors"
+    "origin": "https://localhost:8030"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "priority": "u=0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+
+User tried to access admin protected route without being logged in req:
+
+ServiceRequest HTTP/2.0 PUT:/auth
+  headers:
+    "content-length": "0"
+    "dnt": "1"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "sec-gpc": "1"
+    "te": "trailers"
+    "origin": "https://localhost:8030"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "priority": "u=0"
+    "sec-fetch-dest": "empty"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+
