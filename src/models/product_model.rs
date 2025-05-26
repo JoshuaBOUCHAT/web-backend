@@ -2,17 +2,14 @@ use crate::schema::products;
 use crate::statics::DB_POOL;
 use crate::utilities::{DynResult, get_db, handle_optional_query_result};
 use derive_builder::Builder;
-use diesel::prelude::{AsChangeset, Insertable, Queryable, QueryableByName};
+use diesel::prelude::{AsChangeset, Insertable, Queryable};
 use serde::{Deserialize, Serialize};
 
 use crate::schema::products::dsl::*;
+use diesel::ExpressionMethods;
 use diesel::RunQueryDsl;
 use diesel::dsl::{delete, insert_into};
 use diesel::query_dsl::methods::*;
-use diesel::{ExpressionMethods, sql_query};
-
-use super::category_model::Category;
-use super::category_product_model::CategoryProduct;
 
 #[derive(Queryable, Insertable, Serialize, Deserialize)]
 #[diesel(table_name = products)]

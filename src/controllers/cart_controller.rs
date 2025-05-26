@@ -1,10 +1,9 @@
 use actix_session::Session;
-use actix_web::{HttpResponse, Responder, web::Form};
+use actix_web::{HttpResponse, Responder};
 
 use crate::{
-    log,
     models::{complex_request::get_cart_items, user_model::User},
-    routes::{ROUTE_CART, ROUTE_CONTEXT},
+    routes::ROUTE_CONTEXT,
     statics::TERA,
     try_or_return,
     utilities::{ExtractHttp, render_to_response},

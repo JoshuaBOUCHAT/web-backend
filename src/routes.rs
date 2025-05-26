@@ -24,6 +24,14 @@ pub const ROUTE_PRODUCTS: Route = Route::new("/products", "views/products.html")
 pub const ROUTE_PRODUCT_NEW: &'static str = "/product";
 pub const ROUTE_PRODUCT_VISIBILITY: &'static str = "/product/{id}/visibility";
 
+pub const ROUTE_CATEGORY_NEW: Route = Route::new("/category/new", "partials/create-category.html");
+pub const ROUTE_CATEGORY_EDIT: Route =
+    Route::new("/category/edit/{id}", "partials/edit-category.html");
+pub const ROUTE_CATEGORY_SELECT: Route =
+    Route::new("/category/select", "partials/select-category.html");
+
+pub const ROUTE_CATEGORY_DELETE: &'static str = "/category/{id}";
+
 pub const ROUTE_WELCOME: Route = Route::new("/", "views/welcome.html");
 
 pub const ROUTE_DASHBOARD: Route = Route::new("/dashboard", "views/dashboard.html");

@@ -24,7 +24,12 @@
                 <input type="checkbox" data-id="{{child.id_category}}"> {{child.name}}
             </label>
             {% endfor %}
+        </div>
     </div>
     {% endif %}
     {% endfor %}
+    {% if is_admin %}
+    <button data-action="openCategoryModal">Créer une Catégorie</button>
+    <button data-action="edit-category">Editer les Catégorie</button>
+    {% endif %}
 </aside>

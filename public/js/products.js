@@ -52,8 +52,40 @@ document.addEventListener('DOMContentLoaded', () => {
             handleShop(id, name);
         } else if (action === 'add') {
             handleAdd();
+        } else if (action === 'openCategoryModal') {
+            handleCreateCategory();
+        } else if (action === 'edit-category') {
+            handleCategoryEdit();
+        } else if (action === 'delete-category') {
+            e.preventDefault();
+            handleDeleteCategory(id);
         }
     });
+
+    function handleCategoryEdit() {
+        fetch('/category/select', { method: 'GET', })
+            .then(r => r.text())
+            .then(html => openModal(html))
+            .catch(() => openModal('<p>Error loading category edit form.</p>'));
+    }
+    function handleDeleteCategory(id) {
+        if (confirm('Voulez-vous vraiment supprimer cette catégorie ?')) {
+            fetch('/category/' + id, { method: 'DELETE' })
+                .then(r => {
+                    if (!r.ok) throw new Error("Erreur lors de la suppression");
+                    return r.text();
+                })
+                .then(html => {
+                    alert(html);
+                    closeModal();
+                })
+                .catch(e => {
+                    console.error(e);
+                    alert('Erreur : ' + e.message);
+                });
+        }
+    }
+
 
     /* ---------- Handlers ---------- */
     function handleCategoryChange() {
@@ -107,6 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     openModal('<p>Error deleting product.</p>');
                 }
             });
+    }
+
+    function handleCreateCategory() {
+        fetch('/category/new', { method: 'GET' })
+            .then(r => r.text())
+            .then(html => openModal(html))
+            .catch(() => openModal('<p>Error loading form.</p>'));
+
     }
 
     function handleEdit(id) {
@@ -200,6 +240,24 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
                 alert('Erreur : ' + err.message);
             }
+        } else if (e.target.matches('#create-category-form')) {
+            e.preventDefault();
+            const form = e.target;
+            try {
+                const response = await fetch('/category/new', {
+                    method: 'POST',
+                    body: form_to_url_encoded(form),
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                });
+                if (!r.ok) throw new Error(await r.text());
+
+                alert('La catégorie a été ajoutée avec succès');
+                closeModal();
+
+            } catch {
+                alert('Erreur : ' + err.message);
+            }
+
         }
     });
     document.addEventListener('click', async (e) => {
@@ -227,6 +285,33 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Erreur : ' + err.message);
         }
     });
+    document.body.addEventListener('change', async function (e) {
+        if (!e.target.matches('#select-category')) {
+            return;
+        }
+        const value = e.target.value;
+        try {
+            const res = await fetch('/category/edit/' + value);
+            if (!res.ok) throw new Error(await res.text());
+
+            const html = await res.text();
+            document.querySelector('#edit-category-form').innerHTML = html;
+        } catch (err) {
+            document.querySelector('#edit-category-form').innerHTML =
+                `< p > Erreur lors du chargement du formulaire d'édition : ${err.message}</p>`;
+        }
+    });
 
 
 });
+
+
+function form_to_url_encoded(form) {
+    const data = new FormData(form);
+    const urlEncodedData = new URLSearchParams();
+
+    for (const [key, value] of data.entries()) {
+        urlEncodedData.append(key, value);
+    }
+    return urlEncodedData;
+}

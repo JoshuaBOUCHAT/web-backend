@@ -1,7 +1,5 @@
 use actix_session::Session;
-use actix_web::{HttpResponse, web, web::Json};
-use diesel::dsl::Order;
-use serde::Deserialize;
+use actix_web::{HttpResponse, web};
 
 use crate::{
     models::{order_product_model::OrderProduct, user_model::User},

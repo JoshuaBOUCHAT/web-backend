@@ -1,0 +1,15 @@
+<form method="post" id="create-category-form" data-action="create-category">
+    <label for="name">Nom de la Catégorie</label>
+    <input type="text" name="name" required>
+    <label for="description">Description de la Catégorie</label>
+    <input type="text" name="description" required>
+    <label for="super_category">Type de la Catégorie:</label>
+    <select name="super_category">
+        <option value="__orphan__">simple</option>
+        <option value="super_category">super catégorie</option>
+        {% for super_category in super_categories %}
+        <option value="{{super_category.id_category}}">{{super_category.name}}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Créer Une Catégorie</button>
+</form>
