@@ -2,13 +2,15 @@ use std::{error::Error, fmt::Display};
 
 use crate::{
     log,
-    statics::{APP_STATE, AppState, DB_POOL},
+    statics::{APP_MAIL_BOX, APP_STATE, AppState, DB_POOL, MAILER},
 };
 use actix_web::HttpResponse;
+use chrono::Utc;
 use diesel::{
     QueryResult,
     r2d2::{ConnectionManager, PooledConnection},
 };
+use lettre::{Message, Transport, message::header::ContentType};
 pub trait Renderable {
     fn render(&self) -> Result<String, tera::Error>;
 }
@@ -74,4 +76,21 @@ pub fn handle_optional_query_result<T>(
             Err(Box::new(err))
         }
     };
+}
+pub fn send_mail(destination: &str, subject: &str, body: impl Into<String>) -> DynResult<()> {
+    let msg = Message::builder()
+        .from(APP_MAIL_BOX.clone())
+        .to(destination.parse().unwrap())
+        .subject(subject)
+        .header(ContentType::TEXT_HTML)
+        .body(body.into())?;
+    {
+        let mailer = MAILER.lock()?;
+        mailer.send(&msg)?;
+    }
+
+    Ok(())
+}
+pub fn now_str() -> String {
+    Utc::now().format("%Y-%m-%d %H:%M:%S").to_string()
 }

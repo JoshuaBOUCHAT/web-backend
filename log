@@ -3074,3 +3074,36 @@ App start at:2025-05-27 22:01:14
 App start at:2025-05-27 22:02:02
 App start at:2025-05-27 22:18:35
 App start at:2025-05-27 22:19:04
+App start at:2025-05-28 12:29:48
+App start at:2025-05-28 14:55:29
+App start at:2025-05-28 15:09:53
+error when searching user 2: no such column: users.verified
+error when searching user 2: no such column: users.verified
+App start at:2025-05-28 15:12:24
+App start at:2025-05-28 15:15:02
+App start at:2025-05-28 15:16:10
+App start at:2025-05-28 15:19:13
+App start at:2025-05-28 15:21:03
+App start at:2025-05-28 15:22:05
+App start at:2025-05-28 15:22:32
+App start at:2025-05-28 15:29:41
+err message :no such column: email_verifications.id_email_verifications
+err message :no such column: email_verifications.id_email_verifications
+App start at:2025-05-28 15:31:13
+err message :no such column: email_verifications.id_email_verifications
+App start at:2025-05-28 15:36:03
+err message :no such column: email_verifications.id_email_verifications
+err message :no such column: email_verifications.id_email_verifications
+App start at:2025-05-28 15:39:30
+App start at:2025-05-28 15:42:11
+App start at:2025-05-28 15:45:39
+App start at:2025-05-28 15:50:19
+User User:( mail:noreply.latraditionelle@gmail.com, phone:0783232757, admin:true ) access auth page
+User User:( mail:noreply.latraditionelle@gmail.com, phone:0783232757, admin:true ) access auth page
+App start at:2025-05-28 15:52:08
+App start at:2025-05-28 15:52:37
+App start at:2025-05-28 15:57:29
+User User:( mail:noreply.latraditionelle@gmail.com, phone:0783232757, admin:false ) access auth page
+App start at:2025-05-28 15:59:09
+App start at:2025-05-28 16:00:19
+Opening the application at 0.0.0.0:80

@@ -5,7 +5,7 @@ use tera::Context;
 
 use crate::controllers::{
     auth_controller, cart_controller, category_controller, dashboard_controller, order_controller,
-    products_controller, static_component_controller, welcome_controller,
+    products_controller, static_component_controller, verify_controller, welcome_controller,
 };
 
 pub struct Route {
@@ -54,6 +54,7 @@ pub const ROUTE_FOOTER: Route = Route::new("/static/footer", "static/footer.html
 pub const ROUTE_NAV: Route = Route::new("/static/footer", "nav/footer.html");
 pub const ROUTE_ABOUT: Route = Route::new("/static/about", "static/about.html");
 pub const ROUTE_AUTH: Route = Route::new("/auth", "views/auth.html");
+pub const ROUTE_VERIFY: Route = Route::new("/auth/verify", "views/verify.html");
 
 pub const ROUTE_STATICS: &'static str = "/static/{route}";
 
@@ -99,7 +100,8 @@ pub fn configure_guess_routes(cfg: &mut actix_web::web::ServiceConfig) {
             ROUTE_PRODUCTS.web_path,
             get().to(products_controller::products_get),
         )
-        .route(ROUTE_AUTH.web_path, get().to(auth_controller::auth_get));
+        .route(ROUTE_AUTH.web_path, get().to(auth_controller::auth_get))
+        .route(ROUTE_VERIFY.web_path, get().to(verify_controller::index));
 }
 pub fn configure_auth_routes(cfg: &mut actix_web::web::ServiceConfig) {
     use actix_web::web::*;

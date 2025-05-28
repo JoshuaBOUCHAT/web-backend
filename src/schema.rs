@@ -33,6 +33,7 @@ table! {
         phone_number -> Text,
         password_hash -> Text,
         date_creation -> Text, // SQLite stores NUMERIC loosely
+        verified->Integer,
         admin->Integer
     }
 }
@@ -42,6 +43,7 @@ table! {
         id_order -> Integer,
         date_order -> Nullable<Text>,
         date_retrieve -> Nullable<Text>,
+        order_obj->Nullable<Text>,
         id_user -> Integer,
     }
 }
@@ -54,5 +56,20 @@ table! {
     }
 }
 
+table! {
+    email_verifications(id_email_verification){
+        id_email_verification->Integer,
+        id_user->Integer,
+        expiration->Text,
+        token->Text,
+    }
+}
+
 diesel::allow_tables_to_appear_in_same_query!(categories, category_product, products,);
-diesel::allow_tables_to_appear_in_same_query!(users, orders, order_product, products,);
+diesel::allow_tables_to_appear_in_same_query!(
+    users,
+    orders,
+    order_product,
+    products,
+    email_verifications
+);

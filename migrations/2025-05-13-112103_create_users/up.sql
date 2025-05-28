@@ -5,6 +5,7 @@ CREATE TABLE users(
    phone_number TEXT NOT NULL,
    password_hash TEXT NOT NULL,
    date_creation TEXT NOT NULL,
-   admin INTEGER NOT NULL DEFAULT 1,
+   admin INTEGER NOT NULL DEFAULT 0,
+   verified INTEGER NOT NULL DEFAULT 0,
    UNIQUE(mail)
 );

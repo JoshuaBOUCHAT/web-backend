@@ -11,6 +11,7 @@ pub struct Order {
     pub id_order: i32,
     pub date_order: Option<String>, // YYYY-MM-DD HH:MM:SS
     pub date_retrieve: Option<String>,
+    pub order_obj: Option<String>,
     pub id_user: i32,
 }
 impl Order {

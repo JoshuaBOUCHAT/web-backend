@@ -1,4 +1,5 @@
 use std::{
+    collections::HashMap,
     fs::OpenOptions,
     io::{BufWriter, Write, stderr},
     sync::{LazyLock, Mutex},
@@ -8,6 +9,7 @@ use diesel::{
     SqliteConnection,
     r2d2::{self, ConnectionManager},
 };
+use lettre::{SmtpTransport, message::Mailbox, transport::smtp::authentication::Credentials};
 use tera::Tera;
 
 pub static TERA: LazyLock<Tera> = LazyLock::new(|| {
@@ -44,6 +46,15 @@ pub enum AppState {
     Prod,
     Dev,
 }
+pub static ENV: LazyLock<HashMap<&str, &str>> = LazyLock::new(|| {
+    let env = include_str!("../.env");
+    env.lines()
+        .map(|line| {
+            line.split_once('=')
+                .expect("error when parsing the .env file")
+        })
+        .collect()
+});
 
 pub static APP_STATE: LazyLock<AppState> = LazyLock::new(|| {
     if let Err(err) = dotenvy::dotenv() {
@@ -63,3 +74,30 @@ pub static APP_STATE: LazyLock<AppState> = LazyLock::new(|| {
         }
     }
 });
+pub static APP_URL: LazyLock<String> =
+    LazyLock::new(|| ENV.get("APP_URL").expect("APP_URL non définie").to_string());
+
+pub static APP_MAIL: LazyLock<String> =
+    LazyLock::new(|| ENV.get("APP_MAIL").expect("APP_MAIL not set").to_string());
+
+pub static MAILER: LazyLock<Mutex<SmtpTransport>> = LazyLock::new(|| {
+    if let Err(err) = dotenvy::dotenv() {
+        eprintln!("error while loading the dotenv file:\n{err}");
+    };
+    let password = ENV
+        .get("MAIL_PASWD")
+        .expect("MAIL_PASWD n'est pas défini")
+        .to_string();
+    let creds = Credentials::new(APP_MAIL.clone(), password);
+
+    // Create a connection to our email provider
+    // In this case, we are using Namecheap's Private Email
+    // You can use any email provider you want
+    let mailer = SmtpTransport::relay("smtp.gmail.com")
+        .unwrap()
+        .credentials(creds)
+        .build();
+    Mutex::new(mailer)
+});
+pub static APP_MAIL_BOX: LazyLock<Mailbox> =
+    LazyLock::new(|| ENV.get("APP_MAIL").unwrap().parse().unwrap());

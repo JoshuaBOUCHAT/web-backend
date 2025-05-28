@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boulangerie – Vérification e-mail</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <style>
+        /* ——————————————————— Palette & base ——————————————————— */
+        :root {
+            --background: #f5f0e6;
+            --panel: #fffaf3;
+            --brown: #6e4b3a;
+            --accent: #d2a679;
+            --text: #3e2c23;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: var(--background);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        /* ——————————————————— Carte ——————————————————— */
+        .card {
+            background: var(--panel);
+            width: 360px;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
+            text-align: center;
+            color: var(--text);
+            animation: fadeIn .6s ease;
+        }
+
+        h2 {
+            color: var(--brown);
+            margin-bottom: .5rem;
+        }
+
+        .subtitle {
+            color: #7a6658;
+            font-size: .95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .envelope {
+            font-size: 5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: .7rem 1.4rem;
+            background: var(--brown);
+            color: #fff;
+            text-decoration: none;
+            border-radius: .5rem;
+            transition: background .3s;
+        }
+
+        .btn:hover {
+            background: #5a3f30
+        }
+
+        .footer {
+            margin-top: 1.8rem;
+            font-size: .8rem;
+            color: #777;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="card">
+        <div class="envelope">📧</div>
+        <h2>Vérifie ton adresse e-mail</h2>
+        <p class="subtitle">
+            {{message}}
+        </p>
+
+        <!-- Facultatif : bouton “Renvoyer l’e-mail” -->
+        <div class="footer">Merci de faire confiance à notre boulangerie artisanale 🥖</div>
+    </main>
+</body>
+
+</html>

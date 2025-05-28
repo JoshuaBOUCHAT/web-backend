@@ -21,6 +21,7 @@ pub mod models {
     pub mod order_product_model;
     pub mod product_model;
     pub mod user_model;
+    pub mod verify_model;
 }
 pub mod controllers {
     pub mod auth_controller;
@@ -30,6 +31,7 @@ pub mod controllers {
     pub mod order_controller;
     pub mod products_controller;
     pub mod static_component_controller;
+    pub mod verify_controller;
     pub mod welcome_controller;
 }
 
@@ -47,6 +49,7 @@ use rustls::pki_types::CertificateDer;
 use rustls::pki_types::PrivateKeyDer;
 use rustls::pki_types::pem::PemObject;
 use statics::APP_STATE;
+use utilities::send_mail;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -64,6 +67,7 @@ async fn main() -> std::io::Result<()> {
     };
 
     let config = load_rustls_config();
+    log!("Opening the application at {}:{}", allow_incoming, port);
 
     HttpServer::new(move || {
         let sessionmiddleware =

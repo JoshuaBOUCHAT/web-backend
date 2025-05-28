@@ -1,6 +1,6 @@
 use std::error::Error;
 
-use crate::utilities::DynResult;
+use crate::utilities::{DynResult, now_str};
 use crate::{log, schema::orders};
 
 use crate::models::order_model::Order;
@@ -14,10 +14,10 @@ use argon2::{
     password_hash::{PasswordHash, PasswordHasher, PasswordVerifier, SaltString},
 };
 
-use diesel::RunQueryDsl;
 use diesel::prelude::{Insertable, Queryable};
 use diesel::query_dsl::methods::*;
 use diesel::{ExpressionMethods, OptionalExtension};
+use diesel::{RunQueryDsl, update};
 
 use diesel::result::Error as DieselError;
 use serde::{Deserialize, Serialize};
@@ -30,6 +30,7 @@ pub struct User {
     pub phone_number: String,
     pub password_hash: String,
     pub date_creation: String, // YYYY-MM-DD HH:MM:SS
+    pub verified: i32,
     pub admin: i32,
 }
 
@@ -65,7 +66,6 @@ impl User {
         phone_input: &str,
         password_input: &str,
     ) -> Result<User, DieselError> {
-        use chrono::Utc;
         let mut conn = DB_POOL.get().map_err(|_| DieselError::NotFound)?;
 
         // Generate salt + hash
@@ -89,7 +89,7 @@ impl User {
             mail: mail_input,
             phone_number: phone_input,
             password_hash: &hashed_password,
-            date_creation: &Utc::now().format("%Y-%m-%d %H:%M:%S").to_string(),
+            date_creation: &now_str(),
         };
         eprintln!("build the user try inserting");
 
@@ -166,6 +166,15 @@ impl User {
                 Err(Box::new(e))
             }
         }
+    }
+    pub fn set_verified(user_id: i32) -> DynResult<usize> {
+        let mut conn = DB_POOL.get()?;
+
+        let result = update(users.filter(id_user.eq(user_id)))
+            .set(verified.eq(1))
+            .execute(&mut conn)?;
+
+        Ok(result) // nombre de lignes affectées
     }
 }
 impl User {
