@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         .then(r => r.text())
                         .then(html => alert(html))
                         .catch(err => alert("Une erreur est survenue : " + err));
+                    window.location.reload();
                 } else {
                     this.value = 1;
                 }

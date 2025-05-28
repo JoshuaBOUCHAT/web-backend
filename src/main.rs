@@ -67,7 +67,7 @@ async fn main() -> std::io::Result<()> {
     };
 
     let config = load_rustls_config();
-    log!("Opening the application at {}:{}", allow_incoming, port);
+    println!("Opening the application at {}:{}", allow_incoming, port);
 
     HttpServer::new(move || {
         let sessionmiddleware =
@@ -78,6 +78,7 @@ async fn main() -> std::io::Result<()> {
                         .session_ttl(actix_web::cookie::time::Duration::weeks(2)),
                 )
                 .build();
+        log!("sessionmidlleware built");
         App::new()
             .wrap(sessionmiddleware)
             .service(actix_files::Files::new(
