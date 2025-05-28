@@ -43,7 +43,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.product-cart img {
+.img-product-cart {
     width: 100px;
     height: 100px;
     object-fit: cover;
@@ -99,4 +99,9 @@ body {
         margin-left: 0;
         margin-top: 10px;
     }
+}
+
+.trash-img-btn {
+    width: 32px;
+    height: 32px;
 }

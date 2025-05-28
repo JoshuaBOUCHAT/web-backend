@@ -1,0 +1,13 @@
+<h2>{{name}}</h2>
+<p>{{description}}</p>
+
+{% if already_in_cart %}
+<h4>Vous posséder déja cette article dans votre panier au nombre de: </h4>
+{% endif %}
+
+<form action="/order/{{id_product}}/" method="post">
+    <label>Quantity:
+        <input type="number" id="qty" value="{{qty}}" min="1">
+    </label>
+    <button id="add-cart" class="add-cart-btn" type="submit">Add to cart</button>
+</form>

@@ -1,4 +1,4 @@
-use std::ffi::OsStr;
+use std::{collections::HashSet, ffi::OsStr};
 
 use actix_multipart::form::{MultipartForm, tempfile::TempFile, text::Text};
 use actix_session::Session;
@@ -10,6 +10,7 @@ use crate::{
     log,
     models::{
         category_model::{Category, CategoryGroup},
+        category_product_model::CategoryProduct,
         complex_request::{ProductWithCategories, load_products_with_categories},
         product_model::{NewProduct, Product, ProductPatchBuilder},
         user_model::User,
@@ -17,13 +18,14 @@ use crate::{
     routes::{ROUTE_CONTEXT, ROUTE_EDIT_PRODUCT, ROUTE_PRODUCTS},
     statics::TERA,
     try_or_return,
-    utilities::{ExtractHttp, Renderable, Responseable, render_to_response},
+    utilities::{DynResult, ExtractHttp, Renderable, Responseable, render_to_response},
 };
 #[derive(Serialize, Default)]
 pub struct Products {
     products: Vec<ProductWithCategories>,
     is_admin: bool,
     category_groups: Vec<CategoryGroup>,
+    orphans: Vec<Category>,
 }
 
 impl Renderable for Products {
@@ -32,58 +34,52 @@ impl Renderable for Products {
         context.insert("products", &self.products);
         context.insert("is_admin", &self.is_admin);
         context.insert("category_groups", &self.category_groups);
+        context.insert("orphans", &self.orphans);
         TERA.render(ROUTE_PRODUCTS.file_path, &context)
     }
 }
 impl Responseable for Products {}
 
-pub async fn products_get(session: Session) -> impl Responder {
-    let products = try_or_return!(
-        load_products_with_categories().extract_http(),
-        log!("Error when loading products in products_get\n")
-    );
-    let category_groups = try_or_return!(
-        Category::load_grouped_categories().extract_http(),
-        log!("Error when loading categories in products_get\n")
-    );
+pub async fn products_get(session: Session) -> DynResult<HttpResponse> {
+    let products = load_products_with_categories()?;
+    let category_groups = Category::load_grouped_categories()?;
+    let maybe_user = User::from_session(&session)?;
+    let orphans = Category::orphans()?;
 
-    let maybe_user = try_or_return!(
-        User::from_session(&session).extract_http(),
-        log!("Error happen during rendering of products_get while requesting User form session ")
-    );
-    let is_admin = if let Some(user) = maybe_user {
-        user.admin != 0
-    } else {
-        false
-    };
+    let is_admin = maybe_user.is_some_and(|u| u.is_admin());
 
     let products_view = Products {
         products: products,
         is_admin: is_admin,
         category_groups: category_groups,
+        orphans: orphans,
     };
 
-    products_view.into_response()
+    Ok(products_view.into_response())
 }
 
-pub async fn product_id_get(path: web::Path<i32>) -> impl Responder {
+pub async fn product_id_get(path: web::Path<i32>) -> DynResult<HttpResponse> {
     let mut context = Context::new();
     context.extend(ROUTE_CONTEXT.clone());
-    let maybe_product = try_or_return!(
-        Product::get(*path).extract_http(),
-        log!("Error happen while trying to render product_id_get")
-    );
+    let maybe_product = Product::get(*path)?;
     let Some(product) = maybe_product else {
         log!("Trying to access a non-existent product at id :{}", *path);
-        return HttpResponse::NotFound().body("Product not found");
+        return Ok(HttpResponse::NotFound().body("Product not found"));
     };
+    let categories = Category::all_normal()?;
+    let relateds = Category::related_to_product(product.id_product)?;
+
     context.insert("name", &product.name);
     context.insert("id_product", &product.id_product);
     context.insert("description", &product.description);
     context.insert("price", &product.price);
     context.insert("image_url", &product.image_url);
+    context.insert("categories", &categories);
+    context.insert("relateds", &relateds);
 
-    render_to_response(TERA.render(ROUTE_EDIT_PRODUCT.file_path, &context))
+    Ok(render_to_response(
+        TERA.render(ROUTE_EDIT_PRODUCT.file_path, &context),
+    ))
 }
 
 pub async fn product_id_delete(path: web::Path<i32>) -> impl Responder {
@@ -116,18 +112,21 @@ pub struct ProductEditForm {
     pub name: Text<String>,
     pub description: Text<String>,
     pub price: Text<f64>,
+    #[multipart(rename = "categories[]")]
+    pub categories: Vec<Text<i32>>,
 
     #[multipart(rename = "image_file", limit = "10MB")]
     pub image: Option<TempFile>,
 }
 pub async fn product_id_patch(
     MultipartForm(form): MultipartForm<ProductEditForm>,
-) -> impl Responder {
+) -> DynResult<HttpResponse> {
     println!("pass at product_id_patch");
-    let id = form.id_product.0;
+    let product_id = form.id_product.0;
     let name = form.name.0;
     let description = form.description.0;
     let uuid_part = uuid::Uuid::new_v4();
+    let category_ids: HashSet<i32> = form.categories.into_iter().map(|c| c.0).collect();
 
     let image_path = match form.image {
         // we have an actual file (non-zero size and a real filename)
@@ -147,16 +146,34 @@ pub async fn product_id_patch(
         .price(Some(form.price.0))
         .build()
         .unwrap();
-    let result = Product::patch(id, patch_product);
+    let _ = Product::patch(product_id, patch_product)?;
 
-    let _ = try_or_return!(
-        result.extract_http(),
-        log!("Error append when patching a the product with id :{id}")
-    );
-    /*HttpResponse::SeeOther()
-    .append_header(("Location", ROUTE_PRODUCTS.web_path))
-    .finish()*/
-    HttpResponse::Ok().finish()
+    let relateds = Category::related_to_product(product_id)?;
+    // Calcul des catégories à supprimer (présentes en BDD mais plus sélectionnées)
+    let to_delete: Vec<i32> = relateds
+        .iter()
+        .filter(|&&p| !category_ids.contains(&p))
+        .copied()
+        .collect();
+    // Calcul des catégories à ajouter (sélectionnées mais pas encore en BDD)
+    let to_create: Vec<i32> = category_ids
+        .into_iter()
+        .filter(|&i| !relateds.contains(&i))
+        .collect();
+
+    let deleted = CategoryProduct::bulk_delete(product_id, &to_delete)?;
+    let created = CategoryProduct::bulk_insert(product_id, &to_create)?;
+    if created != to_create.len() || deleted != to_delete.len() {
+        log!(
+            "Error wrong number of insert/delete inside the edit product handle form created: {}|{}    deleted: {}|{}",
+            created,
+            to_create.len(),
+            deleted,
+            to_delete.len()
+        );
+    }
+
+    Ok(HttpResponse::Ok().finish())
 }
 fn get_extension_from_filename(filename: &str) -> Option<&str> {
     std::path::Path::new(filename)

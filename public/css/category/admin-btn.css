@@ -1,0 +1,45 @@
+/* Container for the buttons */
+.admin-btn-category {
+    padding: 20px;
+    /* Adds space around the buttons */
+    display: flex;
+    /* Use flexbox to align buttons */
+    flex-direction: column;
+    /* Stack buttons vertically */
+    gap: 10px;
+    /* Adds space between the buttons */
+}
+
+/* Base styles for the buttons */
+.admin-btn-category button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    /* Light gray border */
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white;
+    /* White background */
+    color: #333;
+    /* Dark gray text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    /* Ensures buttons take the full width of the container */
+    box-sizing: border-box;
+    /* Ensures padding is included in the width */
+}
+
+/* Hover effect for the buttons */
+.admin-btn-category button:hover {
+    background-color: #f5f5f5;
+    /* Light gray background on hover */
+    border-color: #999;
+    /* Slightly darker gray border on hover */
+}
+
+/* Focus effect for accessibility */
+.admin-btn-category button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}

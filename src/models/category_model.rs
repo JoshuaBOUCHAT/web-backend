@@ -1,7 +1,13 @@
-use std::sync::LazyLock;
+use std::{
+    collections::{HashMap, HashSet},
+    sync::LazyLock,
+};
 
 use crate::{
-    schema::categories,
+    schema::{
+        categories,
+        category_product::{self, dsl::*},
+    },
     statics::DB_POOL,
     utilities::{DynResult, handle_optional_query_result},
 };
@@ -16,7 +22,7 @@ pub struct Category {
     pub description: String,
     pub super_category: Option<i32>,
 }
-#[derive(Serialize)]
+#[derive(Serialize, Debug)]
 pub struct CategoryGroup {
     pub parent: Category,
     pub children: Vec<Category>,
@@ -53,10 +59,14 @@ impl Category {
         let mut conn = DB_POOL.get().map_err(|_| diesel::result::Error::NotFound)?;
 
         let orphan_id = ORPHAN.id_category;
-        // 1. Récupérer toutes les catégories
         let temp = categories
             .filter(categories::id_category.ne(orphan_id))
             .load(&mut conn)?;
+        Ok(temp)
+    }
+    pub fn all_with_orphan() -> DynResult<Vec<Category>> {
+        let mut conn = DB_POOL.get()?;
+        let temp = categories.load(&mut conn)?;
         Ok(temp)
     }
     pub fn get(id: i32) -> DynResult<Option<Self>> {
@@ -72,7 +82,7 @@ impl Category {
     pub fn update(datas: CategoryUpdate, id: i32) -> DynResult<bool> {
         let mut conn = DB_POOL.get()?;
         let res = handle_optional_query_result(
-            diesel::update(categories.filter(id_category.eq(id)))
+            diesel::update(categories.filter(categories::id_category.eq(id)))
                 .set(&datas)
                 .execute(&mut conn),
             "Error when trying to update the category",
@@ -119,6 +129,28 @@ impl Category {
         let res =
             diesel::delete(categories.filter(categories::id_category.eq(id))).execute(&mut conn)?;
         Ok(res != 0)
+    }
+    pub fn orphans() -> DynResult<Vec<Self>> {
+        let mut conn = DB_POOL.get()?;
+        let orphan_id = ORPHAN.id_category;
+        Ok(categories
+            .filter(super_category.eq(orphan_id))
+            .load(&mut conn)?)
+    }
+
+    pub fn all_normal() -> DynResult<Vec<Self>> {
+        let mut conn = DB_POOL.get()?;
+        Ok(categories
+            .filter(super_category.is_not_null())
+            .load(&mut conn)?)
+    }
+    pub fn related_to_product(product_id: i32) -> DynResult<HashSet<i32>> {
+        let mut conn = DB_POOL.get()?;
+        let ids: Vec<i32> = category_product
+            .filter(category_product::id_product.eq(product_id))
+            .select(category_product::id_category)
+            .load(&mut conn)?;
+        Ok(HashSet::from_iter(ids.into_iter()))
     }
 }
 pub static ORPHAN: LazyLock<Category> = LazyLock::new(|| {

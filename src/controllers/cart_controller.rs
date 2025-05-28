@@ -6,14 +6,11 @@ use crate::{
     routes::ROUTE_CONTEXT,
     statics::TERA,
     try_or_return,
-    utilities::{ExtractHttp, render_to_response},
+    utilities::{DynResult, ExtractHttp, render_to_response},
 };
 
-pub async fn index(session: Session) -> impl Responder {
-    let user = try_or_return!(
-        User::from_session_infallible(&session).extract_http(),
-        "User try to index the cart without being logged in !"
-    );
+pub async fn index(session: Session) -> DynResult<HttpResponse> {
+    let user = User::from_session_infallible(&session)?;
     let is_admin = user.is_admin();
     if is_admin {
         index_admin()
@@ -21,15 +18,18 @@ pub async fn index(session: Session) -> impl Responder {
         index_user(user)
     }
 }
-fn index_user(user: User) -> HttpResponse {
+fn index_user(user: User) -> DynResult<HttpResponse> {
     let mut context = ROUTE_CONTEXT.clone();
-    let order_id: i32 = try_or_return!(user.cart_id().extract_http());
-    let cart_items = try_or_return!(get_cart_items(order_id).extract_http());
-    context.insert("id_order", &order_id);
+    let cart_id: i32 = user.cart_id()?;
+    println!("cart_id: {cart_id}");
+    let cart_items = get_cart_items(cart_id)?;
+    context.insert("id_order", &cart_id);
     context.insert("items", &cart_items);
-    render_to_response(TERA.render("views/cart-user.html", &context))
+    Ok(render_to_response(
+        TERA.render("views/cart-user.html", &context),
+    ))
 }
-fn index_admin() -> HttpResponse {
+fn index_admin() -> DynResult<HttpResponse> {
     todo!()
 }
 

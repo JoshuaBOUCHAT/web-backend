@@ -1,0 +1,84 @@
+form.edit-category-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form.edit-category-form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+form.edit-category-form input[type="text"],
+form.edit-category-form select {
+    width: 92%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+form.edit-category-form input[type="text"]:focus,
+form.edit-category-form select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+form.edit-category-form button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+form.edit-category-form button:hover {
+    background-color: #2980b9;
+}
+
+.destruct_button {
+    background-color: #e74c3c !important;
+    color: white !important;
+    border: none;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.destruct_button:hover {
+    background-color: #c0392b !important;
+}
+
+form[action="/category/edit"] select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: border-color 0.3s;
+    background-color: white;
+    color: #333;
+    appearance: none;
+    /* pour un style uniforme entre navigateurs */
+}
+
+form[action="/category/edit"] select:focus {
+    border-color: #3498db;
+    outline: none;
+}

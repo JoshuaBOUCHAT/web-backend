@@ -1,15 +1,17 @@
 use crate::{
     schema::order_product::{self, dsl::*},
     statics::DB_POOL,
-    utilities::DynResult,
+    utilities::{DynResult, handle_optional_query_result},
 };
 use diesel::{
     BoolExpressionMethods, ExpressionMethods,
     prelude::{Insertable, Queryable},
-    query_dsl::methods::FilterDsl,
+    query_dsl::methods::{FilterDsl, SelectDsl},
 };
 use diesel::{RunQueryDsl, prelude::AsChangeset};
 use serde::{Deserialize, Serialize};
+
+use super::order_model::Order;
 #[derive(Queryable, Serialize, Insertable, Deserialize, AsChangeset)]
 #[diesel(table_name = order_product)]
 pub struct OrderProduct {
@@ -31,6 +33,7 @@ impl OrderProduct {
         })
         .execute(&mut conn)?;
         if affected == 0 {
+            println!("not affected");
             diesel::insert_into(order_product)
                 .values((
                     id_order.eq(order_id),
@@ -38,7 +41,30 @@ impl OrderProduct {
                     quantity.eq(qty),
                 ))
                 .execute(&mut conn)?;
+        } else {
+            println!("affected");
         }
         Ok(())
+    }
+    pub fn qty_from_cart_and_product(cart_id: i32, product_id: i32) -> DynResult<Option<i32>> {
+        use crate::schema::order_product::dsl as op;
+        let mut conn = DB_POOL.get()?;
+        let querry = op::order_product
+            .filter(op::id_order.eq(cart_id).and(op::id_product.eq(product_id)))
+            .select(op::quantity)
+            .first(&mut conn);
+        let opt: Option<i32> = handle_optional_query_result(
+            querry,
+            "Error when trying to et quantity of a product in a cart",
+        )?;
+        Ok(opt)
+    }
+    pub fn delete(order_id: i32, product_id: i32) -> DynResult<bool> {
+        let mut conn = DB_POOL.get()?;
+        let affected = diesel::delete(
+            order_product.filter(id_order.eq(order_id).and(id_product.eq(product_id))),
+        )
+        .execute(&mut conn)?;
+        Ok(affected != 0)
     }
 }

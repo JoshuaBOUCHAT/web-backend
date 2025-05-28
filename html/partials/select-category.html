@@ -1,8 +1,9 @@
-<form action="/category/edit" method="get">
+<form class="edit-category-selector" action="/category/edit" method="get">
     <select name="category-id" required id="select-category">
         {% for category in categories %}
         <option value="{{category.id_category}}">{{category.name}}</option>
         {% endfor %}
     </select>
 </form>
+
 <div id="edit-category-form"></div>

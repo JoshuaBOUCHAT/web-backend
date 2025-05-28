@@ -1,3 +1,5 @@
+extern crate public;
+
 mod macros;
 pub mod routes;
 mod schema;
@@ -85,7 +87,7 @@ async fn main() -> std::io::Result<()> {
                     .configure(configure_auth_routes)
                     .service(
                         scope("")
-                            .wrap(AdminMiddleware)
+                            //.wrap(AdminMiddleware)
                             .configure(configure_admin_routes),
                     ),
             )

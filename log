@@ -755,3 +755,2322 @@ ServiceRequest HTTP/2.0 PUT:/auth
     "accept": "*/*"
     "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
 
+App start at:2025-05-27 09:01:24
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "sec-fetch-mode": "cors"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-site": "same-origin"
+    "accept": "*/*"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/3
+  headers:
+    "accept": "*/*"
+    "sec-fetch-mode": "cors"
+    "priority": "u=0"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-dest": "empty"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-mode": "cors"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/4
+  headers:
+    "accept": "*/*"
+    "te": "trailers"
+    "priority": "u=0"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/new
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "sec-fetch-mode": "cors"
+    "accept": "*/*"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "priority": "u=0"
+    "sec-fetch-mode": "cors"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/3
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "te": "trailers"
+    "sec-fetch-mode": "cors"
+    "accept": "*/*"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-dest": "empty"
+    "accept": "*/*"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/4
+  headers:
+    "referer": "https://localhost:8030/products"
+    "priority": "u=0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept": "*/*"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "accept": "*/*"
+    "dnt": "1"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-dest": "empty"
+    "sec-gpc": "1"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/4
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "dnt": "1"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-dest": "empty"
+    "sec-gpc": "1"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "priority": "u=0"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "accept": "*/*"
+
+App start at:2025-05-27 09:08:17
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-mode": "cors"
+    "accept": "*/*"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cache-control": "no-cache"
+    "pragma": "no-cache"
+    "sec-fetch-dest": "empty"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/7
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "pragma": "no-cache"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "accept": "*/*"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cache-control": "no-cache"
+    "te": "trailers"
+
+App start at:2025-05-27 09:14:01
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "empty"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-site": "same-origin"
+    "cache-control": "no-cache"
+    "sec-fetch-mode": "cors"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/4
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept": "*/*"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "sec-fetch-mode": "cors"
+    "referer": "https://localhost:8030/products"
+    "cache-control": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept": "*/*"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-mode": "cors"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "priority": "u=0"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "pragma": "no-cache"
+    "cache-control": "no-cache"
+
+App start at:2025-05-27 09:17:36
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "sec-fetch-mode": "cors"
+    "priority": "u=0"
+    "te": "trailers"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/3
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "priority": "u=0"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "referer": "https://localhost:8030/products"
+    "accept": "*/*"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+
+App start at:2025-05-27 09:21:09
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept": "*/*"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/3
+  headers:
+    "sec-fetch-dest": "empty"
+    "accept": "*/*"
+    "priority": "u=0"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "accept": "*/*"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+    "sec-fetch-mode": "cors"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/3
+  headers:
+    "accept": "*/*"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-mode": "cors"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "te": "trailers"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-mode": "cors"
+    "accept": "*/*"
+    "priority": "u=0"
+    "sec-fetch-site": "same-origin"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/6
+  headers:
+    "priority": "u=0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-site": "same-origin"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-mode": "cors"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "te": "trailers"
+    "sec-fetch-dest": "empty"
+    "accept": "*/*"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "sec-fetch-mode": "cors"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "priority": "u=0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "*/*"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/5
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept": "*/*"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-mode": "cors"
+    "accept": "*/*"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/3
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "te": "trailers"
+    "accept": "*/*"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-site": "same-origin"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "accept": "*/*"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/4
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "*/*"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0"
+    "te": "trailers"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/10
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "priority": "u=0"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "accept": "*/*"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-mode": "cors"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "referer": "https://localhost:8030/products"
+    "te": "trailers"
+    "accept": "*/*"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/5
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-site": "same-origin"
+    "referer": "https://localhost:8030/products"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "*/*"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "te": "trailers"
+    "priority": "u=0"
+    "sec-fetch-mode": "cors"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "sec-fetch-mode": "cors"
+    "te": "trailers"
+    "accept": "*/*"
+    "sec-fetch-dest": "empty"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/4
+  headers:
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-site": "same-origin"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-mode": "cors"
+    "priority": "u=0"
+    "sec-fetch-dest": "empty"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/category/
+  headers:
+    "origin": "https://localhost:8030"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "content-type": "application/x-www-form-urlencoded"
+    "sec-fetch-user": "?1"
+    "content-length": "47"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "priority": "u=0, i"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-dest": "document"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "referer": "https://localhost:8030/products"
+    "upgrade-insecure-requests": "1"
+    "sec-fetch-mode": "navigate"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/category/
+  headers:
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-mode": "navigate"
+    "sec-fetch-site": "same-origin"
+    "content-length": "47"
+    "content-type": "application/x-www-form-urlencoded"
+    "priority": "u=0, i"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "upgrade-insecure-requests": "1"
+    "origin": "https://localhost:8030"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-user": "?1"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "document"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/category/
+  headers:
+    "referer": "https://localhost:8030/products"
+    "te": "trailers"
+    "cache-control": "no-cache"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "upgrade-insecure-requests": "1"
+    "origin": "https://localhost:8030"
+    "priority": "u=0, i"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-dest": "document"
+    "sec-fetch-mode": "navigate"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-user": "?1"
+    "content-length": "47"
+    "pragma": "no-cache"
+    "content-type": "application/x-www-form-urlencoded"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "no-cors"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "image"
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=6"
+    "pragma": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+    "pragma": "no-cache"
+    "cache-control": "no-cache"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/6
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "pragma": "no-cache"
+    "priority": "u=0"
+    "cache-control": "no-cache"
+    "sec-fetch-dest": "empty"
+    "accept": "*/*"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-mode": "cors"
+    "referer": "https://localhost:8030/products"
+    "accept-encoding": "gzip, deflate, br, zstd"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/category/
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-user": "?1"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "sec-fetch-mode": "navigate"
+    "pragma": "no-cache"
+    "content-length": "67"
+    "sec-fetch-dest": "document"
+    "sec-fetch-site": "same-origin"
+    "origin": "https://localhost:8030"
+    "content-type": "application/x-www-form-urlencoded"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0, i"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "upgrade-insecure-requests": "1"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/category/
+  headers:
+    "sec-fetch-mode": "navigate"
+    "origin": "https://localhost:8030"
+    "pragma": "no-cache"
+    "sec-fetch-dest": "document"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-site": "same-origin"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0, i"
+    "content-length": "67"
+    "upgrade-insecure-requests": "1"
+    "content-type": "application/x-www-form-urlencoded"
+    "sec-fetch-user": "?1"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-dest": "image"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cache-control": "no-cache"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "priority": "u=6"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-mode": "no-cors"
+    "pragma": "no-cache"
+    "te": "trailers"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "cache-control": "no-cache"
+    "accept": "*/*"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/7
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "pragma": "no-cache"
+    "cache-control": "no-cache"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-mode": "cors"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/category/
+  headers:
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "upgrade-insecure-requests": "1"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-user": "?1"
+    "origin": "https://localhost:8030"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "content-type": "application/x-www-form-urlencoded"
+    "priority": "u=0, i"
+    "content-length": "67"
+    "sec-fetch-mode": "navigate"
+    "referer": "https://localhost:8030/products"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "sec-fetch-dest": "document"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "pragma": "no-cache"
+    "te": "trailers"
+    "sec-fetch-dest": "image"
+    "sec-fetch-mode": "no-cors"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "cache-control": "no-cache"
+    "referer": "https://localhost:8030/products"
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "priority": "u=6"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-site": "same-origin"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "sec-fetch-dest": "empty"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "accept": "*/*"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "pragma": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/6
+  headers:
+    "accept": "*/*"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0"
+    "pragma": "no-cache"
+    "sec-fetch-dest": "empty"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-mode": "cors"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "te": "trailers"
+    "cache-control": "no-cache"
+    "sec-fetch-site": "same-origin"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/category/
+  headers:
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-user": "?1"
+    "priority": "u=0, i"
+    "sec-fetch-site": "same-origin"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "te": "trailers"
+    "origin": "https://localhost:8030"
+    "pragma": "no-cache"
+    "content-type": "application/x-www-form-urlencoded"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "upgrade-insecure-requests": "1"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-mode": "navigate"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-dest": "document"
+    "cache-control": "no-cache"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "content-length": "67"
+
+App start at:2025-05-27 09:47:26
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-mode": "cors"
+    "priority": "u=0"
+    "pragma": "no-cache"
+    "sec-fetch-dest": "empty"
+    "cache-control": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "te": "trailers"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept": "*/*"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/6
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "cache-control": "no-cache"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/category/
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "origin": "https://localhost:8030"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "content-type": "application/x-www-form-urlencoded"
+    "upgrade-insecure-requests": "1"
+    "sec-fetch-user": "?1"
+    "content-length": "67"
+    "cache-control": "no-cache"
+    "sec-fetch-dest": "document"
+    "priority": "u=0, i"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-mode": "navigate"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "no-cors"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=6"
+    "pragma": "no-cache"
+    "sec-fetch-dest": "image"
+    "te": "trailers"
+    "cache-control": "no-cache"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "accept": "*/*"
+    "pragma": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-dest": "empty"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-site": "same-origin"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/5
+  headers:
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "priority": "u=0"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-site": "same-origin"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cache-control": "no-cache"
+    "accept": "*/*"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "pragma": "no-cache"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "priority": "u=0"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cache-control": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/6
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "te": "trailers"
+    "priority": "u=0"
+    "cache-control": "no-cache"
+    "accept": "*/*"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/category/
+  headers:
+    "upgrade-insecure-requests": "1"
+    "origin": "https://localhost:8030"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0, i"
+    "content-type": "application/x-www-form-urlencoded"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cache-control": "no-cache"
+    "sec-fetch-user": "?1"
+    "sec-fetch-mode": "navigate"
+    "sec-fetch-dest": "document"
+    "sec-fetch-site": "same-origin"
+    "referer": "https://localhost:8030/products"
+    "pragma": "no-cache"
+    "content-length": "67"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "pragma": "no-cache"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "image"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=6"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "sec-fetch-mode": "no-cors"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "pragma": "no-cache"
+    "priority": "u=0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "cache-control": "no-cache"
+    "accept": "*/*"
+    "sec-fetch-site": "same-origin"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/7
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0"
+    "accept": "*/*"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "cache-control": "no-cache"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/category/
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-user": "?1"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "cache-control": "no-cache"
+    "sec-fetch-dest": "document"
+    "priority": "u=0, i"
+    "origin": "https://localhost:8030"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "navigate"
+    "content-length": "67"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "upgrade-insecure-requests": "1"
+    "content-type": "application/x-www-form-urlencoded"
+    "te": "trailers"
+
+App start at:2025-05-27 09:53:44
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/category/
+  headers:
+    "sec-fetch-user": "?1"
+    "sec-fetch-mode": "navigate"
+    "priority": "u=0, i"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "cache-control": "no-cache"
+    "sec-fetch-site": "same-origin"
+    "referer": "https://localhost:8030/products"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "content-type": "application/x-www-form-urlencoded"
+    "te": "trailers"
+    "upgrade-insecure-requests": "1"
+    "pragma": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-dest": "document"
+    "content-length": "67"
+    "origin": "https://localhost:8030"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "sec-fetch-mode": "no-cors"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "priority": "u=6"
+    "cache-control": "no-cache"
+    "sec-fetch-dest": "image"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "priority": "u=0"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "sec-fetch-mode": "cors"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "cache-control": "no-cache"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "te": "trailers"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/6
+  headers:
+    "te": "trailers"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "*/*"
+    "sec-fetch-dest": "empty"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0"
+    "pragma": "no-cache"
+    "cache-control": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 PATCH:/category/6
+  headers:
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-dest": "empty"
+    "content-length": "67"
+    "cache-control": "no-cache"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-mode": "cors"
+    "accept": "*/*"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "content-type": "application/x-www-form-urlencoded"
+    "origin": "https://localhost:8030"
+    "priority": "u=0"
+
+App start at:2025-05-27 09:56:23
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "pragma": "no-cache"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "sec-fetch-mode": "cors"
+    "referer": "https://localhost:8030/products"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "accept": "*/*"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/11
+  headers:
+    "te": "trailers"
+    "accept": "*/*"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "pragma": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "cache-control": "no-cache"
+    "sec-fetch-site": "same-origin"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 PATCH:/category/edit/11
+  headers:
+    "sec-fetch-site": "same-origin"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "origin": "https://localhost:8030"
+    "accept": "*/*"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0"
+    "pragma": "no-cache"
+    "referer": "https://localhost:8030/products"
+    "te": "trailers"
+    "content-length": "61"
+    "sec-fetch-mode": "cors"
+    "content-type": "application/x-www-form-urlencoded"
+    "cache-control": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0"
+    "te": "trailers"
+    "pragma": "no-cache"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-site": "same-origin"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cache-control": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/11
+  headers:
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+    "pragma": "no-cache"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "accept": "*/*"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/new
+  headers:
+    "accept": "*/*"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-dest": "empty"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-site": "same-origin"
+    "referer": "https://localhost:8030/products"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/products/1
+  headers:
+    "accept": "*/*"
+    "sec-fetch-dest": "empty"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/new
+  headers:
+    "sec-fetch-site": "same-origin"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "dnt": "1"
+    "sec-gpc": "1"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0"
+    "pragma": "no-cache"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/new
+  headers:
+    "dnt": "1"
+    "sec-gpc": "1"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "sec-fetch-dest": "empty"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+    "priority": "u=0"
+    "te": "trailers"
+    "cache-control": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/new
+  headers:
+    "sec-gpc": "1"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "dnt": "1"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/products
+  headers:
+    "sec-fetch-site": "same-origin"
+    "dnt": "1"
+    "sec-fetch-mode": "navigate"
+    "origin": "https://localhost:8030"
+    "sec-fetch-user": "?1"
+    "content-type": "application/x-www-form-urlencoded"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "upgrade-insecure-requests": "1"
+    "sec-fetch-dest": "document"
+    "content-length": "59"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-gpc": "1"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "priority": "u=0, i"
+    "cache-control": "no-cache"
+
+App start at:2025-05-27 10:36:34
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/new
+  headers:
+    "referer": "https://localhost:8030/products"
+    "te": "trailers"
+    "cache-control": "no-cache"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-mode": "cors"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "dnt": "1"
+    "sec-gpc": "1"
+    "accept": "*/*"
+    "pragma": "no-cache"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "sec-fetch-dest": "empty"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/products
+  headers:
+    "sec-fetch-dest": "document"
+    "pragma": "no-cache"
+    "priority": "u=0, i"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-gpc": "1"
+    "sec-fetch-user": "?1"
+    "sec-fetch-site": "same-origin"
+    "content-type": "application/x-www-form-urlencoded"
+    "cache-control": "no-cache"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "dnt": "1"
+    "te": "trailers"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "navigate"
+    "content-length": "52"
+    "origin": "https://localhost:8030"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "referer": "https://localhost:8030/products"
+    "upgrade-insecure-requests": "1"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "cache-control": "no-cache"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "dnt": "1"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "te": "trailers"
+    "priority": "u=0"
+    "accept": "*/*"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-dest": "empty"
+    "sec-gpc": "1"
+    "pragma": "no-cache"
+    "sec-fetch-mode": "cors"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/select
+  headers:
+    "sec-gpc": "1"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "te": "trailers"
+    "sec-fetch-site": "same-origin"
+    "accept": "*/*"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "dnt": "1"
+    "sec-fetch-mode": "cors"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/edit/3
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "sec-gpc": "1"
+    "referer": "https://localhost:8030/products"
+    "te": "trailers"
+    "sec-fetch-mode": "cors"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "accept": "*/*"
+    "dnt": "1"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/category/new
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-site": "same-origin"
+    "referer": "https://localhost:8030/products"
+    "te": "trailers"
+    "sec-fetch-dest": "empty"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "dnt": "1"
+    "sec-gpc": "1"
+    "cookie": "id=IDD5V%2FAxkZzXcCW8YClFH5lwYDLU1DptnmdgBcpdYotnptbNn+bs3bVUeQ%3D%3D"
+    "accept": "*/*"
+    "sec-fetch-mode": "cors"
+    "priority": "u=0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/products/5
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "te": "trailers"
+    "sec-fetch-mode": "cors"
+    "priority": "u=0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept": "*/*"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-site": "same-origin"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/products/6
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept": "*/*"
+    "sec-fetch-dest": "empty"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "priority": "u=0"
+    "referer": "https://localhost:8030/products"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/products/7
+  headers:
+    "sec-fetch-mode": "cors"
+    "accept": "*/*"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+
+App start at:2025-05-27 12:12:09
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/products/1
+  headers:
+    "te": "trailers"
+    "sec-fetch-mode": "cors"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "pragma": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-site": "same-origin"
+    "accept": "*/*"
+    "priority": "u=0"
+    "cache-control": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/cart/1
+  headers:
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "priority": "u=0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-dest": "empty"
+    "referer": "https://localhost:8030/products"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-mode": "cors"
+    "cache-control": "no-cache"
+    "pragma": "no-cache"
+    "accept": "*/*"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/products/1
+  headers:
+    "pragma": "no-cache"
+    "priority": "u=0"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "referer": "https://localhost:8030/products"
+    "cache-control": "no-cache"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-site": "same-origin"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "te": "trailers"
+    "sec-fetch-dest": "empty"
+    "accept": "*/*"
+    "sec-fetch-mode": "cors"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/cart/1
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "priority": "u=0"
+    "accept": "*/*"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-dest": "empty"
+    "cache-control": "no-cache"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/order/1
+  headers:
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+    "pragma": "no-cache"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "priority": "u=0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "empty"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+
+App start at:2025-05-27 12:14:03
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/order/1
+  headers:
+    "te": "trailers"
+    "sec-fetch-mode": "cors"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept": "*/*"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "referer": "https://localhost:8030/products"
+    "pragma": "no-cache"
+    "cache-control": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/order/1/1
+  headers:
+    "origin": "https://localhost:8030"
+    "sec-fetch-mode": "navigate"
+    "sec-fetch-site": "same-origin"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "pragma": "no-cache"
+    "content-type": "application/x-www-form-urlencoded"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "content-length": "0"
+    "referer": "https://localhost:8030/products"
+    "priority": "u=0, i"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "upgrade-insecure-requests": "1"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "document"
+    "sec-fetch-user": "?1"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "cache-control": "no-cache"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-mode": "no-cors"
+    "priority": "u=6"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "image"
+    "sec-fetch-site": "same-origin"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "pragma": "no-cache"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "te": "trailers"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/products/1
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-site": "same-origin"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "sec-fetch-mode": "cors"
+    "pragma": "no-cache"
+    "accept": "*/*"
+    "referer": "https://localhost:8030/products"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-dest": "empty"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/order/1
+  headers:
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "priority": "u=0"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cache-control": "no-cache"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/order/1/1
+  headers:
+    "content-length": "0"
+    "content-type": "application/x-www-form-urlencoded"
+    "sec-fetch-user": "?1"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "te": "trailers"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "upgrade-insecure-requests": "1"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "priority": "u=0, i"
+    "origin": "https://localhost:8030"
+    "cache-control": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-mode": "navigate"
+    "pragma": "no-cache"
+    "sec-fetch-dest": "document"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "cache-control": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "image"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-mode": "no-cors"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "priority": "u=6"
+    "pragma": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/order/1/1
+  headers:
+    "content-type": "application/x-www-form-urlencoded"
+    "content-length": "0"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "pragma": "no-cache"
+    "cache-control": "no-cache"
+    "priority": "u=0, i"
+    "sec-fetch-mode": "navigate"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "sec-fetch-user": "?1"
+    "sec-fetch-site": "same-origin"
+    "upgrade-insecure-requests": "1"
+    "origin": "https://localhost:8030"
+    "sec-fetch-dest": "document"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "referer": "https://localhost:8030/products"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-mode": "no-cors"
+    "pragma": "no-cache"
+    "priority": "u=6"
+    "sec-fetch-site": "same-origin"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cache-control": "no-cache"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "te": "trailers"
+    "sec-fetch-dest": "image"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/order/1
+  headers:
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0"
+    "accept": "*/*"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "referer": "https://localhost:8030/products"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "pragma": "no-cache"
+    "cache-control": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/order/1/1
+  headers:
+    "sec-fetch-user": "?1"
+    "sec-fetch-dest": "document"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "upgrade-insecure-requests": "1"
+    "referer": "https://localhost:8030/products"
+    "pragma": "no-cache"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "content-type": "application/x-www-form-urlencoded"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "sec-fetch-mode": "navigate"
+    "sec-fetch-site": "same-origin"
+    "origin": "https://localhost:8030"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "content-length": "0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "priority": "u=0, i"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "referer": "https://localhost:8030/products"
+    "te": "trailers"
+    "pragma": "no-cache"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-mode": "no-cors"
+    "sec-fetch-dest": "image"
+    "sec-fetch-site": "same-origin"
+    "cache-control": "no-cache"
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=6"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/order/5
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "referer": "https://localhost:8030/products"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+    "pragma": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/order/5/1
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "priority": "u=0, i"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "cache-control": "no-cache"
+    "content-type": "application/x-www-form-urlencoded"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "upgrade-insecure-requests": "1"
+    "content-length": "0"
+    "origin": "https://localhost:8030"
+    "sec-fetch-mode": "navigate"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "document"
+    "sec-fetch-user": "?1"
+    "pragma": "no-cache"
+    "sec-fetch-site": "same-origin"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+
+App start at:2025-05-27 12:29:19
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "referer": "https://localhost:8030/products"
+    "priority": "u=6"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "sec-fetch-mode": "no-cors"
+    "sec-fetch-dest": "image"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cache-control": "no-cache"
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "sec-fetch-site": "same-origin"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/order/8
+  headers:
+    "accept": "*/*"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-mode": "cors"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "empty"
+    "cache-control": "no-cache"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "priority": "u=0"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/order/8/
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "pragma": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "cache-control": "no-cache"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-mode": "navigate"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-dest": "document"
+    "priority": "u=0, i"
+    "content-type": "application/x-www-form-urlencoded"
+    "upgrade-insecure-requests": "1"
+    "te": "trailers"
+    "content-length": "0"
+    "sec-fetch-user": "?1"
+    "origin": "https://localhost:8030"
+
+App start at:2025-05-27 12:30:58
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "image"
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "sec-fetch-mode": "no-cors"
+    "cache-control": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "te": "trailers"
+    "sec-fetch-site": "same-origin"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "pragma": "no-cache"
+    "priority": "u=6"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/order/5
+  headers:
+    "accept": "*/*"
+    "priority": "u=0"
+    "sec-fetch-dest": "empty"
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "referer": "https://localhost:8030/products"
+    "cache-control": "no-cache"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/order/5/
+  headers:
+    "content-length": "0"
+    "pragma": "no-cache"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-dest": "document"
+    "priority": "u=0, i"
+    "upgrade-insecure-requests": "1"
+    "content-type": "application/x-www-form-urlencoded"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "origin": "https://localhost:8030"
+    "sec-fetch-site": "same-origin"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-user": "?1"
+    "cache-control": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "te": "trailers"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "sec-fetch-mode": "navigate"
+
+App start at:2025-05-27 12:33:53
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/order/5
+  headers:
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "priority": "u=0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "cors"
+    "referer": "https://localhost:8030/products"
+    "accept": "*/*"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/order/5/
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "upgrade-insecure-requests": "1"
+    "sec-fetch-dest": "document"
+    "referer": "https://localhost:8030/products"
+    "origin": "https://localhost:8030"
+    "te": "trailers"
+    "priority": "u=0, i"
+    "content-length": "0"
+    "sec-fetch-mode": "navigate"
+    "sec-fetch-site": "same-origin"
+    "sec-fetch-user": "?1"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "content-type": "application/x-www-form-urlencoded"
+    "accept-encoding": "gzip, deflate, br, zstd"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/order/5/
+  headers:
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-site": "same-origin"
+    "pragma": "no-cache"
+    "origin": "https://localhost:8030"
+    "content-length": "0"
+    "sec-fetch-dest": "document"
+    "te": "trailers"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "content-type": "application/x-www-form-urlencoded"
+    "priority": "u=0, i"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-mode": "navigate"
+    "referer": "https://localhost:8030/products"
+    "cache-control": "no-cache"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "upgrade-insecure-requests": "1"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "cache-control": "no-cache"
+    "pragma": "no-cache"
+    "te": "trailers"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-site": "same-origin"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-mode": "no-cors"
+    "sec-fetch-dest": "image"
+    "referer": "https://localhost:8030/products"
+    "priority": "u=6"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 POST:/order/5/
+  headers:
+    "te": "trailers"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "origin": "https://localhost:8030"
+    "upgrade-insecure-requests": "1"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0, i"
+    "content-type": "application/x-www-form-urlencoded"
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-mode": "navigate"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "document"
+    "sec-fetch-user": "?1"
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "pragma": "no-cache"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "content-length": "0"
+    "cache-control": "no-cache"
+
+The user: 
+User { id_user: 1, mail: "joshuabouchat@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$N//bAQZaSmOZiO6RoALLmw$jQK97KaEAr3c881uk01lP74vr85jebzd9utIdLl0LMk", date_creation: "2025-05-22 12:33:37", admin: 0 } try to access a admin protected route without being an admin req:
+
+ServiceRequest HTTP/2.0 GET:/order/1
+  headers:
+    "sec-gpc": "1"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "priority": "u=0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "dnt": "1"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=t97fjDNWkp4lzPuBXfIwQjiBF6OK81%2FK6r83cBjz8FS8yC6lnlz3iMWz7Q%3D%3D"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+
+The user: 
+User { id_user: 1, mail: "joshuabouchat@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$N//bAQZaSmOZiO6RoALLmw$jQK97KaEAr3c881uk01lP74vr85jebzd9utIdLl0LMk", date_creation: "2025-05-22 12:33:37", admin: 0 } try to access a admin protected route without being an admin req:
+
+ServiceRequest HTTP/2.0 GET:/order/1
+  headers:
+    "te": "trailers"
+    "sec-fetch-mode": "cors"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "sec-fetch-dest": "empty"
+    "dnt": "1"
+    "sec-fetch-site": "same-origin"
+    "referer": "https://localhost:8030/products"
+    "accept": "*/*"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "cookie": "id=t97fjDNWkp4lzPuBXfIwQjiBF6OK81%2FK6r83cBjz8FS8yC6lnlz3iMWz7Q%3D%3D"
+    "priority": "u=0"
+    "sec-gpc": "1"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+
+The user: 
+User { id_user: 1, mail: "joshuabouchat@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$N//bAQZaSmOZiO6RoALLmw$jQK97KaEAr3c881uk01lP74vr85jebzd9utIdLl0LMk", date_creation: "2025-05-22 12:33:37", admin: 0 } try to access a admin protected route without being an admin req:
+
+ServiceRequest HTTP/2.0 GET:/order/4
+  headers:
+    "dnt": "1"
+    "accept": "*/*"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "cookie": "id=t97fjDNWkp4lzPuBXfIwQjiBF6OK81%2FK6r83cBjz8FS8yC6lnlz3iMWz7Q%3D%3D"
+    "sec-gpc": "1"
+    "sec-fetch-mode": "cors"
+    "priority": "u=0"
+    "sec-fetch-dest": "empty"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "te": "trailers"
+    "sec-fetch-site": "same-origin"
+
+The user: 
+User { id_user: 1, mail: "joshuabouchat@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$N//bAQZaSmOZiO6RoALLmw$jQK97KaEAr3c881uk01lP74vr85jebzd9utIdLl0LMk", date_creation: "2025-05-22 12:33:37", admin: 0 } try to access a admin protected route without being an admin req:
+
+ServiceRequest HTTP/2.0 GET:/order/4
+  headers:
+    "referer": "https://localhost:8030/products"
+    "dnt": "1"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "accept": "*/*"
+    "sec-gpc": "1"
+    "cookie": "id=t97fjDNWkp4lzPuBXfIwQjiBF6OK81%2FK6r83cBjz8FS8yC6lnlz3iMWz7Q%3D%3D"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "sec-fetch-site": "same-origin"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "priority": "u=0"
+    "te": "trailers"
+
+The user: 
+User { id_user: 1, mail: "joshuabouchat@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$N//bAQZaSmOZiO6RoALLmw$jQK97KaEAr3c881uk01lP74vr85jebzd9utIdLl0LMk", date_creation: "2025-05-22 12:33:37", admin: 0 } try to access a admin protected route without being an admin req:
+
+ServiceRequest HTTP/2.0 GET:/order/4
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "sec-fetch-mode": "cors"
+    "sec-gpc": "1"
+    "cookie": "id=t97fjDNWkp4lzPuBXfIwQjiBF6OK81%2FK6r83cBjz8FS8yC6lnlz3iMWz7Q%3D%3D"
+    "te": "trailers"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "sec-fetch-site": "same-origin"
+    "priority": "u=0"
+    "dnt": "1"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "referer": "https://localhost:8030/products"
+    "accept": "*/*"
+
+The user: 
+User { id_user: 1, mail: "joshuabouchat@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$N//bAQZaSmOZiO6RoALLmw$jQK97KaEAr3c881uk01lP74vr85jebzd9utIdLl0LMk", date_creation: "2025-05-22 12:33:37", admin: 0 } try to access a admin protected route without being an admin req:
+
+ServiceRequest HTTP/2.0 GET:/order/4
+  headers:
+    "referer": "https://localhost:8030/products"
+    "sec-fetch-site": "same-origin"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "dnt": "1"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "priority": "u=0"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "te": "trailers"
+    "sec-gpc": "1"
+    "accept": "*/*"
+    "sec-fetch-mode": "cors"
+    "cookie": "id=t97fjDNWkp4lzPuBXfIwQjiBF6OK81%2FK6r83cBjz8FS8yC6lnlz3iMWz7Q%3D%3D"
+    "sec-fetch-dest": "empty"
+
+The user: 
+User { id_user: 1, mail: "joshuabouchat@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$N//bAQZaSmOZiO6RoALLmw$jQK97KaEAr3c881uk01lP74vr85jebzd9utIdLl0LMk", date_creation: "2025-05-22 12:33:37", admin: 0 } try to access a admin protected route without being an admin req:
+
+ServiceRequest HTTP/2.0 GET:/order/1
+  headers:
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+    "sec-fetch-dest": "empty"
+    "cookie": "id=t97fjDNWkp4lzPuBXfIwQjiBF6OK81%2FK6r83cBjz8FS8yC6lnlz3iMWz7Q%3D%3D"
+    "sec-gpc": "1"
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "dnt": "1"
+    "sec-fetch-site": "same-origin"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "pragma": "no-cache"
+    "cache-control": "no-cache"
+    "te": "trailers"
+    "priority": "u=0"
+    "accept": "*/*"
+    "sec-fetch-mode": "cors"
+    "referer": "https://localhost:8030/products"
+
+Admin :User { id_user: 2, mail: "limassu9731@gmail.com", phone_number: "0783232757", password_hash: "$argon2id$v=19$m=19456,t=2,p=1$7QjMsFwpuxcNVJFRy8f6qw$Lp6I1NRqskqDtYg8lVoMr56vO3vFuoYkXfbkZrNzTJA", date_creation: "2025-05-22 12:34:41", admin: 1 } access the admin route :
+ServiceRequest HTTP/2.0 GET:/favicon.ico
+  headers:
+    "accept-encoding": "gzip, deflate, br, zstd"
+    "cookie": "id=JSTsWMcwyjy41pmUNWpYTaWtSKLQa5uk4VRvv9GIiZGd3mok1ExCrX8agw%3D%3D"
+    "sec-fetch-dest": "image"
+    "pragma": "no-cache"
+    "sec-fetch-mode": "no-cors"
+    "cache-control": "no-cache"
+    "priority": "u=6"
+    "sec-fetch-site": "same-origin"
+    "te": "trailers"
+    "referer": "https://localhost:8030/products"
+    "accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5"
+    "accept-language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3"
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0"
+
+App start at:2025-05-27 12:35:53
+App start at:2025-05-27 12:46:09
+App start at:2025-05-27 12:52:45
+App start at:2025-05-27 12:57:49
+App start at:2025-05-27 13:06:37
+App start at:2025-05-27 13:10:31
+App start at:2025-05-27 14:46:13
+App start at:2025-05-27 14:47:45
+App start at:2025-05-27 15:16:16
+App start at:2025-05-27 15:41:24
+App start at:2025-05-27 15:55:48
+App start at:2025-05-27 15:59:37
+App start at:2025-05-27 16:10:46
+App start at:2025-05-27 16:13:26
+App start at:2025-05-27 16:18:00
+App start at:2025-05-27 16:22:50
+App start at:2025-05-27 16:23:19
+App start at:2025-05-27 16:25:34
+App start at:2025-05-27 16:55:25
+App start at:2025-05-27 17:01:54
+App start at:2025-05-27 17:04:24
+App start at:2025-05-27 17:07:27
+App start at:2025-05-27 17:10:49
+App start at:2025-05-27 17:14:38
+App start at:2025-05-27 19:48:51
+App start at:2025-05-27 20:27:05
+App start at:2025-05-27 20:31:15
+App start at:2025-05-27 20:32:13
+App start at:2025-05-27 20:34:50
+App start at:2025-05-27 21:18:29
+App start at:2025-05-27 21:23:51
+App start at:2025-05-27 21:28:54
+App start at:2025-05-27 21:39:17
+App start at:2025-05-27 21:40:12
+App start at:2025-05-27 21:43:48
+App start at:2025-05-27 21:51:40
+App start at:2025-05-27 22:01:14
+App start at:2025-05-27 22:02:02
+App start at:2025-05-27 22:18:35
+App start at:2025-05-27 22:19:04

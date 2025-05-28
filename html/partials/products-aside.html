@@ -1,8 +1,6 @@
 <aside class="filters">
     <h2 class="filters__title">Catégories</h2>
     {% for category_group in category_groups %}
-
-    {% if category_group.parent.name != "__orphan__" %}
     <section class="filter-group">
         <label class="filter-group__item">
             <input type="checkbox" data-id="{{category_group.parent.id_category}}"> {{category_group.parent.name}}
@@ -16,20 +14,22 @@
             {% endfor %}
         </div>
     </section>
-    {% else %}
+    {% endfor %}
+
     <div class="orphan-category">
         <div class="filter-group__sub">
-            {% for child in category_group.children %}
+            {% for child in orphans %}
             <label class="filter-group__item">
                 <input type="checkbox" data-id="{{child.id_category}}"> {{child.name}}
             </label>
             {% endfor %}
         </div>
     </div>
-    {% endif %}
-    {% endfor %}
+
     {% if is_admin %}
-    <button data-action="openCategoryModal">Créer une Catégorie</button>
-    <button data-action="edit-category">Editer les Catégorie</button>
+    <div class="admin-btn-category">
+        <button data-action="openCategoryModal">Créer une Catégorie</button>
+        <button data-action="edit-category">Editer les Catégorie</button>
+    </div>
     {% endif %}
 </aside>

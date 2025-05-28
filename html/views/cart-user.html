@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/public/images/fav.jpg">
     <link rel="stylesheet" href="/public/css/cart.css">
+    <script src="/public/js/cart.js"></script>
 </head>
 
 <body>
@@ -22,6 +23,11 @@
             {{product_cart::cart_product(item=item,id_order=id_order)}}
             {% endfor %}
         </div>
+        <hr>
+        <section class="order">
+            <div class="total_price"></div>
+            <button>Commander</button>
+        </section>
     </div>
     {% include "static/footer.html" %}
 </body>

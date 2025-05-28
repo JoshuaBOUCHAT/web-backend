@@ -17,6 +17,16 @@
         Price (€):
         <input name="price" type="number" step="0.01" value="{{price}}" required>
     </label><br>
+    <label>
+        Catégories:
+        <select name="categories[]" multiple="multiple" id="select-multiple-edit">
+            {% for category in categories %}
+            <option value="{{category.id_category}}" {% if category.id_category in relateds %}selected {% endif %}>
+                {{category.name}}
+            </option>
+            {% endfor %}
+        </select>
+    </label>
 
     <label>
         Current Image:

@@ -1,6 +1,6 @@
 use std::{collections::HashMap, sync::LazyLock};
 
-use actix_web::web::{self, get, post};
+use actix_web::web::*;
 use tera::Context;
 
 use crate::controllers::{
@@ -42,7 +42,9 @@ pub const ROUTE_WELCOME: Route = Route::new("/", "views/welcome.html");
 
 pub const ROUTE_DASHBOARD: Route = Route::new("/dashboard", "views/dashboard.html");
 pub const ROUTE_CART: Route = Route::new("/cart", "/views/cart.html");
-pub const ROUTE_ORDER: &'static str = "/order/{id}/{qty}";
+
+pub const ROUTE_ORDER: Route = Route::new("/order/{id}", "partials/add-cart-menu.html");
+pub const ROUTE_ORDER_QTY: &'static str = "/order/{id}/{qty}";
 
 pub const ROUTE_REGISTER: &'static str = "/register";
 pub const ROUTE_LOGIN: &'static str = "/login";
@@ -80,8 +82,6 @@ fn get_route_context() -> Context {
 }
 pub static ROUTE_CONTEXT: LazyLock<Context> = LazyLock::new(|| get_route_context());
 
-//pub const ADMIN_ROUTES: [(&'static str, actix_web::Route); 8] = [()];
-
 pub fn configure_guess_routes(cfg: &mut actix_web::web::ServiceConfig) {
     use actix_web::web::*;
 
@@ -103,13 +103,13 @@ pub fn configure_guess_routes(cfg: &mut actix_web::web::ServiceConfig) {
 }
 pub fn configure_auth_routes(cfg: &mut actix_web::web::ServiceConfig) {
     use actix_web::web::*;
-    cfg.route(ROUTE_CART.web_path, web::get().to(cart_controller::index))
+    cfg.route(ROUTE_CART.web_path, get().to(cart_controller::index))
         .route(ROUTE_LOGOUT, get().to(auth_controller::logout_get))
-        .route(ROUTE_ORDER, put().to(order_controller::update));
+        .route(ROUTE_ORDER_QTY, put().to(order_controller::update))
+        .route(ROUTE_ORDER.web_path, delete().to(order_controller::destroy));
 }
 
 pub fn configure_admin_routes(cfg: &mut actix_web::web::ServiceConfig) {
-    use actix_web::web::*;
     cfg.route(
         ROUTE_DASHBOARD.web_path,
         get().to(dashboard_controller::dashboard_get),
@@ -156,7 +156,7 @@ pub fn configure_admin_routes(cfg: &mut actix_web::web::ServiceConfig) {
     )
     .route(
         ROUTE_CATEGORY_EDIT.web_path,
-        post().to(category_controller::edit_post),
-    );
+        patch().to(category_controller::edit_post),
+    )
+    .route(ROUTE_ORDER.web_path, get().to(order_controller::edit));
 }
-//pub const AUTH_ROUTES: [(&'static str, actix_web::Route); 3] = [()];

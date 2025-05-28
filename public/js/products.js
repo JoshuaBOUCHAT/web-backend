@@ -62,12 +62,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
+
+
     function handleCategoryEdit() {
         fetch('/category/select', { method: 'GET', })
             .then(r => r.text())
-            .then(html => openModal(html))
-            .catch(() => openModal('<p>Error loading category edit form.</p>'));
+            .then(html => {
+                openModal(html);
+
+
+            }).catch(() => openModal('<p>Error loading category edit form.</p>'));
     }
+
+
     function handleDeleteCategory(id) {
         if (confirm('Voulez-vous vraiment supprimer cette catégorie ?')) {
             fetch('/category/' + id, { method: 'DELETE' })
@@ -142,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleCreateCategory() {
+        openModal('<p>Loading…</p>');
         fetch('/category/new', { method: 'GET' })
             .then(r => r.text())
             .then(html => openModal(html))
@@ -153,32 +162,37 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal('<p>Loading…</p>');
         fetch('/products/' + id)
             .then(r => r.text())
-            .then(html => openModal(html))
+            .then(html => {
+                openModal(html);
+                requestAnimationFrame(() => {
+                    // petit délai pour que les styles soient bien appliqués
+                    setTimeout(() => {
+                        const $select = $('#select-multiple-edit');
+                        if ($select.length) {
+                            $select.select2({
+                                width: '100%',
+                                dropdownParent: $('#modal-content')
+                            });
+                        } else {
+                            console.warn('Select introuvable');
+                        }
+                    }, 10); // ou 10ms si 0 ne suffit pas
+                });
+            })
             .catch(() => openModal('<p>Error loading form.</p>'));
+        console.log("test");
+
+
     }
 
     function handleShop(id, name) {
-        openModal(`
-            <h2>Buy “${name}”</h2>
-            <label>Quantity:
-              <input type="number" id="qty" value="1" min="1">
-            </label>
-            <button id="add-cart">Add to cart</button>
-        `);
-        console.log(id + " " + name);
-        document.getElementById('add-cart')
-            .addEventListener('click', async () => {
-                const qty = document.getElementById('qty').value;
-
-                const response = await fetch('/order/' + id + '/' + qty, {
-                    method: 'PUT',
-                    //headers: { 'Content-Type': 'te' },
-                });
-                console.log("pass here");
-                alert(response.text());
-                closeModal();
-            });
+        openModal('<p>Loading…</p>');
+        fetch('/order/' + id, { method: 'GET' })
+            .then(r => r.text())
+            .then(html => openModal(html))
+            .catch(err => alert('Une erreur est survenu: ' + err))
     }
+
     function handleAdd() {
         openModal(`
         <h2>Add New Product</h2>
@@ -240,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
                 alert('Erreur : ' + err.message);
             }
-        } else if (e.target.matches('#create-category-form')) {
+        } else if (e.target.matches('.create-category-form')) {
             e.preventDefault();
             const form = e.target;
             try {
@@ -249,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: form_to_url_encoded(form),
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 });
-                if (!r.ok) throw new Error(await r.text());
+                if (!response.ok) throw new Error(await r.text());
 
                 alert('La catégorie a été ajoutée avec succès');
                 closeModal();
@@ -258,6 +272,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Erreur : ' + err.message);
             }
 
+        } else if (e.target.matches('.edit-category-form')) {
+            e.preventDefault();                  // ← avec () !
+
+            const form = e.target;
+            const encoded = form_to_url_encoded(form);
+            const id = form.querySelector('[data-id]')?.dataset.id; // id récupéré sur ton bouton
+
+            try {
+                const r = await fetch('/category/edit/' + id, {
+                    method: 'PATCH',
+                    body: encoded,
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                });
+                if (!r.ok) throw new Error(await r.text());
+
+                alert(await r.text());
+                // closeModal(); // si besoin
+            } catch (err) {
+                alert('Une erreur est survenue : ' + err.message);
+            }
         }
     });
     document.addEventListener('click', async (e) => {
@@ -301,6 +335,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 `< p > Erreur lors du chargement du formulaire d'édition : ${err.message}</p>`;
         }
     });
+    document.body.addEventListener('submit', function (e) {
+        // Check if the submitted form is the one we're interested in
+        if (e.target && e.target.matches('form[action^="/order/"]')) {
+            e.preventDefault(); // Prevent the default form submission
+
+            const form = e.target; // Get the form element
+            const qtyInput = form.querySelector('#qty');
+            const qty = qtyInput.value;
+            const action = form.getAttribute('action');
+
+            // Example of sending an AJAX request (optional)
+            fetch(action + qty, {
+                method: 'PUT',
+            })
+                .then(res => res.text())
+                .then(msg => alert(msg))
+                .catch(err => alert("Erreur: " + err.message));
+        }
+    });
 
 
 });
@@ -314,4 +367,19 @@ function form_to_url_encoded(form) {
         urlEncodedData.append(key, value);
     }
     return urlEncodedData;
+}
+function waitForElement(selector, callback) {
+    const observer = new MutationObserver(function (mutations, obs) {
+        const element = document.querySelector(selector);
+        if (element) {
+            callback(element);
+            obs.disconnect(); // Arrêter l'observation une fois l'élément trouvé
+        }
+    });
+
+    // Commencer à observer le document avec la configuration souhaitée
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 }
