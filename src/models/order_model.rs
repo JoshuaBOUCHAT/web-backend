@@ -15,7 +15,16 @@ pub struct Order {
     pub date_retrieve: Option<String>,
     pub order_obj: Option<String>,
     pub id_user: i32,
+    pub order_state: i32,
 }
+enum OrderState {
+    Cart,
+    NeedConfirmation,
+    Confirmed,
+    Ready,
+    Purnchased,
+}
+
 impl Order {
     pub fn get(id: i32) -> DynResult<Option<Self>> {
         let mut conn = DB_POOL.get()?;
@@ -97,6 +106,7 @@ impl Order {
             date_order: order_date,
             date_retrieve: retreive_date,
             order_obj: json_obj,
+            order_state: OrderState::NeedConfirmation as i32,
         };
         diesel::update(orders.filter(id_order.eq(cart_id)))
             .set(&update_data)
@@ -155,4 +165,5 @@ pub struct CartUpdate {
     pub date_order: String,
     pub date_retrieve: String,
     pub order_obj: String,
+    pub order_state: i32,
 }

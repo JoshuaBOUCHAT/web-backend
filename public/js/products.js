@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const superCategoryCheckboxes = document.querySelectorAll('.filter-group > label > input[type="checkbox"][data-id]');
     superCategoryCheckboxes.forEach(checkbox => {
         checkbox.checked = true;
-        checkbox.addEventListener('change', handleCategoryChange);
+        checkbox.addEventListener('change', handleSuperCategoryChange);
     });
 
     // Initialiser les cases à cocher des sous-catégories
@@ -73,6 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             }).catch(() => openModal('<p>Error loading category edit form.</p>'));
+    }
+    function handleSuperCategoryChange(event) {
+        console.log("test");
+        const superCategoryCheckbox = event.target;
+        const superCategoryId = superCategoryCheckbox.dataset.id;
+        const isChecked = superCategoryCheckbox.checked;
+
+        // Find all subcategory checkboxes that belong to this super category
+        const subCategoryCheckboxes = document.querySelectorAll(`.filter-group > label > input[type="checkbox"][data-id="${superCategoryId}"] + .filter-group__sub input[type="checkbox"][data-id]`);
+
+        // Set the checked state of all subcategory checkboxes to match the super category checkbox
+        subCategoryCheckboxes.forEach(checkbox => {
+            checkbox.checked = isChecked;
+        });
+
     }
 
 

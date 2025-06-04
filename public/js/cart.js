@@ -95,6 +95,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     document.addEventListener('click', async (e) => {
         if (e.target && e.target.id === 'order-confirm') {
+
+
             e.preventDefault();
             fetch('/cart/order', { method: 'POST' })
                 .then(r => r.text())
@@ -107,3 +109,12 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
     });*/
 });
+function form_to_url_encoded(form) {
+    const data = new FormData(form);
+    const urlEncodedData = new URLSearchParams();
+
+    for (const [key, value] of data.entries()) {
+        urlEncodedData.append(key, value);
+    }
+    return urlEncodedData;
+}

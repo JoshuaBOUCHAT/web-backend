@@ -45,6 +45,7 @@ table! {
         date_retrieve -> Nullable<Text>,
         order_obj->Nullable<Text>,
         id_user -> Integer,
+        order_state -> Integer,
     }
 }
 
