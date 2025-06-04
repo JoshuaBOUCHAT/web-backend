@@ -39,8 +39,12 @@ fn index_admin() -> DynResult<HttpResponse> {
 pub async fn order_post(session: Session) -> DynResult<HttpResponse> {
     let user = User::from_session_infallible(&session)?;
     let cart_id = user.cart_id()?;
-    //let
-
+    let cart_items = get_cart_items(cart_id)?;
+    if cart_items.is_empty() {
+        return Ok(HttpResponse::BadRequest().body("Cart is empty"));
+    }
+    let json_obj =serde_json::to_string(&cart_items)?;
+    let min_data=compute_min_datetime();
     todo!()
 }
 pub async fn order_get(session: Session) -> DynResult<HttpResponse> {
