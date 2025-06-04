@@ -93,17 +93,38 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-    document.addEventListener('click', async (e) => {
-        if (e.target && e.target.id === 'order-confirm') {
-
-
+    document.addEventListener('submit', (e) => {
+        if (e.target && e.target.matches('form[action="/cart/order"]')) {
             e.preventDefault();
-            fetch('/cart/order', { method: 'POST' })
-                .then(r => r.text())
-                .then(html => content.innerHTML = html)
-                .catch(err => content.innerHTML = 'Une erreur est survenue: ' + err);
+            const form = e.target;
+            const url = form.action;
+            const data = form_to_url_encoded(form);
+            
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: data
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/dashboard';
+                } else {
+                    return response.text().then(text => {
+                        const content = document.getElementById('modal-content');
+                        if (content) content.innerHTML = text || 'Erreur lors de la commande';
+                    });
+                }
+            })
+            .catch(error => {
+                const content = document.getElementById('modal-content');
+                if (content) content.innerHTML = 'Erreur de connexion au serveur';
+                console.error('Erreur:', error);
+            });
         }
     });
+
 
     /*document.getElementById("#order-confirm").addEventListener('click', e => {
         e.preventDefault();

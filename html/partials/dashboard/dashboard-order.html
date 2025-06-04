@@ -1,0 +1,75 @@
+{# Le template attend les variables suivantes :
+   - order: l'objet commande
+   - is_admin: booléen indiquant si l'utilisateur est admin
+#}
+{% set status_text = [
+    "Panier",
+    "En attente de confirmation",
+    "Confirmée",
+    "Prête",
+    "Terminée"
+] %}
+{% set status_text = status_text[order.order_state] %}
+
+<div class="order" data-id="{{order.id_order}}">
+    <div class="order-header">
+        <h3 class="order-title">Commande #{{ order.id_order }}</h3>
+        <span class="order-status order-status-{{ order.order_state }}">
+            {{ status_text }}
+        </span>
+    </div>
+    
+    <div class="order-details">
+        <div class="order-date">
+            <span>Date de commande :</span>
+            <span>{{ order.date_order }}</span>
+        </div>
+        
+        <div class="order-retrieve">
+            <span>Date de retrait :</span>
+            <span>{{ order.date_retrieve }}</span>
+        </div>
+    </div>
+    
+    <div class="order-products">
+        <h4>Produits :</h4>
+        <ul class="product-list">
+            {% for item in products %}
+            <li class="product-item">
+                <span class="product-quantity">{{ item.quantity }}x</span>
+                <span class="product-name">{{ item.product.name }}</span>
+                <span class="product-price">{{ (item.quantity * item.product.price) | round(method="common", precision=2) }}€</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="order-total">
+        <span>Total :</span>
+        <span class="total-amount">
+           {{total | round(method="common", precision=2) }}€
+        </span>
+    </div>
+    
+    {% if is_admin %}
+    <div class="order-actions">
+        <form action="/orders/{{ order.id_order }}/refuse" method="post">
+            <button type="submit" class="btn-confirm">Refuser</button>
+        </form>
+
+        {% if order.order_state == 1 %}
+            <form action="/orders/{{ order.id_order }}/state/confirm" method="post">
+                <button type="submit" class="btn-confirm">Confirmer</button>
+            </form>
+        {% elif order.order_state == 2 %}
+            <form action="/orders/{{ order.id_order }}/state/ready" method="post">
+                <button type="submit" class="btn-ready">Marquer comme prête</button>
+            </form>
+        {% elif order.order_state == 3 %}
+            <form action="/orders/{{ order.id_order }}/state/complete" method="post">
+                <button type="submit" class="btn-complete">Marquer comme terminée</button>
+            </form>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>

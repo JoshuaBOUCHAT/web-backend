@@ -1,23 +1,16 @@
-use actix_web::Responder;
-use derive_builder::Builder;
-use serde::Serialize;
+use actix_web::{HttpResponse};
+
 
 use crate::{
     routes::{ROUTE_CONTEXT, ROUTE_WELCOME},
     statics::TERA,
-    utilities::{Renderable, Responseable},
+    utilities::{add_login_propetry_to_context, DynResult, render_to_response},
 };
 
-#[derive(Builder, Serialize)]
-pub struct Welcome {}
-impl Renderable for Welcome {
-    fn render(&self) -> Result<String, tera::Error> {
-        let context = ROUTE_CONTEXT.clone();
-        TERA.render(ROUTE_WELCOME.file_path, &context)
-    }
-}
-impl Responseable for Welcome {}
 
-pub async fn welcome_get() -> impl Responder {
-    Welcome {}.into_response()
+
+pub async fn welcome_get(session: actix_session::Session) -> DynResult<HttpResponse> {
+    let mut context = ROUTE_CONTEXT.clone();
+    add_login_propetry_to_context(&mut context, &session)?;
+    Ok(render_to_response(TERA.render(ROUTE_WELCOME.file_path, &context)))
 }

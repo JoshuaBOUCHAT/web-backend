@@ -7,7 +7,42 @@ use diesel::{RunQueryDsl, sql_query};
 use serde::{Deserialize, Serialize};
 
 use super::product_model::Product;
-#[derive(Queryable, Serialize, Insertable, Deserialize)]
+
+/// Représente un produit avec sa quantité dans une commande
+#[derive(Debug, Serialize, Deserialize)]
+pub struct OrderProduct {
+    pub quantity: i32,
+    pub product: Product,
+}
+
+/// Représente les données d'une commande pour l'affichage
+#[derive(Debug, Serialize, Deserialize)]
+pub struct OrderDisplay {
+    pub id_order: i32,
+    pub date_order: String,  // Format: YYYY-MM-DD HH:MM:SS
+    pub date_retrieve: String,
+    pub id_user: i32,
+    pub order_state: i32,
+}
+
+/// Représente une commande avec ses produits pour l'affichage
+#[derive(Debug, Serialize, Deserialize)]
+pub struct OrderWithProducts {
+    pub order: OrderDisplay,
+    pub products: Vec<OrderProduct>,
+    pub total: f64,
+}
+
+/// Structure pour regrouper les commandes par statut
+#[derive(Debug, Default, Serialize, Deserialize)]
+pub struct OrdersByStatus {
+    pub need_confirmation: Vec<OrderWithProducts>,
+    pub confirmed: Vec<OrderWithProducts>,
+    pub ready: Vec<OrderWithProducts>,
+    pub purchased: Vec<OrderWithProducts>,
+}
+
+#[derive(Queryable, Serialize, Insertable, Deserialize,Debug)]
 #[diesel(table_name = orders)]
 pub struct Order {
     pub id_order: i32,
@@ -17,7 +52,8 @@ pub struct Order {
     pub id_user: i32,
     pub order_state: i32,
 }
-enum OrderState {
+#[derive(Debug, Clone, Copy)]
+pub enum OrderState {
     Cart,
     NeedConfirmation,
     Confirmed,
@@ -115,7 +151,112 @@ impl Order {
         Ok(true)
     }
 }
-impl Order {}
+impl Order {
+    /// Récupère toutes les commandes non finalisées organisées par statut
+    pub fn get_unfinished_orders() -> DynResult<OrdersByStatus> {
+        use crate::schema::orders::dsl::*;
+        
+        let mut conn = DB_POOL.get()?;
+        
+        // Récupérer toutes les commandes non finalisées (tous les états sauf le panier)
+        let unfinished_orders = orders
+            .filter(order_state.ne(OrderState::Cart as i32))
+            .load::<Order>(&mut conn)?;
+        
+        Self::classify_orders(unfinished_orders)
+    }
+
+    /// Récupère toutes les commandes d'un utilisateur spécifique, organisées par statut
+    pub fn get_orders_by_user(user_id: i32) -> DynResult<OrdersByStatus> {
+        use crate::schema::orders::dsl::*;
+        
+        let mut conn = DB_POOL.get()?;
+        
+        // Récupérer toutes les commandes de l'utilisateur (sauf le panier actif)
+        let user_orders = orders
+            .filter(id_user.eq(user_id))
+            .filter(order_state.ne(OrderState::Cart as i32))
+            .load::<Order>(&mut conn)?;
+        
+        Self::classify_orders(user_orders)
+    }
+    
+    /// Convertit une commande en OrderWithProducts
+    fn to_order_with_products(order: Order) -> Option<OrderWithProducts> {
+        // Utilisation de noms différents pour éviter les conflits
+        let order_id = order.id_order;
+        let order_date = order.date_order?;
+        let retrieve_date = order.date_retrieve?;
+        let user_id = order.id_user;
+        let state = order.order_state;
+        
+        let products:Vec<OrderProduct> = if let Some(obj) = order.order_obj {
+            let json_obj: Result<JsonObj, _> = serde_json::from_str(&obj);
+            match json_obj {
+                Ok(json) => json.data.into_iter().map(|(qty, product)| OrderProduct {
+                    quantity: qty,
+                    product
+                }).collect(),
+                Err(_) => return None,
+            }
+        } else {
+            return None;
+        };
+        
+        let order_display = OrderDisplay {
+            id_order: order_id,
+            date_order: order_date,
+            date_retrieve: retrieve_date,
+            id_user: user_id,
+            order_state: state,
+        };
+        let total = products.iter().map(|product| product.quantity as f64 * product.product.price).sum();
+        
+        Some(OrderWithProducts { 
+            order: order_display, 
+            products,
+            total,
+        })
+    }
+    
+    /// Classe les commandes par statut
+    fn classify_orders(other_orders: Vec<Order>) -> DynResult<OrdersByStatus> {
+        let mut result = OrdersByStatus::default();
+        
+        for order in other_orders {
+            let Some(order_with_products) = Self::to_order_with_products(order) else {
+                continue;
+            };
+            
+            match order_with_products.order.order_state {
+                s if s == OrderState::NeedConfirmation as i32 => {
+                    result.need_confirmation.push(order_with_products);
+                }
+                s if s == OrderState::Confirmed as i32 => {
+                    result.confirmed.push(order_with_products);
+                }
+                s if s == OrderState::Ready as i32 => {
+                    result.ready.push(order_with_products);
+                }
+                s if s == OrderState::Purnchased as i32 => {
+                    result.purchased.push(order_with_products);
+                }
+                _ => continue,
+            }
+        }
+        
+        Ok(result)
+    }
+    pub fn update_state(order_id: i32, state: OrderState)->DynResult<bool>{
+        let mut conn = DB_POOL.get()?;
+        let updated = diesel::update(orders.filter(id_order.eq(order_id)))
+            .set(order_state.eq(state as i32))
+            .execute(&mut conn)?;
+
+        Ok(updated > 0)
+    }
+
+}
 
 #[derive(Insertable)]
 #[diesel(table_name = crate::schema::orders)]

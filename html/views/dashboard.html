@@ -1,12 +1,87 @@
 <!DOCTYPE html>
-
-<head></head>
-
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Commandes</title>
+    <link rel="stylesheet" href="public/css/dashboard/dashboard.css">
+    <link rel="stylesheet" href="public/css/dashboard/dashboard-orders.css">
+    <link rel="stylesheet" href="public/css/dashboard/dashboard-order.css">
+</head>
 <body>
-    <main>
-        <h1>THE DASHBOARD !!</h1>
-        <h2>Hi user n°{{dashboard.id}}</h2>
-        <h3 id="to-insert"></h3>
+    <main class="dashboard">
+        {% include "static/header.html" %}
+        
+        <div class="dashboard-container">
+            
+            <div class="dashboard-content">
+                <h1>{% if is_admin %}Toutes les commandes{% else %}Mes commandes{% endif %}</h1>
+                
+                <div class="orders-container">
+                    <!-- Commandes en attente de confirmation -->
+                    {% if orders.need_confirmation is defined and orders.need_confirmation|length > 0 %}
+                        <h2>En attente de confirmation</h2>
+                        <div class="orders-list">
+                            {% for order_with_products in orders.need_confirmation %}
+                                {% set order = order_with_products.order %}
+                                {% set products = order_with_products.products %}
+                                {% set total = order_with_products.total %}
+                                {% include "partials/dashboard/dashboard-order.html" %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <!-- Commandes confirmées -->
+                    {% if orders.confirmed is defined and orders.confirmed|length > 0 %}
+                        <h2>Commandes confirmées</h2>
+                        <div class="orders-list">
+                            {% for order_with_products in orders.confirmed %}
+                                {% set order = order_with_products.order %}
+                                {% set products = order_with_products.products %}
+                                {% set total = order_with_products.total %}
+                                {% include "partials/dashboard/dashboard-order.html" %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    {% if orders.ready is defined and orders.ready|length > 0 %}
+                        <h2>Commandes prêtes</h2>
+                        <div class="orders-list">
+                            {% for order_with_products in orders.ready %}
+                                {% set order = order_with_products.order %}
+                                {% set products = order_with_products.products %}
+                                {% set total = order_with_products.total %}
+                                {% include "partials/dashboard/dashboard-order.html" %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    {% if orders.purchased is defined and orders.purchased|length > 0 %}
+                        <h2>Commandes terminées</h2>
+                        <div class="orders-list">
+                            {% for order_with_products in orders.purchased %}
+                                {% set order = order_with_products.order %}
+                                {% set products = order_with_products.products %}
+                                {% set total = order_with_products.total %}
+                                {% include "partials/dashboard/dashboard-order.html" %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <!-- Aucune commande -->
+                    {% if (orders.need_confirmation is not defined or orders.need_confirmation|length == 0) and 
+                          (orders.confirmed is not defined or orders.confirmed|length == 0) and 
+                          (orders.ready is not defined or orders.ready|length == 0) and 
+                          (orders.purchased is not defined or orders.purchased|length == 0) %}
+                        <div class="no-orders">
+                            <p>Aucune commande trouvée.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        {% include "static/footer.html" %}
     </main>
 </body>
-<script src="/public/js/test.js"></script>
+</html>

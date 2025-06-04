@@ -1,28 +1,26 @@
 use actix_session::Session;
-use actix_web::{HttpResponse, Responder, web};
+use actix_web::{HttpResponse, web};
 use chrono::{DateTime, Duration, NaiveDateTime, Timelike, Utc};
 use serde::Deserialize;
 
 use crate::{
     models::{
-        complex_request::{self, get_cart_items},
+        complex_request::get_cart_items,
         order_model::Order,
         user_model::User,
     },
     routes::{ROUTE_CART_ORDER, ROUTE_CONTEXT},
     statics::TERA,
-    try_or_return,
-    utilities::{DynResult, ExtractHttp, render_to_response},
+    utilities::{DynResult, render_to_response},
 };
 
 pub async fn index(session: Session) -> DynResult<HttpResponse> {
     let user = User::from_session_infallible(&session)?;
     let is_admin = user.is_admin();
     if is_admin {
-        index_admin()
-    } else {
-        index_user(user)
-    }
+        return Ok(HttpResponse::BadRequest().body("le panier est pour les utilisateurs"));
+    } 
+    index_user(user)
 }
 fn index_user(user: User) -> DynResult<HttpResponse> {
     let mut context = ROUTE_CONTEXT.clone();
@@ -31,12 +29,11 @@ fn index_user(user: User) -> DynResult<HttpResponse> {
     let cart_items = get_cart_items(cart_id)?;
     context.insert("id_order", &cart_id);
     context.insert("items", &cart_items);
+    context.insert("is_admin", &user.is_admin());
+    context.insert("is_connected", &true);
     Ok(render_to_response(
         TERA.render("views/cart-user.html", &context),
     ))
-}
-fn index_admin() -> DynResult<HttpResponse> {
-    todo!()
 }
 
 #[derive(Deserialize)]

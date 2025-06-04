@@ -6,10 +6,10 @@ use actix_web::{
 use tera::Context;
 
 use crate::{
-    models::{order_product_model::OrderProduct, product_model::Product, user_model::User},
-    routes::ROUTE_ORDER,
+    models::{order_model::{Order, OrderState}, order_product_model::OrderProduct, product_model::Product, user_model::User},
+    routes::{ROUTE_DASHBOARD, ROUTE_ORDER},
     statics::TERA,
-    utilities::{DynResult, render_to_response},
+    utilities::{render_to_response, send_mail, DynResult},
 };
 
 pub async fn update(path: web::Path<(i32, i32)>, session: Session) -> DynResult<HttpResponse> {
@@ -66,3 +66,136 @@ pub async fn destroy(path: web::Path<i32>, session: Session) -> DynResult<HttpRe
     };
     Ok(resp)
 }
+
+const STATES_CHOICE: [&'static str; 4] = ["confirm", "ready", "complete", "cancel"];
+
+pub async fn update_state(path: web::Path<(i32, String)>) -> DynResult<HttpResponse> {
+   let order_id = path.0;
+   let state=path.1.as_str();
+   let order = Order::get(order_id)?.unwrap();
+   let user = User::get(order.id_user)?.unwrap();
+
+   if !STATES_CHOICE.contains(&state) {
+       return Err("Invalid state")?;
+   }
+   let state =match state {
+    "confirm" => OrderState::Confirmed,
+    "ready" => OrderState::Ready,
+    "complete" => OrderState::Purnchased,
+    "cancel" => OrderState::NeedConfirmation,
+    _ => return Err("Invalid state")?,
+   };
+   Order::update_state(order_id, state)?;
+
+   let (subject, body) = match state{
+    OrderState::Confirmed => {
+        (SUBJECT_CONFIRMED, get_order_confirmed_mail_body(order_id, &order.date_retrieve.unwrap()))
+    }
+    OrderState::Ready => {
+        (SUBJECT_READY, get_order_ready_mail_body(order_id))
+    }
+    OrderState::Purnchased => {
+        (SUBJECT_COMPLETED, get_order_completed_mail_body(order_id))
+    }
+    OrderState::NeedConfirmation => {
+        (SUBJECT_REFUSED, get_order_refused_mail_body(order_id, ""))
+    }
+    OrderState::Cart => {
+        (SUBJECT_REFUSED, get_order_refused_mail_body(order_id, ""))
+    }
+   };
+   send_mail(&user.mail, &subject, &body)?;
+   
+   Ok(HttpResponse::SeeOther().append_header(("Location", ROUTE_DASHBOARD.web_path)).finish())
+}
+const SUBJECT_CONFIRMED: &str = "Votre commande a été confirmée – Boulangerie La Traditionnelle";
+
+fn get_order_confirmed_mail_body(order_id: i32, date_retrieve: &str) -> String {
+    format!(
+        r###"
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body style="font-family: Arial, sans-serif; color: #333;">
+        <h2 style="color: #6e4b3a;">Commande confirmée 🧾</h2>
+        <p>Bonjour,</p>
+        <p>Votre commande n°<strong>{}</strong> a été <strong>confirmée</strong> avec succès.</p>
+        <p>Elle sera disponible à partir du <strong>{}</strong> à la Boulangerie La Traditionnelle.</p>
+        <p>Merci pour votre confiance !</p>
+        <p>À très bientôt,<br>L’équipe de la Boulangerie La Traditionnelle 🥐</p>
+    </body>
+    </html>"###,
+        order_id, date_retrieve
+    )
+}
+const SUBJECT_READY: &str = "Votre commande est prête – Boulangerie La Traditionnelle";
+
+fn get_order_ready_mail_body(order_id: i32) -> String {
+    format!(
+        r###"
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body style="font-family: Arial, sans-serif; color: #333;">
+        <h2 style="color: #6e4b3a;">Commande prête 🎉</h2>
+        <p>Bonjour,</p>
+        <p>Votre commande n°<strong>{}</strong> est <strong>prête</strong> et vous attend à la boulangerie !</p>
+        <p>Nous vous remercions pour votre commande.</p>
+        <p>À tout de suite !<br>L’équipe de la Boulangerie La Traditionnelle 🥖</p>
+    </body>
+    </html>"###,
+        order_id
+    )
+}
+
+const SUBJECT_COMPLETED: &str = "Merci pour votre commande – Boulangerie La Traditionnelle";
+
+fn get_order_completed_mail_body(order_id: i32) -> String {
+    format!(
+        r###"
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body style="font-family: Arial, sans-serif; color: #333;">
+        <h2 style="color: #6e4b3a;">Merci pour votre commande 🙌</h2>
+        <p>Bonjour,</p>
+        <p>Votre commande n°<strong>{}</strong> a bien été <strong>retirée</strong>.</p>
+        <p>Nous espérons que tout était à votre goût !</p>
+        <p>À très bientôt pour de nouvelles gourmandises 🍞</p>
+        <p>L’équipe de la Boulangerie La Traditionnelle</p>
+    </body>
+    </html>"###,
+        order_id
+    )
+}
+
+const SUBJECT_REFUSED: &str = "Votre commande a été refusée – Boulangerie La Traditionnelle";
+
+fn get_order_refused_mail_body(order_id: i32, reason: &str) -> String {
+    format!(
+        r###"
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body style="font-family: Arial, sans-serif; color: #333;">
+        <h2 style="color: #a94442;">Commande refusée ❌</h2>
+        <p>Bonjour,</p>
+        <p>Nous sommes désolés, mais votre commande n°<strong>{}</strong> a été <strong>refusée</strong>.</p>
+        <p>Motif : <em>{}</em></p>
+        <p>Si vous avez des questions, n’hésitez pas à nous contacter.</p>
+        <p>Merci de votre compréhension,<br>L’équipe de la Boulangerie La Traditionnelle</p>
+    </body>
+    </html>"###,
+        order_id, reason
+    )
+}
+
+    

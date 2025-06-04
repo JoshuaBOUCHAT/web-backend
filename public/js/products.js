@@ -75,20 +75,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }).catch(() => openModal('<p>Error loading category edit form.</p>'));
     }
     function handleSuperCategoryChange(event) {
-        console.log("test");
-        const superCategoryCheckbox = event.target;
-        const superCategoryId = superCategoryCheckbox.dataset.id;
-        const isChecked = superCategoryCheckbox.checked;
-
-        // Find all subcategory checkboxes that belong to this super category
-        const subCategoryCheckboxes = document.querySelectorAll(`.filter-group > label > input[type="checkbox"][data-id="${superCategoryId}"] + .filter-group__sub input[type="checkbox"][data-id]`);
-
-        // Set the checked state of all subcategory checkboxes to match the super category checkbox
-        subCategoryCheckboxes.forEach(checkbox => {
-            checkbox.checked = isChecked;
-        });
-
+    const superCategoryCheckbox = event.target;
+    const parentLabel = superCategoryCheckbox.closest('label');
+    const subCategoryContainer = parentLabel.nextElementSibling;
+    
+    if (!subCategoryContainer || !subCategoryContainer.classList.contains('filter-group__sub')) {
+        return;
     }
+    
+    const isChecked = superCategoryCheckbox.checked;
+    const subCategoryCheckboxes = subCategoryContainer.querySelectorAll('input[type="checkbox"][data-id]');
+    
+    // Mettre à jour l'état de toutes les sous-catégories
+    subCategoryCheckboxes.forEach(checkbox => {
+        if (checkbox.checked !== isChecked) {
+            checkbox.checked = isChecked;
+            // Déclencher manuellement l'événement change pour mettre à jour l'affichage
+            checkbox.dispatchEvent(new Event('change'));
+        }
+    });
+    
+    // Si on décoche une super catégorie, on la décoche
+    // Si on coche une super catégorie, on vérifie si toutes les sous-catégories sont cochées
+    if (!isChecked) {
+        superCategoryCheckbox.checked = false;
+    } else {
+        const allChecked = Array.from(subCategoryCheckboxes).every(checkbox => checkbox.checked);
+        superCategoryCheckbox.checked = allChecked;
+    }
+}
 
 
     function handleDeleteCategory(id) {
@@ -112,15 +127,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ---------- Handlers ---------- */
     function handleCategoryChange() {
-        const uncheckedCategories = Array.from(subCategoryCheckboxes)
-            .filter(checkbox => !checkbox.checked)
-            .map(checkbox => checkbox.dataset.id);
-
-        // Sélectionner tous les produits
-        handleCategoryChangeWithId(uncheckedCategories);
-
-
-    }
+    const uncheckedCategories = [];
+    
+    // Parcourir toutes les sous-catégories
+    document.querySelectorAll('.filter-group__sub input[type="checkbox"][data-id]').forEach(checkbox => {
+        if (!checkbox.checked) {
+            uncheckedCategories.push(checkbox.dataset.id);
+        }
+    });
+    
+    // Mettre à jour l'état des super catégories
+    document.querySelectorAll('.filter-group > label > input[type="checkbox"][data-id]').forEach(superCheckbox => {
+        const parentLabel = superCheckbox.closest('label');
+        const subCategoryContainer = parentLabel.nextElementSibling;
+        
+        if (subCategoryContainer && subCategoryContainer.classList.contains('filter-group__sub')) {
+            const subCheckboxes = subCategoryContainer.querySelectorAll('input[type="checkbox"][data-id]');
+            const allUnchecked = subCheckboxes.length > 0 && 
+                               Array.from(subCheckboxes).every(checkbox => !checkbox.checked);
+            const allChecked = subCheckboxes.length > 0 && 
+                             Array.from(subCheckboxes).every(checkbox => checkbox.checked);
+            
+            // Mettre à jour l'état de la super catégorie
+            if (allUnchecked) {
+                superCheckbox.checked = false;
+                superCheckbox.indeterminate = false;
+            } else if (allChecked) {
+                superCheckbox.checked = true;
+                superCheckbox.indeterminate = false;
+            } else {
+                superCheckbox.checked = false;
+                superCheckbox.indeterminate = true;
+            }
+        }
+    });
+    
+    // Mettre à jour l'affichage des produits
+    handleCategoryChangeWithId(uncheckedCategories);
+}
     function handleCategoryChangeWithId(uncheckedCategories) {
         const products = document.querySelectorAll('.product-card');
 

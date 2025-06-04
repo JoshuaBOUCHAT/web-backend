@@ -3,5 +3,15 @@
     <a class="nav-link" href="{{routes.welcome}}">Accueil</a>
     <a class="nav-link" href="{{routes.products}}">Nos Produits</a>
     <!-- <a class="nav-link" href="{routes.welcome}">Contacts</a> -->
+    {% if is_admin %}
+    <a class="nav-link" href="{{routes.dashboard}}">Dashboard</a>
+    {% else %}
     <a class="nav-link" href="{{routes.cart}}">Panier</a>
+    {% endif %}
+    {% if is_connected %}
+    <a class="nav-link" href="{{routes.logout}}">Se déconnecter</a>
+    {% else %}
+    <a class="nav-link" href="{{routes.auth}}">Se connecter</a>
+    {% endif %}
+
 </nav>

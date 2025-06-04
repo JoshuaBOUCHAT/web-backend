@@ -25,7 +25,8 @@ pub struct Products {
     products: Vec<ProductWithCategories>,
     is_admin: bool,
     category_groups: Vec<CategoryGroup>,
-    orphans: Vec<Category>,
+    orphans: Vec<Category>,is_connected:bool,
+
 }
 
 impl Renderable for Products {
@@ -35,6 +36,7 @@ impl Renderable for Products {
         context.insert("is_admin", &self.is_admin);
         context.insert("category_groups", &self.category_groups);
         context.insert("orphans", &self.orphans);
+        context.insert("is_connected", &self.is_connected);
         TERA.render(ROUTE_PRODUCTS.file_path, &context)
     }
 }
@@ -45,14 +47,18 @@ pub async fn products_get(session: Session) -> DynResult<HttpResponse> {
     let category_groups = Category::load_grouped_categories()?;
     let maybe_user = User::from_session(&session)?;
     let orphans = Category::orphans()?;
-
-    let is_admin = maybe_user.is_some_and(|u| u.is_admin());
+    let(is_admin,is_connected)=if let Some(user)=maybe_user{
+        (user.is_admin(),true)
+    }else{
+        (false,false)
+    };
 
     let products_view = Products {
         products: products,
         is_admin: is_admin,
         category_groups: category_groups,
         orphans: orphans,
+        is_connected: is_connected,
     };
 
     Ok(products_view.into_response())

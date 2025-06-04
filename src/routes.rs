@@ -56,6 +56,7 @@ pub const ROUTE_NAV: Route = Route::new("/static/footer", "nav/footer.html");
 pub const ROUTE_ABOUT: Route = Route::new("/static/about", "static/about.html");
 pub const ROUTE_AUTH: Route = Route::new("/auth", "views/auth.html");
 pub const ROUTE_VERIFY: Route = Route::new("/auth/verify", "views/verify.html");
+pub const ROUTE_ORDER_STATE: &'static str = "/orders/{id}/state/{state}";
 
 pub const ROUTE_STATICS: &'static str = "/static/{route}";
 
@@ -169,5 +170,6 @@ pub fn configure_admin_routes(cfg: &mut actix_web::web::ServiceConfig) {
         ROUTE_CATEGORY_EDIT.web_path,
         patch().to(category_controller::edit_post),
     )
-    .route(ROUTE_ORDER.web_path, get().to(order_controller::edit));
+    .route(ROUTE_ORDER.web_path, get().to(order_controller::edit))
+    .route(ROUTE_ORDER_STATE, post().to(order_controller::update_state));
 }

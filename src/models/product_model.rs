@@ -11,7 +11,7 @@ use diesel::RunQueryDsl;
 use diesel::dsl::{delete, insert_into};
 use diesel::query_dsl::methods::*;
 
-#[derive(Queryable, Insertable, Serialize, Deserialize)]
+#[derive(Queryable, Insertable, Serialize, Deserialize,Debug)]
 #[diesel(table_name = products)]
 pub struct Product {
     pub id_product: i32,
