@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
                 alert('Erreur : ' + err.message);
             }
-        } else if (e.target.matches('.create-category-form')) {
+        } else if (e.target.matches('#create-category-form')) {
             e.preventDefault();
             const form = e.target;
             try {

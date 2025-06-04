@@ -27,7 +27,7 @@ pub const ROUTE_EDIT_PRODUCT: Route =
     Route::new("/products/{id_product}", "partials/edit_product.html");
 pub const ROUTE_DELETE_PRODUCT: &'static str = "/products/{id}";
 pub const ROUTE_PRODUCTS: Route = Route::new("/products", "views/products.html");
-pub const ROUTE_PRODUCT_NEW: &'static str = "/product";
+pub const ROUTE_PRODUCT_NEW: &'static str = "/products";
 pub const ROUTE_PRODUCT_VISIBILITY: &'static str = "/product/{id}/visibility";
 
 pub const ROUTE_CATEGORY_NEW: Route = Route::new("/category/new", "partials/create-category.html");
@@ -42,6 +42,7 @@ pub const ROUTE_WELCOME: Route = Route::new("/", "views/welcome.html");
 
 pub const ROUTE_DASHBOARD: Route = Route::new("/dashboard", "views/dashboard.html");
 pub const ROUTE_CART: Route = Route::new("/cart", "/views/cart.html");
+pub const ROUTE_CART_ORDER: Route = Route::new("/cart/order", "partials/cart/order-cart.html");
 
 pub const ROUTE_ORDER: Route = Route::new("/order/{id}", "partials/add-cart-menu.html");
 pub const ROUTE_ORDER_QTY: &'static str = "/order/{id}/{qty}";
@@ -108,7 +109,15 @@ pub fn configure_auth_routes(cfg: &mut actix_web::web::ServiceConfig) {
     cfg.route(ROUTE_CART.web_path, get().to(cart_controller::index))
         .route(ROUTE_LOGOUT, get().to(auth_controller::logout_get))
         .route(ROUTE_ORDER_QTY, put().to(order_controller::update))
-        .route(ROUTE_ORDER.web_path, delete().to(order_controller::destroy));
+        .route(ROUTE_ORDER.web_path, delete().to(order_controller::destroy))
+        .route(
+            ROUTE_CART_ORDER.web_path,
+            get().to(cart_controller::order_get),
+        )
+        .route(
+            ROUTE_CART_ORDER.web_path,
+            post().to(cart_controller::order_post),
+        );
 }
 
 pub fn configure_admin_routes(cfg: &mut actix_web::web::ServiceConfig) {

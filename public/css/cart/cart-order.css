@@ -1,0 +1,97 @@
+/* --- Produit dans le panier --- */
+.cart-order-product {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    margin-bottom: 20px;
+}
+
+.cart-order-product:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.img-product-cart {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* Quantité */
+.order-qty {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 16px;
+}
+
+/* Prix unitaire */
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    margin-left: auto;
+}
+
+/* Description du produit */
+.product-cart-description {
+    flex: 1 1 100%;
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+}
+
+/* Total pour un produit */
+.products-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+    margin-top: 8px;
+}
+
+/* --- Ligne de validation avec bouton + prix total --- */
+.cart-order-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* bouton à gauche, total à droite */
+    gap: 16px;
+    margin-top: 24px;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background: #f9f9f9;
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    flex-wrap: wrap;
+}
+
+#order-confirm {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+#order-confirm:hover {
+    background-color: #218838;
+}
+
+.order-total-text {
+    white-space: nowrap;
+    font-size: 16px;
+    color: #007bff;
+}

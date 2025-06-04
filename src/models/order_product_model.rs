@@ -1,8 +1,13 @@
+use super::{order_model::Order, product_model::Product};
 use crate::{
-    schema::order_product::{self, dsl::*},
+    schema::{
+        order_product::{self, dsl::*},
+        products,
+    },
     statics::DB_POOL,
     utilities::{DynResult, handle_optional_query_result},
 };
+use diesel::JoinOnDsl;
 use diesel::{
     BoolExpressionMethods, ExpressionMethods,
     prelude::{Insertable, Queryable},
@@ -10,8 +15,6 @@ use diesel::{
 };
 use diesel::{RunQueryDsl, prelude::AsChangeset};
 use serde::{Deserialize, Serialize};
-
-use super::order_model::Order;
 #[derive(Queryable, Serialize, Insertable, Deserialize, AsChangeset)]
 #[diesel(table_name = order_product)]
 pub struct OrderProduct {

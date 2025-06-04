@@ -1,0 +1,23 @@
+<div>
+    {% for item in items %}
+    <div class="cart-order-product">
+        <img src="{{item.image_url}}" class="img-product-cart">
+        <div class="order-qty">{{item.quantity}}</div>
+        <div class="price">{{item.price}}€</div>
+        <div class="product-cart-description">{{item.description}}</div>
+        <div class="products-price">
+            Total: {{item.quantity*item.price | round(method="common", precision=2) }}€
+        </div>
+    </div>
+    {% endfor %}
+
+
+    <form action="/cart/order" method="post">
+        <div class="cart-order-bar">
+            <label for="datetime">Choisissez la date et l'heure de récupération de la commande</label>
+            <input type="datetime-local" id="datetime" name="datetime" min="{{min_time}}" required>
+            <button type="submit" id="order-confirm">Commander</button>
+            <div class="order-total-text">Total à payer : {{ total_price }}€</div>
+        </div>
+    </form>
+</div>

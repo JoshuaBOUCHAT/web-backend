@@ -10,7 +10,10 @@
     <link rel="icon" type="image/x-icon" href="/public/images/fav.jpg">
     <link rel="stylesheet" href="/public/css/cart.css">
     <script src="/public/js/cart.js"></script>
+    <link rel="stylesheet" href="/public/css/products-modal.css">
+    <link rel="stylesheet" href="/public/css/cart/cart-order.css">
 </head>
+{% include "partials/products-modal.html" %}
 
 <body>
     {% include "static/header.html" %}
@@ -26,7 +29,7 @@
         <hr>
         <section class="order">
             <div class="total_price"></div>
-            <button>Commander</button>
+            <button id="cart-order">Commander</button>
         </section>
     </div>
     {% include "static/footer.html" %}

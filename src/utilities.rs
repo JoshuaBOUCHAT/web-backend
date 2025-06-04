@@ -25,7 +25,7 @@ pub fn render_to_response(render: tera::Result<String>) -> HttpResponse {
             .content_type("text/html; charset=utf-8")
             .body(s),
         Err(err) => {
-            eprintln!("error during rendering err:\n{err}");
+            eprintln!("error during rendering err:\n{:?}", err.kind);
             HttpResponse::InternalServerError()
                 .content_type("text/html; charset=utf-8")
                 .body(err.to_string())
