@@ -193,7 +193,8 @@ impl User {
         if let Some(id) = result {
             return Ok(id);
         }
-        Ok(Order::create_order_for_user(self.id_user)?)
+        let cart_id = Order::create_order_for_user(self.id_user)?;
+        Ok(cart_id)
     }
 }
 

@@ -6,7 +6,10 @@
     {% if is_admin %}
     <a class="nav-link" href="{{routes.dashboard}}">Dashboard</a>
     {% else %}
+
+
     <a class="nav-link" href="{{routes.cart}}">Panier</a>
+    <a class="nav-link" href="{{routes.dashboard}}">Mes commandes</a>
     {% endif %}
     {% if is_connected %}
     <a class="nav-link" href="{{routes.logout}}">Se déconnecter</a>

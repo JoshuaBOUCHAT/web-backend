@@ -5,13 +5,21 @@
     justify-content: space-around;
     padding-top: 30px;
     align-items: center;
+    gap: 40px;
 }
 
-/* Section générale */
-/* Conteneur interne, pour les éléments empilés */
-#about .about-left {
-    margin-bottom: 40px;
-    /* Ajoute de l’espace entre les éléments */
+/* Texte et image prennent chacun environ la moitié */
+.about-right,
+.about-left {
+    flex: 1 1 45%;
+}
+
+/* Image centrée verticalement */
+.about-left img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Titre de la section (gros titre) */
@@ -21,7 +29,6 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #a0522d;
-    /* Couleur "rustique" du pain et du levain */
     margin-bottom: 20px;
 }
 
@@ -32,7 +39,6 @@
     font-style: italic;
     margin-bottom: 30px;
     color: #8b5e3c;
-    /* Nuance plus douce mais chaleureuse */
 }
 
 /* Paragraphe principal */
@@ -40,9 +46,7 @@
     font-size: 18px;
     line-height: 1.8;
     max-width: 800px;
-    margin: 0 auto;
     font-family: 'Georgia', serif;
-    /* Police lisible et classique */
     color: #4e342e;
     background-color: #fff;
     padding: 20px;
@@ -51,6 +55,62 @@
     margin-bottom: 40px;
 }
 
-img {
-    align-self: center;
+/* ======= Responsive pour petits écrans ======= */
+@media (max-width: 768px) {
+    #about {
+        flex-direction: column;
+        padding: 20px 10px;
+        gap: 20px;
+    }
+
+    .about-right,
+    .about-left {
+        flex: 1 1 100%;
+    }
+
+    .about-title {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .about-subtitile {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #about p {
+        font-size: 16px;
+        max-width: 100%;
+        padding: 15px;
+        margin-bottom: 30px;
+    }
+
+    .about-left img {
+        max-width: 60%;
+        margin: 0 auto 20px auto;
+        height: auto;
+        display: block;
+    }
+}
+
+/* Pour encore plus petits écrans */
+@media (max-width: 480px) {
+    .about-title {
+        font-size: 24px;
+    }
+    
+    .about-subtitile {
+        font-size: 16px;
+    }
+    
+    #about p {
+        font-size: 14px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    .about-left img {
+        max-width: 80%;
+    }
 }

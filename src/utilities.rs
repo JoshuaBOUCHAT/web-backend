@@ -1,7 +1,9 @@
 use std::{error::Error, fmt::Display};
 
 use crate::{
-    log, models::user_model::User, statics::{AppState, APP_MAIL_BOX, APP_STATE, DB_POOL, MAILER}
+    log,
+    models::user_model::User,
+    statics::{APP_MAIL_BOX, APP_STATE, AppState, DB_POOL, MAILER},
 };
 use actix_web::HttpResponse;
 use chrono::Utc;
@@ -14,7 +16,10 @@ pub trait Renderable {
     fn render(&self) -> Result<String, tera::Error>;
 }
 pub trait Responseable: Renderable {
-    fn into_response(&self) -> HttpResponse {
+    fn into_response(self) -> HttpResponse
+    where
+        Self: std::marker::Sized,
+    {
         render_to_response(self.render())
     }
 }
@@ -67,14 +72,14 @@ pub fn handle_optional_query_result<T>(
     query_result: QueryResult<T>,
     on_error_log: impl Display,
 ) -> DynResult<Option<T>> {
-    return match query_result {
+    match query_result {
         Ok(p) => Ok(Some(p)),
         Err(diesel::result::Error::NotFound) => Ok(None),
         Err(err) => {
             log!("{on_error_log}:{}", err);
             Err(Box::new(err))
         }
-    };
+    }
 }
 pub fn send_mail(destination: &str, subject: &str, body: impl Into<String>) -> DynResult<()> {
     println!("sending mail to {}", destination);
@@ -94,13 +99,15 @@ pub fn send_mail(destination: &str, subject: &str, body: impl Into<String>) -> D
 pub fn now_str() -> String {
     Utc::now().format("%Y-%m-%d %H:%M:%S").to_string()
 }
-pub fn add_login_propetry_to_context(context: &mut tera::Context,session:&actix_session::Session)->DynResult<()>{
-    if let Some(user)=User::from_session(&session)?{
-        println!("user found"); 
+pub fn add_login_propetry_to_context(
+    context: &mut tera::Context,
+    session: &actix_session::Session,
+) -> DynResult<()> {
+    if let Some(user) = User::from_session(session)? {
+        println!("user found");
         context.insert("is_connected", &true);
         context.insert("is_admin", &user.is_admin());
-    }
-    else {
+    } else {
         println!("user not found");
         context.insert("is_connected", &false);
         context.insert("is_admin", &false);

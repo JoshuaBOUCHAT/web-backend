@@ -1,7 +1,4 @@
-use std::{
-    collections::{HashMap, HashSet},
-    sync::LazyLock,
-};
+use std::{collections::HashSet, sync::LazyLock};
 
 use crate::{
     schema::{
@@ -150,7 +147,7 @@ impl Category {
             .filter(category_product::id_product.eq(product_id))
             .select(category_product::id_category)
             .load(&mut conn)?;
-        Ok(HashSet::from_iter(ids.into_iter()))
+        Ok(HashSet::from_iter(ids))
     }
 }
 pub static ORPHAN: LazyLock<Category> = LazyLock::new(|| {

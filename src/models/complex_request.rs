@@ -1,16 +1,12 @@
 use diesel::RunQueryDsl;
-use diesel::dsl::*;
 use diesel::prelude::QueryableByName;
 use diesel::sql_query;
 use diesel::sql_types::{Double, Integer, Nullable, Text};
-use public::public;
 use serde::{Deserialize, Serialize};
 
-use crate::schema::order_product;
 use crate::schema::products;
 use crate::statics::DB_POOL;
 use crate::utilities::DynResult;
-use crate::utilities::handle_optional_query_result;
 
 #[derive(QueryableByName, Debug, Serialize)]
 pub struct ProductWithCategories {
@@ -60,9 +56,8 @@ pub struct CartItem {
 
 use diesel::prelude::*;
 
-use super::order_model::Order;
 pub fn get_cart_items(order_id: i32) -> DynResult<Vec<CartItem>> {
-    use crate::schema::order_product::{self, dsl::*};
+    use crate::schema::order_product::{self};
     let mut conn = DB_POOL.get()?;
 
     let results = order_product::table

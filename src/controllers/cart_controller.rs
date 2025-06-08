@@ -4,11 +4,7 @@ use chrono::{DateTime, Duration, NaiveDateTime, Timelike, Utc};
 use serde::Deserialize;
 
 use crate::{
-    models::{
-        complex_request::get_cart_items,
-        order_model::Order,
-        user_model::User,
-    },
+    models::{complex_request::get_cart_items, order_model::Order, user_model::User},
     routes::{ROUTE_CART_ORDER, ROUTE_CONTEXT},
     statics::TERA,
     utilities::{DynResult, render_to_response},
@@ -19,7 +15,7 @@ pub async fn index(session: Session) -> DynResult<HttpResponse> {
     let is_admin = user.is_admin();
     if is_admin {
         return Ok(HttpResponse::BadRequest().body("le panier est pour les utilisateurs"));
-    } 
+    }
     index_user(user)
 }
 fn index_user(user: User) -> DynResult<HttpResponse> {
@@ -49,7 +45,6 @@ pub async fn order_post(session: Session, form: web::Form<FormOrder>) -> DynResu
     if cart_items.is_empty() {
         return Ok(HttpResponse::BadRequest().body("Cart is empty"));
     }
-    let json_obj = serde_json::to_string(&cart_items)?;
     let min_date_time = compute_min_datetime();
     let datetime = NaiveDateTime::parse_from_str(datetime_str, "%Y-%m-%dT%H:%M")?;
     if datetime < min_date_time.naive_local() {
@@ -62,7 +57,7 @@ pub async fn order_post(session: Session, form: web::Form<FormOrder>) -> DynResu
         now.format("%Y-%m-%d %H:%M:%S").to_string(),
     )?;
 
-    return Ok(HttpResponse::Ok().body("Votre command à bien été prise en compte"));
+    Ok(HttpResponse::Ok().body("Votre command à bien été prise en compte"))
 }
 pub async fn order_get(session: Session) -> DynResult<HttpResponse> {
     let user = User::from_session_infallible(&session)?;

@@ -5,12 +5,9 @@ use serde::Deserialize;
 use crate::{
     log,
     models::user_model::User,
-    routes::{
-        ROUTE_AUTH, ROUTE_CONTEXT, ROUTE_DASHBOARD, ROUTE_PRODUCTS, ROUTE_VERIFY, ROUTE_WELCOME,
-    },
+    routes::{ROUTE_AUTH, ROUTE_CONTEXT, ROUTE_PRODUCTS, ROUTE_VERIFY},
     statics::TERA,
-    try_or_return,
-    utilities::{DynResult, ExtractHttp, render_to_response},
+    utilities::{DynResult, render_to_response},
 };
 
 #[derive(Deserialize)]
@@ -65,9 +62,9 @@ pub async fn login_post(form: Form<LoginForm>, session: Session) -> DynResult<Ht
         ROUTE_PRODUCTS.web_path
     };
 
-    return Ok(HttpResponse::SeeOther()
+    Ok(HttpResponse::SeeOther()
         .append_header(("Location", location))
-        .finish());
+        .finish())
 }
 
 pub async fn register_post(form: Form<RegisterForm>, session: Session) -> DynResult<HttpResponse> {

@@ -1,13 +1,8 @@
-use super::{order_model::Order, product_model::Product};
 use crate::{
-    schema::{
-        order_product::{self, dsl::*},
-        products,
-    },
+    schema::order_product::{self, dsl::*},
     statics::DB_POOL,
     utilities::{DynResult, handle_optional_query_result},
 };
-use diesel::JoinOnDsl;
 use diesel::{
     BoolExpressionMethods, ExpressionMethods,
     prelude::{Insertable, Queryable},

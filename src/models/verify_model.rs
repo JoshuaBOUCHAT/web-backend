@@ -3,7 +3,7 @@ use crate::{
     statics::{APP_URL, DB_POOL},
     utilities::{DynResult, handle_optional_query_result, now_str},
 };
-use chrono::{Duration, Offset, Utc};
+use chrono::{Duration, Utc};
 use diesel::{Selectable, prelude::*};
 use uuid::Uuid;
 
@@ -90,15 +90,16 @@ impl EmailVerification {
             "err message ",
         )?;
 
-        if let Some(verif) = maybe_verif {
+        let res = if let Some(verif) = maybe_verif {
             println!("verfi found: {:?}", &verif);
-            return Ok(None);
+            None
         } else {
             println!("id:{user_id}");
             let new_link = Self::create(user_id)?;
             println!("create new link");
-            return Ok(Some(new_link));
-        }
+            Some(new_link)
+        };
+        Ok(res)
     }
 }
 pub enum VerificationState {

@@ -2,7 +2,7 @@
 macro_rules! log {
     ($($arg:tt)*) => {{
         use std::io::Write;
-        if let Ok(mut writer) = crate::statics::LOG_FILE.lock() {
+        if let Ok(mut writer) = $crate::statics::LOG_FILE.lock() {
             let _ = writeln!(writer, $($arg)*);
             let _ = writer.flush();
         }

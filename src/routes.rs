@@ -25,10 +25,10 @@ pub const ROUTE_PUBLIC: Route = Route::new("/public", "public");
 
 pub const ROUTE_EDIT_PRODUCT: Route =
     Route::new("/products/{id_product}", "partials/edit_product.html");
-pub const ROUTE_DELETE_PRODUCT: &'static str = "/products/{id}";
+pub const ROUTE_DELETE_PRODUCT: &str = "/products/{id}";
 pub const ROUTE_PRODUCTS: Route = Route::new("/products", "views/products.html");
-pub const ROUTE_PRODUCT_NEW: &'static str = "/products";
-pub const ROUTE_PRODUCT_VISIBILITY: &'static str = "/product/{id}/visibility";
+pub const ROUTE_PRODUCT_NEW: &str = "/products";
+pub const ROUTE_PRODUCT_VISIBILITY: &str = "/product/{id}/visibility";
 
 pub const ROUTE_CATEGORY_NEW: Route = Route::new("/category/new", "partials/create-category.html");
 pub const ROUTE_CATEGORY_EDIT: Route =
@@ -36,7 +36,7 @@ pub const ROUTE_CATEGORY_EDIT: Route =
 pub const ROUTE_CATEGORY_SELECT: Route =
     Route::new("/category/select", "partials/select-category.html");
 
-pub const ROUTE_CATEGORY_DELETE: &'static str = "/category/{id}";
+pub const ROUTE_CATEGORY_DELETE: &str = "/category/{id}";
 
 pub const ROUTE_WELCOME: Route = Route::new("/", "views/welcome.html");
 
@@ -45,20 +45,21 @@ pub const ROUTE_CART: Route = Route::new("/cart", "/views/cart.html");
 pub const ROUTE_CART_ORDER: Route = Route::new("/cart/order", "partials/cart/order-cart.html");
 
 pub const ROUTE_ORDER: Route = Route::new("/order/{id}", "partials/add-cart-menu.html");
-pub const ROUTE_ORDER_QTY: &'static str = "/order/{id}/{qty}";
+pub const ROUTE_ORDER_QTY: &str = "/order/{id}/{qty}";
+pub const ROUTE_ORDER_REFUSE: &str = "/orders/{id}/refuse";
 
-pub const ROUTE_REGISTER: &'static str = "/register";
-pub const ROUTE_LOGIN: &'static str = "/login";
-pub const ROUTE_LOGOUT: &'static str = "/logout";
+pub const ROUTE_REGISTER: &str = "/register";
+pub const ROUTE_LOGIN: &str = "/login";
+pub const ROUTE_LOGOUT: &str = "/logout";
 
 pub const ROUTE_FOOTER: Route = Route::new("/static/footer", "static/footer.html");
 pub const ROUTE_NAV: Route = Route::new("/static/footer", "nav/footer.html");
 pub const ROUTE_ABOUT: Route = Route::new("/static/about", "static/about.html");
 pub const ROUTE_AUTH: Route = Route::new("/auth", "views/auth.html");
 pub const ROUTE_VERIFY: Route = Route::new("/auth/verify", "views/verify.html");
-pub const ROUTE_ORDER_STATE: &'static str = "/orders/{id}/state/{state}";
+pub const ROUTE_ORDER_STATE: &str = "/orders/{id}/state/{state}";
 
-pub const ROUTE_STATICS: &'static str = "/static/{route}";
+pub const ROUTE_STATICS: &str = "/static/{route}";
 
 pub const STATIC_ROUTES: [Route; 4] = [ROUTE_FOOTER, ROUTE_NAV, ROUTE_ABOUT, ROUTE_AUTH];
 
@@ -83,7 +84,7 @@ fn get_route_context() -> Context {
 
     context
 }
-pub static ROUTE_CONTEXT: LazyLock<Context> = LazyLock::new(|| get_route_context());
+pub static ROUTE_CONTEXT: LazyLock<Context> = LazyLock::new(get_route_context);
 
 pub fn configure_guess_routes(cfg: &mut actix_web::web::ServiceConfig) {
     use actix_web::web::*;
@@ -171,5 +172,6 @@ pub fn configure_admin_routes(cfg: &mut actix_web::web::ServiceConfig) {
         patch().to(category_controller::edit_post),
     )
     .route(ROUTE_ORDER.web_path, get().to(order_controller::edit))
-    .route(ROUTE_ORDER_STATE, post().to(order_controller::update_state));
+    .route(ROUTE_ORDER_STATE, post().to(order_controller::update_state))
+    .route(ROUTE_ORDER_REFUSE, post().to(order_controller::refuse));
 }

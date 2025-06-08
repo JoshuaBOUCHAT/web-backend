@@ -25,8 +25,8 @@ pub struct Products {
     products: Vec<ProductWithCategories>,
     is_admin: bool,
     category_groups: Vec<CategoryGroup>,
-    orphans: Vec<Category>,is_connected:bool,
-
+    orphans: Vec<Category>,
+    is_connected: bool,
 }
 
 impl Renderable for Products {
@@ -47,18 +47,18 @@ pub async fn products_get(session: Session) -> DynResult<HttpResponse> {
     let category_groups = Category::load_grouped_categories()?;
     let maybe_user = User::from_session(&session)?;
     let orphans = Category::orphans()?;
-    let(is_admin,is_connected)=if let Some(user)=maybe_user{
-        (user.is_admin(),true)
-    }else{
-        (false,false)
+    let (is_admin, is_connected) = if let Some(user) = maybe_user {
+        (user.is_admin(), true)
+    } else {
+        (false, false)
     };
 
     let products_view = Products {
-        products: products,
-        is_admin: is_admin,
-        category_groups: category_groups,
-        orphans: orphans,
-        is_connected: is_connected,
+        products,
+        is_admin,
+        category_groups,
+        orphans,
+        is_connected,
     };
 
     Ok(products_view.into_response())
@@ -136,7 +136,7 @@ pub async fn product_id_patch(
 
     let image_path = match form.image {
         // we have an actual file (non-zero size and a real filename)
-        Some(tmp) if tmp.size > 0 && tmp.file_name.as_deref().map_or(false, |n| !n.is_empty()) => {
+        Some(tmp) if tmp.size > 0 && tmp.file_name.as_deref().is_some_and(|n| !n.is_empty()) => {
             let ext =
                 get_extension_from_filename(tmp.file_name.as_deref().unwrap()).unwrap_or("bin");
             let filename = format!("public/uploads/product_{uuid_part}.{ext}");
@@ -209,7 +209,7 @@ pub async fn product_post(
 
     let tmp = form.image;
 
-    let image_path = if tmp.size > 0 && tmp.file_name.as_deref().map_or(false, |n| !n.is_empty()) {
+    let image_path = if tmp.size > 0 && tmp.file_name.as_deref().is_some_and(|n| !n.is_empty()) {
         let ext = get_extension_from_filename(tmp.file_name.as_deref().unwrap()).unwrap_or("bin");
         let filename = format!("public/uploads/product_{uuid_part}.{ext}");
         tmp.file.persist(&filename).unwrap();
@@ -228,7 +228,7 @@ pub async fn product_post(
         return HttpResponse::BadRequest().body("You need to provide an image");
     }; // no file uploaded
     let new_product = NewProduct {
-        description: description,
+        description,
         name: name.clone(),
         image_url: image_path,
         price: form.price.0,

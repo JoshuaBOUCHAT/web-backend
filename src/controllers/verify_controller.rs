@@ -23,7 +23,7 @@ pub async fn index(querry: web::Query<Token>, session: Session) -> DynResult<Htt
     eprintln!("handle verify");
     if let Some(token) = maybe_token {
         eprintln!("handle token");
-        let response = match EmailVerification::verify(&token)? {
+        let response = match EmailVerification::verify(token)? {
             //redirect to auth if the user is connected will redirect to products
             VerificationState::Verified(_) => HttpResponse::Found()
                 .append_header(("Location", ROUTE_AUTH.web_path))
@@ -97,13 +97,13 @@ pub async fn index(querry: web::Query<Token>, session: Session) -> DynResult<Htt
     ))
 }
 fn send_verification_mail(link: &str, destination: &str) -> DynResult<()> {
-    let body = get_mail_body(&link);
+    let body = get_mail_body(link);
 
     send_mail(destination, SUBJECT, body)?;
     Ok(())
 }
 
-const SUBJECT: &'static str = r##"Confirmez votre adresse e-mail – Boulangerie La Traditionnelle"##;
+const SUBJECT: &str = r##"Confirmez votre adresse e-mail – Boulangerie La Traditionnelle"##;
 
 fn get_mail_body(link: &str) -> String {
     format!(

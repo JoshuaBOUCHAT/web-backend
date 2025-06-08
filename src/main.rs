@@ -39,17 +39,12 @@ use actix_session::{SessionMiddleware, config::PersistentSession, storage::Cooki
 
 use actix_web::{App, HttpServer, cookie::Key, web::scope};
 
-use middlewares::admin_middleware::AdminMiddleware;
-//use middlewares::admin_middleware::AdminMiddleware;
-use middlewares::auth_middleware::AuthMiddleware;
-
 use routes::*;
 use rustls::ServerConfig;
 use rustls::pki_types::CertificateDer;
 use rustls::pki_types::PrivateKeyDer;
 use rustls::pki_types::pem::PemObject;
 use statics::APP_STATE;
-use utilities::send_mail;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -88,7 +83,7 @@ async fn main() -> std::io::Result<()> {
             .configure(configure_guess_routes)
             .service(
                 scope("")
-                    .wrap(AuthMiddleware)
+                    //.wrap(middleware::from_fn(admin_middleware::admin_middleware))
                     .configure(configure_auth_routes)
                     .service(
                         scope("")

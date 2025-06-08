@@ -6,10 +6,15 @@ use actix_web::{
 use tera::Context;
 
 use crate::{
-    models::{order_model::{Order, OrderState}, order_product_model::OrderProduct, product_model::Product, user_model::User},
+    models::{
+        order_model::{Order, OrderState},
+        order_product_model::OrderProduct,
+        product_model::Product,
+        user_model::User,
+    },
     routes::{ROUTE_DASHBOARD, ROUTE_ORDER},
     statics::TERA,
-    utilities::{render_to_response, send_mail, DynResult},
+    utilities::{DynResult, render_to_response, send_mail},
 };
 
 pub async fn update(path: web::Path<(i32, i32)>, session: Session) -> DynResult<HttpResponse> {
@@ -67,47 +72,63 @@ pub async fn destroy(path: web::Path<i32>, session: Session) -> DynResult<HttpRe
     Ok(resp)
 }
 
-const STATES_CHOICE: [&'static str; 4] = ["confirm", "ready", "complete", "cancel"];
+const STATES_CHOICE: [&str; 3] = ["confirm", "ready", "complete"];
 
 pub async fn update_state(path: web::Path<(i32, String)>) -> DynResult<HttpResponse> {
-   let order_id = path.0;
-   let state=path.1.as_str();
-   let order = Order::get(order_id)?.unwrap();
-   let user = User::get(order.id_user)?.unwrap();
+    let order_id = path.0;
+    let state = path.1.as_str();
+    let order = Order::get(order_id)?.unwrap();
+    let user = User::get(order.id_user)?.unwrap();
 
-   if !STATES_CHOICE.contains(&state) {
-       return Err("Invalid state")?;
-   }
-   let state =match state {
-    "confirm" => OrderState::Confirmed,
-    "ready" => OrderState::Ready,
-    "complete" => OrderState::Purnchased,
-    "cancel" => OrderState::NeedConfirmation,
-    _ => return Err("Invalid state")?,
-   };
-   Order::update_state(order_id, state)?;
+    if !STATES_CHOICE.contains(&state) {
+        return Err("Invalid state")?;
+    }
+    let state = match state {
+        "confirm" => OrderState::Confirmed,
+        "ready" => OrderState::Ready,
+        "complete" => OrderState::Purnchased,
+        _ => return Err("Invalid state")?,
+    };
+    Order::update_state(order_id, state)?;
 
-   let (subject, body) = match state{
-    OrderState::Confirmed => {
-        (SUBJECT_CONFIRMED, get_order_confirmed_mail_body(order_id, &order.date_retrieve.unwrap()))
-    }
-    OrderState::Ready => {
-        (SUBJECT_READY, get_order_ready_mail_body(order_id))
-    }
-    OrderState::Purnchased => {
-        (SUBJECT_COMPLETED, get_order_completed_mail_body(order_id))
-    }
-    OrderState::NeedConfirmation => {
-        (SUBJECT_REFUSED, get_order_refused_mail_body(order_id, ""))
-    }
-    OrderState::Cart => {
-        (SUBJECT_REFUSED, get_order_refused_mail_body(order_id, ""))
-    }
-   };
-   send_mail(&user.mail, &subject, &body)?;
-   
-   Ok(HttpResponse::SeeOther().append_header(("Location", ROUTE_DASHBOARD.web_path)).finish())
+    let (subject, body) = match state {
+        OrderState::Confirmed => (
+            SUBJECT_CONFIRMED,
+            get_order_confirmed_mail_body(order_id, &order.date_retrieve.unwrap()),
+        ),
+        OrderState::Ready => (SUBJECT_READY, get_order_ready_mail_body(order_id)),
+        OrderState::Purnchased => (SUBJECT_COMPLETED, get_order_completed_mail_body(order_id)),
+        _ => return Err("Invalid state")?,
+    };
+    send_mail(&user.mail, subject, &body)?;
+
+    Ok(HttpResponse::SeeOther()
+        .append_header(("Location", ROUTE_DASHBOARD.web_path))
+        .finish())
 }
+
+#[derive(Debug, serde::Deserialize)]
+pub struct RefuseForm {
+    reason: String,
+}
+
+pub async fn refuse(
+    path: web::Path<i32>,
+    json_form: web::Json<RefuseForm>,
+) -> DynResult<HttpResponse> {
+    let order_id = *path;
+    let order = Order::get(order_id)?.unwrap();
+    let user = User::get(order.id_user)?.unwrap();
+    let state = OrderState::Refused;
+    Order::update_state(order_id, state)?;
+    let subject = SUBJECT_REFUSED;
+    let body = get_order_refused_mail_body(order_id, &json_form.reason);
+    send_mail(&user.mail, subject, &body)?;
+    Ok(HttpResponse::SeeOther()
+        .append_header(("Location", ROUTE_DASHBOARD.web_path))
+        .finish())
+}
+
 const SUBJECT_CONFIRMED: &str = "Votre commande a été confirmée – Boulangerie La Traditionnelle";
 
 fn get_order_confirmed_mail_body(order_id: i32, date_retrieve: &str) -> String {
@@ -197,5 +218,3 @@ fn get_order_refused_mail_body(order_id: i32, reason: &str) -> String {
         order_id, reason
     )
 }
-
-    

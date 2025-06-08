@@ -53,9 +53,11 @@
     
     {% if is_admin %}
     <div class="order-actions">
-        <form action="/orders/{{ order.id_order }}/refuse" method="post">
+        {% if order.order_state != 4 %}
+        <form action="/orders/{{ order.id_order }}/refuse" method="post" class="refuse-form">
             <button type="submit" class="btn-confirm">Refuser</button>
         </form>
+        {% endif %}
 
         {% if order.order_state == 1 %}
             <form action="/orders/{{ order.id_order }}/state/confirm" method="post">

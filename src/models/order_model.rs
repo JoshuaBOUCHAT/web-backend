@@ -19,7 +19,7 @@ pub struct OrderProduct {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct OrderDisplay {
     pub id_order: i32,
-    pub date_order: String,  // Format: YYYY-MM-DD HH:MM:SS
+    pub date_order: String, // Format: YYYY-MM-DD HH:MM:SS
     pub date_retrieve: String,
     pub id_user: i32,
     pub order_state: i32,
@@ -42,7 +42,7 @@ pub struct OrdersByStatus {
     pub purchased: Vec<OrderWithProducts>,
 }
 
-#[derive(Queryable, Serialize, Insertable, Deserialize,Debug)]
+#[derive(Queryable, Serialize, Insertable, Deserialize, Debug)]
 #[diesel(table_name = orders)]
 pub struct Order {
     pub id_order: i32,
@@ -59,6 +59,7 @@ pub enum OrderState {
     Confirmed,
     Ready,
     Purnchased,
+    Refused,
 }
 
 impl Order {
@@ -134,7 +135,7 @@ impl Order {
     pub fn order(cart_id: i32, retreive_date: String, order_date: String) -> DynResult<bool> {
         let mut conn = DB_POOL.get()?;
         let relateds = Order::related_product(cart_id)?;
-        if relateds.len() == 0 {
+        if relateds.is_empty() {
             return Ok(false);
         }
         let json_obj = JsonObj { data: relateds }.into_serialise()?;
@@ -155,32 +156,32 @@ impl Order {
     /// Récupère toutes les commandes non finalisées organisées par statut
     pub fn get_unfinished_orders() -> DynResult<OrdersByStatus> {
         use crate::schema::orders::dsl::*;
-        
+
         let mut conn = DB_POOL.get()?;
-        
+
         // Récupérer toutes les commandes non finalisées (tous les états sauf le panier)
         let unfinished_orders = orders
             .filter(order_state.ne(OrderState::Cart as i32))
             .load::<Order>(&mut conn)?;
-        
+
         Self::classify_orders(unfinished_orders)
     }
 
     /// Récupère toutes les commandes d'un utilisateur spécifique, organisées par statut
     pub fn get_orders_by_user(user_id: i32) -> DynResult<OrdersByStatus> {
         use crate::schema::orders::dsl::*;
-        
+
         let mut conn = DB_POOL.get()?;
-        
+
         // Récupérer toutes les commandes de l'utilisateur (sauf le panier actif)
         let user_orders = orders
             .filter(id_user.eq(user_id))
             .filter(order_state.ne(OrderState::Cart as i32))
             .load::<Order>(&mut conn)?;
-        
+
         Self::classify_orders(user_orders)
     }
-    
+
     /// Convertit une commande en OrderWithProducts
     fn to_order_with_products(order: Order) -> Option<OrderWithProducts> {
         // Utilisation de noms différents pour éviter les conflits
@@ -189,20 +190,24 @@ impl Order {
         let retrieve_date = order.date_retrieve?;
         let user_id = order.id_user;
         let state = order.order_state;
-        
-        let products:Vec<OrderProduct> = if let Some(obj) = order.order_obj {
+
+        let products: Vec<OrderProduct> = if let Some(obj) = order.order_obj {
             let json_obj: Result<JsonObj, _> = serde_json::from_str(&obj);
             match json_obj {
-                Ok(json) => json.data.into_iter().map(|(qty, product)| OrderProduct {
-                    quantity: qty,
-                    product
-                }).collect(),
+                Ok(json) => json
+                    .data
+                    .into_iter()
+                    .map(|(qty, product)| OrderProduct {
+                        quantity: qty,
+                        product,
+                    })
+                    .collect(),
                 Err(_) => return None,
             }
         } else {
             return None;
         };
-        
+
         let order_display = OrderDisplay {
             id_order: order_id,
             date_order: order_date,
@@ -210,24 +215,27 @@ impl Order {
             id_user: user_id,
             order_state: state,
         };
-        let total = products.iter().map(|product| product.quantity as f64 * product.product.price).sum();
-        
-        Some(OrderWithProducts { 
-            order: order_display, 
+        let total = products
+            .iter()
+            .map(|product| product.quantity as f64 * product.product.price)
+            .sum();
+
+        Some(OrderWithProducts {
+            order: order_display,
             products,
             total,
         })
     }
-    
+
     /// Classe les commandes par statut
     fn classify_orders(other_orders: Vec<Order>) -> DynResult<OrdersByStatus> {
         let mut result = OrdersByStatus::default();
-        
+
         for order in other_orders {
             let Some(order_with_products) = Self::to_order_with_products(order) else {
                 continue;
             };
-            
+
             match order_with_products.order.order_state {
                 s if s == OrderState::NeedConfirmation as i32 => {
                     result.need_confirmation.push(order_with_products);
@@ -244,10 +252,10 @@ impl Order {
                 _ => continue,
             }
         }
-        
+
         Ok(result)
     }
-    pub fn update_state(order_id: i32, state: OrderState)->DynResult<bool>{
+    pub fn update_state(order_id: i32, state: OrderState) -> DynResult<bool> {
         let mut conn = DB_POOL.get()?;
         let updated = diesel::update(orders.filter(id_order.eq(order_id)))
             .set(order_state.eq(state as i32))
@@ -255,7 +263,6 @@ impl Order {
 
         Ok(updated > 0)
     }
-
 }
 
 #[derive(Insertable)]
@@ -295,7 +302,7 @@ pub struct JsonObj {
     pub data: Vec<(i32, Product)>,
 }
 impl JsonObj {
-    fn into_serialise(&self) -> Result<std::string::String, serde_json::Error> {
+    fn into_serialise(self) -> Result<std::string::String, serde_json::Error> {
         serde_json::to_string(&self)
     }
 }
