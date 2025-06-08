@@ -1,4 +1,5 @@
 use std::error::Error;
+use std::future::{Ready, ready};
 
 use crate::utilities::{DynResult, now_str};
 use crate::{log, schema::orders};
@@ -8,7 +9,7 @@ use crate::schema::users;
 use crate::schema::users::dsl::*;
 use crate::statics::DB_POOL;
 use ::password_hash::rand_core::OsRng;
-use actix_session::Session;
+use actix_session::{Session, SessionExt};
 use argon2::{
     Argon2,
     password_hash::{PasswordHash, PasswordHasher, PasswordVerifier, SaltString},
@@ -207,5 +208,30 @@ impl std::fmt::Display for User {
             &self.phone_number,
             self.admin != 0
         )
+    }
+}
+use actix_web::error::{ErrorInternalServerError, ErrorUnauthorized};
+
+impl actix_web::FromRequest for User {
+    type Error = actix_web::Error;
+    type Future = Ready<Result<Self, Self::Error>>;
+    fn from_request(
+        req: &actix_web::HttpRequest,
+        _payload: &mut actix_web::dev::Payload,
+    ) -> Self::Future {
+        Self::extract(req)
+    }
+    fn extract(req: &actix_web::HttpRequest) -> Self::Future {
+        let session = req.get_session();
+        let maybe_user_err = User::from_session(&session);
+        let response = match maybe_user_err {
+            Ok(Some(user)) => Ok(user),
+            Ok(None) => Err(ErrorUnauthorized("Vous n'etes pas connecté  !")),
+            Err(err) => Err(ErrorInternalServerError(format!(
+                "Une erreur est survenue lors de l'acces à la base de donné:\n{}",
+                &err,
+            ))),
+        };
+        ready(response)
     }
 }
