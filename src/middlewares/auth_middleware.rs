@@ -7,7 +7,14 @@ use actix_web::{
 use futures_util::future::LocalBoxFuture;
 use std::future::{Ready, ready};
 
-use crate::routes::{ROUTE_AUTH, ROUTE_LOGIN, ROUTE_REGISTER};
+use crate::{
+    log,
+    models::user_model::User,
+    routes::{
+        ROUTE_AUTH, ROUTE_CART, ROUTE_DASHBOARD, ROUTE_LOGIN, ROUTE_PRODUCTS, ROUTE_REGISTER,
+        ROUTE_VERIFY, ROUTE_WELCOME,
+    },
+};
 
 pub struct AuthMiddleware;
 
@@ -44,45 +51,50 @@ where
 
     fn call(&self, req: ServiceRequest) -> Self::Future {
         let session = req.get_session();
-        let maybe_id = session.get::<i32>("id_user").unwrap_or(None);
+        let maybe_user = User::from_session(&session).unwrap();
 
-        let have_id = maybe_id.is_some();
         let path = req.path();
-        println!("mid manage req at: {path}");
-        let is_auth_page =
-            path == ROUTE_AUTH.web_path || path == ROUTE_LOGIN || path == ROUTE_REGISTER;
+        log!("auth-mid manage req at: {}", path);
+        let is_auth_page = path == ROUTE_AUTH.web_path
+            || path == ROUTE_LOGIN
+            || path == ROUTE_REGISTER
+            || path == ROUTE_VERIFY.web_path;
 
-        if !have_id {
+        let is_not_api_route = path == ROUTE_PRODUCTS.web_path
+            || path == ROUTE_DASHBOARD.web_path
+            || path == ROUTE_CART.web_path
+            || path == ROUTE_WELCOME.web_path;
+
+        if maybe_user.is_none() {
             if is_auth_page {
-                println!("authentification");
+                log!("authentification");
                 let fut = self.service.call(req);
                 return Box::pin(async move {
                     let res = fut.await?.map_into_left_body();
                     Ok(res)
                 });
             }
-            println!("Redirecting to login");
+            let res = if is_not_api_route {
+                log!("Redirecting to login");
+                HttpResponse::Found()
+                    .append_header(("Location", ROUTE_AUTH.web_path))
+                    .finish()
+            } else {
+                HttpResponse::Unauthorized()
+                    .body("Vous devez être connecté pour acceder à cette ressource !")
+            };
+            return response_to_return(res, req);
+        };
 
-            let (req, _pl) = req.into_parts();
-            let res = HttpResponse::Found()
-                .append_header(("Location", ROUTE_AUTH.web_path))
-                .finish()
-                .map_into_right_body();
+        // connected user
 
-            let service_response = ServiceResponse::new(req, res);
-            return Box::pin(async move { Ok(service_response) });
-        }
-
-        println!("path: {path}");
+        // connected user shouldn't access auths page as he is already authenticated
         if is_auth_page {
-            let (req, _pl) = req.into_parts();
             let res = HttpResponse::Found()
                 .append_header(("Location", "/"))
-                .finish()
-                .map_into_right_body();
+                .finish();
 
-            let service_response = ServiceResponse::new(req, res);
-            return Box::pin(async move { Ok(service_response) });
+            return response_to_return(res, req);
         }
         let fut = self.service.call(req);
         Box::pin(async move {
@@ -90,4 +102,15 @@ where
             Ok(res)
         })
     }
+}
+fn response_to_return<B>(
+    response: HttpResponse,
+    req: ServiceRequest,
+) -> LocalBoxFuture<'static, Result<ServiceResponse<EitherBody<B>>, Error>>
+where
+    B: MessageBody + 'static,
+{
+    let (req, _pl) = req.into_parts();
+    let service_response = ServiceResponse::new(req, response.map_into_right_body());
+    return Box::pin(async move { Ok(service_response) });
 }

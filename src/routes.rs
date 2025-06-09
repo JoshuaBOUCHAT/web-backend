@@ -175,3 +175,6 @@ pub fn configure_admin_routes(cfg: &mut actix_web::web::ServiceConfig) {
     .route(ROUTE_ORDER_STATE, post().to(order_controller::update_state))
     .route(ROUTE_ORDER_REFUSE, post().to(order_controller::refuse));
 }
+
+pub fn _configure_user_api_routes(cfg: &mut actix_web::web::ServiceConfig) {}
+pub fn _configure_admin_api_routes(cfg: &mut actix_web::web::ServiceConfig) {}

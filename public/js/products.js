@@ -245,14 +245,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleShop(id, name) {
+        console.log("test");
         openModal('<p>Loading…</p>');
         fetch('/order/' + id, {
             method: 'GET',
             redirect: 'manual' // important : empêche `fetch()` de suivre les redirects tout seul
         })
             .then(response => {
+                console.log("test2");
                 if (response.status === 302 || response.status === 301) {
+                    console.log("redirection not logged in !");
                     const location = response.headers.get('Location');
+                    console.log(location);
                     if (location) {
                         window.location.href = location; // on redirige manuellement
                         return;

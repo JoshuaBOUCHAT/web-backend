@@ -8,8 +8,12 @@ use futures_util::future::LocalBoxFuture;
 use std::future::{Ready, ready};
 
 use crate::{
+    log,
     models::user_model::User,
-    routes::{ROUTE_AUTH, ROUTE_LOGIN, ROUTE_REGISTER},
+    routes::{
+        ROUTE_AUTH, ROUTE_CART, ROUTE_DASHBOARD, ROUTE_LOGIN, ROUTE_PRODUCTS, ROUTE_REGISTER,
+        ROUTE_VERIFY, ROUTE_WELCOME,
+    },
 };
 
 pub struct AdminMiddleware;
@@ -51,28 +55,22 @@ where
 
         let path = req.path();
         println!("mid manage req at: {path}");
-        let is_auth_page =
-            path == ROUTE_AUTH.web_path || path == ROUTE_LOGIN || path == ROUTE_REGISTER;
+        let is_auth_page = path == ROUTE_AUTH.web_path
+            || path == ROUTE_LOGIN
+            || path == ROUTE_REGISTER
+            || path == ROUTE_VERIFY.web_path;
 
         let Some(user) = maybe_user else {
-            if is_auth_page {
-                println!("authentification");
-                let fut = self.service.call(req);
-                return Box::pin(async move {
-                    let res = fut.await?.map_into_left_body();
-                    Ok(res)
-                });
-            }
-            println!("Redirecting to login");
-            let res = HttpResponse::Found()
-                .append_header(("Location", ROUTE_AUTH.web_path))
-                .finish();
+            log!(
+                "La route admin: {} a pu être acceder sans être authentifier",
+                path
+            );
+            let res = HttpResponse::InternalServerError().body("une erreur est survenue !");
             return response_to_return(res, req);
         };
         if !user.is_admin() {
-            let res = HttpResponse::Found()
-                .append_header(("Location", ROUTE_AUTH.web_path))
-                .finish();
+            let res = HttpResponse::Unauthorized()
+                .body("Vous n'etes pas autorisée à consulter cette ressource veillez vous conecter en tant qu'administrateur !");
 
             return response_to_return(res, req);
         }
