@@ -123,7 +123,8 @@ pub fn configure_auth_routes(cfg: &mut actix_web::web::ServiceConfig) {
         .route(
             ROUTE_DASHBOARD.web_path,
             get().to(dashboard_controller::dashboard_get),
-        );
+        )
+        .route(ROUTE_ORDER.web_path, get().to(order_controller::edit));
 }
 
 pub fn configure_admin_routes(cfg: &mut actix_web::web::ServiceConfig) {
@@ -171,7 +172,6 @@ pub fn configure_admin_routes(cfg: &mut actix_web::web::ServiceConfig) {
         ROUTE_CATEGORY_EDIT.web_path,
         patch().to(category_controller::edit_post),
     )
-    .route(ROUTE_ORDER.web_path, get().to(order_controller::edit))
     .route(ROUTE_ORDER_STATE, post().to(order_controller::update_state))
     .route(ROUTE_ORDER_REFUSE, post().to(order_controller::refuse));
 }

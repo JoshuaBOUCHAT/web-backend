@@ -27,10 +27,18 @@
             {% endfor %}
         </div>
         <hr>
+        {% if items|length >0%}
         <section class="order">
             <div class="total_price"></div>
             <button id="cart-order">Commander</button>
         </section>
+        {% else %}
+        <h2>Votre panier est vide.</h2>
+        <a href="{{routes.products}}">
+            <h3>Nos produits commandables !</h3>
+        </a>
+
+        {% endif %}
     </div>
     {% include "static/footer.html" %}
 </body>

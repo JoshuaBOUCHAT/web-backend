@@ -65,7 +65,10 @@ async fn main() -> std::io::Result<()> {
     };
 
     let config = load_rustls_config();
-    println!("Opening the application at {}:{}", allow_incoming, port);
+    println!(
+        "Opening the application at https://{}:{}",
+        allow_incoming, port
+    );
 
     HttpServer::new(move || {
         let sessionmiddleware =
