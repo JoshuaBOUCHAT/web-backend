@@ -104,7 +104,6 @@ pub fn add_login_propetry_to_context(
     session: &actix_session::Session,
 ) -> DynResult<()> {
     if let Some(user) = User::from_session(session)? {
-        println!("user found");
         context.insert("is_connected", &true);
         context.insert("is_admin", &user.is_admin());
     } else {

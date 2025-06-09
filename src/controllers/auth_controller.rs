@@ -4,7 +4,7 @@ use serde::Deserialize;
 
 use crate::{
     log,
-    models::user_model::User,
+    models::user_model::{MaybeUser, User},
     routes::{ROUTE_AUTH, ROUTE_CONTEXT, ROUTE_PRODUCTS, ROUTE_VERIFY},
     statics::TERA,
     utilities::{DynResult, render_to_response},
@@ -23,10 +23,8 @@ pub struct LoginForm {
     password: String,
 }
 
-pub async fn auth_get(session: Session) -> DynResult<HttpResponse> {
-    let maybe_user = User::from_session(&session)?;
-
-    if let Some(user) = maybe_user {
+pub async fn auth_get(maybe_user: MaybeUser) -> DynResult<HttpResponse> {
+    if let Some(user) = maybe_user.0 {
         log!("User {} access auth page", &user);
 
         let location = if user.verified == 0 {

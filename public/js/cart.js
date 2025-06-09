@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (confirm("Vous avez sélectionné la quantité 0. Voulez-vous supprimer cet article ?")) {
                     fetch(form.action, { method: 'DELETE' })
                         .then(r => r.text())
-                        .then(html => alert(html))
+                        .then(html => { alert(html); window.location.reload(); })
                         .catch(err => alert("Une erreur est survenue : " + err));
-                    window.location.reload();
+
                 } else {
                     this.value = 1;
                 }
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const form = e.target;
             const url = form.action;
             const data = form_to_url_encoded(form);
-            
+
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -107,21 +107,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 body: data
             })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = '/dashboard';
-                } else {
-                    return response.text().then(text => {
-                        const content = document.getElementById('modal-content');
-                        if (content) content.innerHTML = text || 'Erreur lors de la commande';
-                    });
-                }
-            })
-            .catch(error => {
-                const content = document.getElementById('modal-content');
-                if (content) content.innerHTML = 'Erreur de connexion au serveur';
-                console.error('Erreur:', error);
-            });
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/dashboard';
+                    } else {
+                        return response.text().then(text => {
+                            const content = document.getElementById('modal-content');
+                            if (content) content.innerHTML = text || 'Erreur lors de la commande';
+                        });
+                    }
+                })
+                .catch(error => {
+                    const content = document.getElementById('modal-content');
+                    if (content) content.innerHTML = 'Erreur de connexion au serveur';
+                    console.error('Erreur:', error);
+                });
         }
     });
 

@@ -119,15 +119,15 @@ pub fn configure_auth_routes(cfg: &mut actix_web::web::ServiceConfig) {
         .route(
             ROUTE_CART_ORDER.web_path,
             post().to(cart_controller::order_post),
+        )
+        .route(
+            ROUTE_DASHBOARD.web_path,
+            get().to(dashboard_controller::dashboard_get),
         );
 }
 
 pub fn configure_admin_routes(cfg: &mut actix_web::web::ServiceConfig) {
     cfg.route(
-        ROUTE_DASHBOARD.web_path,
-        get().to(dashboard_controller::dashboard_get),
-    )
-    .route(
         ROUTE_EDIT_PRODUCT.web_path,
         get().to(products_controller::product_id_get),
     )

@@ -17,11 +17,10 @@ use crate::{
     utilities::{DynResult, render_to_response, send_mail},
 };
 
-pub async fn update(path: web::Path<(i32, i32)>, session: Session) -> DynResult<HttpResponse> {
+pub async fn update(path: web::Path<(i32, i32)>, user: User) -> DynResult<HttpResponse> {
     let (product_id, qty) = *(path);
-    let user = User::from_session_infallible(&session)?;
     let order_id = user.cart_id()?;
-    println!("cart_id:{order_id}");
+
     OrderProduct::update(order_id, product_id, qty)?;
 
     let message = if qty == 1 {
@@ -31,8 +30,7 @@ pub async fn update(path: web::Path<(i32, i32)>, session: Session) -> DynResult<
     };
     Ok(HttpResponse::Ok().body(message))
 }
-pub async fn edit(path: Path<i32>, session: Session) -> DynResult<HttpResponse> {
-    let user = User::from_session_infallible(&session)?;
+pub async fn edit(path: Path<i32>, user: User) -> DynResult<HttpResponse> {
     let id_product = *path;
 
     let Some(product) = Product::get(id_product)? else {
@@ -57,11 +55,9 @@ pub async fn edit(path: Path<i32>, session: Session) -> DynResult<HttpResponse> 
     ))
 }
 
-pub async fn destroy(path: web::Path<i32>, session: Session) -> DynResult<HttpResponse> {
+pub async fn destroy(path: web::Path<i32>, user: User) -> DynResult<HttpResponse> {
     let product_id = *path;
-    let user = User::from_session_infallible(&session)?;
     let cart_id = user.cart_id()?;
-    println!("cart_id: {cart_id}");
     let is_deleted = OrderProduct::delete(cart_id, product_id)?;
 
     let resp = if is_deleted {

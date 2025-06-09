@@ -46,6 +46,9 @@ use rustls::pki_types::PrivateKeyDer;
 use rustls::pki_types::pem::PemObject;
 use statics::APP_STATE;
 
+use crate::middlewares::admin_middleware;
+use crate::middlewares::auth_middleware;
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     log!("App start at:{}", utilities::now());
@@ -67,7 +70,6 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         let sessionmiddleware =
             SessionMiddleware::builder(CookieSessionStore::default(), Key::from(&[0; 64]))
-                .cookie_secure(false)
                 .session_lifecycle(
                     PersistentSession::default()
                         .session_ttl(actix_web::cookie::time::Duration::weeks(2)),
@@ -83,11 +85,11 @@ async fn main() -> std::io::Result<()> {
             .configure(configure_guess_routes)
             .service(
                 scope("")
-                    //.wrap(middleware::from_fn(admin_middleware::admin_middleware))
+                    .wrap(auth_middleware::AuthMiddleware)
                     .configure(configure_auth_routes)
                     .service(
                         scope("")
-                            //.wrap(AdminMiddleware)
+                            .wrap(admin_middleware::AdminMiddleware)
                             .configure(configure_admin_routes),
                     ),
             )

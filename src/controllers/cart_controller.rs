@@ -37,8 +37,7 @@ pub struct FormOrder {
     pub datetime: String,
 }
 
-pub async fn order_post(session: Session, form: web::Form<FormOrder>) -> DynResult<HttpResponse> {
-    let user = User::from_session_infallible(&session)?;
+pub async fn order_post(user: User, form: web::Form<FormOrder>) -> DynResult<HttpResponse> {
     let cart_id = user.cart_id()?;
     let datetime_str = &form.datetime;
     let cart_items = get_cart_items(cart_id)?;
@@ -59,8 +58,7 @@ pub async fn order_post(session: Session, form: web::Form<FormOrder>) -> DynResu
 
     Ok(HttpResponse::Ok().body("Votre command à bien été prise en compte"))
 }
-pub async fn order_get(session: Session) -> DynResult<HttpResponse> {
-    let user = User::from_session_infallible(&session)?;
+pub async fn order_get(user: User) -> DynResult<HttpResponse> {
     let cart_id = user.cart_id()?;
     let cart_items = get_cart_items(cart_id)?;
     let total_price = cart_items

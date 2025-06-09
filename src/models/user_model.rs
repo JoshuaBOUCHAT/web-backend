@@ -197,6 +197,12 @@ impl User {
         let cart_id = Order::create_order_for_user(self.id_user)?;
         Ok(cart_id)
     }
+    pub fn get_login_context(&self) -> Context {
+        let mut context = Context::new();
+        context.insert("is_connected", &true);
+        context.insert("is_admin", &self.is_admin());
+        context
+    }
 }
 
 impl std::fmt::Display for User {
@@ -211,6 +217,7 @@ impl std::fmt::Display for User {
     }
 }
 use actix_web::error::{ErrorInternalServerError, ErrorUnauthorized};
+use tera::Context;
 
 impl actix_web::FromRequest for User {
     type Error = actix_web::Error;
@@ -233,5 +240,41 @@ impl actix_web::FromRequest for User {
             ))),
         };
         ready(response)
+    }
+}
+pub struct MaybeUser(pub Option<User>);
+impl actix_web::FromRequest for MaybeUser {
+    type Error = actix_web::Error;
+    type Future = Ready<Result<Self, Self::Error>>;
+    fn from_request(
+        req: &actix_web::HttpRequest,
+        _payload: &mut actix_web::dev::Payload,
+    ) -> Self::Future {
+        Self::extract(req)
+    }
+    fn extract(req: &actix_web::HttpRequest) -> Self::Future {
+        let session = req.get_session();
+        let maybe_user_err = User::from_session(&session);
+        let response = match maybe_user_err {
+            Ok(maybe_user) => Ok(MaybeUser(maybe_user)),
+            Err(err) => Err(ErrorInternalServerError(format!(
+                "Une erreur est survenue lors de l'acces à la base de donné:\n{}",
+                &err,
+            ))),
+        };
+        ready(response)
+    }
+}
+impl MaybeUser {
+    pub fn get_login_context(&self) -> Context {
+        let mut context = Context::new();
+        if let Some(user) = &self.0 {
+            context.insert("is_connected", &true);
+            context.insert("is_admin", &user.is_admin());
+        } else {
+            context.insert("is_connected", &false);
+            context.insert("is_admin", &false);
+        }
+        context
     }
 }

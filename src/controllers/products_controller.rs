@@ -13,7 +13,7 @@ use crate::{
         category_product_model::CategoryProduct,
         complex_request::{ProductWithCategories, load_products_with_categories},
         product_model::{NewProduct, Product, ProductPatchBuilder},
-        user_model::User,
+        user_model::{MaybeUser, User},
     },
     routes::{ROUTE_CONTEXT, ROUTE_EDIT_PRODUCT, ROUTE_PRODUCTS},
     statics::TERA,
@@ -42,16 +42,14 @@ impl Renderable for Products {
 }
 impl Responseable for Products {}
 
-pub async fn products_get(session: Session) -> DynResult<HttpResponse> {
+pub async fn products_get(maybe_user: MaybeUser) -> DynResult<HttpResponse> {
     let products = load_products_with_categories()?;
     let category_groups = Category::load_grouped_categories()?;
-    let maybe_user = User::from_session(&session)?;
     let orphans = Category::orphans()?;
-    let (is_admin, is_connected) = if let Some(user) = maybe_user {
-        (user.is_admin(), true)
-    } else {
-        (false, false)
-    };
+
+    let (is_admin, is_connected) = maybe_user
+        .0
+        .map_or((false, false), |user| (user.is_admin(), true));
 
     let products_view = Products {
         products,
@@ -127,28 +125,27 @@ pub struct ProductEditForm {
 pub async fn product_id_patch(
     MultipartForm(form): MultipartForm<ProductEditForm>,
 ) -> DynResult<HttpResponse> {
-    println!("pass at product_id_patch");
-    let product_id = form.id_product.0;
-    let name = form.name.0;
-    let description = form.description.0;
-    let uuid_part = uuid::Uuid::new_v4();
-    let category_ids: HashSet<i32> = form.categories.into_iter().map(|c| c.0).collect();
-
     let image_path = match form.image {
         // we have an actual file (non-zero size and a real filename)
         Some(tmp) if tmp.size > 0 && tmp.file_name.as_deref().is_some_and(|n| !n.is_empty()) => {
             let ext =
                 get_extension_from_filename(tmp.file_name.as_deref().unwrap()).unwrap_or("bin");
+            let uuid_part = uuid::Uuid::new_v4();
+
             let filename = format!("public/uploads/product_{uuid_part}.{ext}");
             tmp.file.persist(&filename).unwrap();
+
             Some(filename)
         }
         _ => None, // no file chosen → keep current image
     };
+
+    let product_id = form.id_product.0;
+
     let patch_product = ProductPatchBuilder::default()
-        .description(Some(description))
+        .description(Some(form.description.0))
         .image_url(image_path)
-        .name(Some(name))
+        .name(Some(form.name.0))
         .price(Some(form.price.0))
         .build()
         .unwrap();
@@ -156,6 +153,9 @@ pub async fn product_id_patch(
 
     let relateds = Category::related_to_product(product_id)?;
     // Calcul des catégories à supprimer (présentes en BDD mais plus sélectionnées)
+
+    let category_ids: HashSet<i32> = form.categories.into_iter().map(|c| c.0).collect();
+
     let to_delete: Vec<i32> = relateds
         .iter()
         .filter(|&&p| !category_ids.contains(&p))
@@ -199,53 +199,28 @@ pub struct ProductCreateForm {
 
 pub async fn product_post(
     MultipartForm(form): MultipartForm<ProductCreateForm>,
-    session: Session,
-) -> impl Responder {
-    println!("pass at product_post");
-    let form_desc = format!("{:?}", &form);
-    let name = &form.name.0;
-    let description = form.description.0;
+) -> DynResult<HttpResponse> {
+    let temp_file = form.image;
+    let temp_file_name = match temp_file.file_name.as_deref() {
+        Some(name) if !name.is_empty() => name,
+        _ => return Ok(HttpResponse::BadRequest().body("You need to provide an image")),
+    };
+
+    let ext = get_extension_from_filename(temp_file_name).ok_or("File extension non parsable")?;
     let uuid_part = uuid::Uuid::new_v4();
+    let image_url = format!("public/uploads/product_{uuid_part}.{ext}");
 
-    let tmp = form.image;
+    temp_file.file.persist(&image_url)?;
 
-    let image_path = if tmp.size > 0 && tmp.file_name.as_deref().is_some_and(|n| !n.is_empty()) {
-        let ext = get_extension_from_filename(tmp.file_name.as_deref().unwrap()).unwrap_or("bin");
-        let filename = format!("public/uploads/product_{uuid_part}.{ext}");
-        tmp.file.persist(&filename).unwrap();
-        filename
-    } else {
-        let maybe_user = try_or_return!(User::from_session(&session).extract_http());
-        if let Some(user) = maybe_user {
-            log!(
-                "Tried to create a product wihout an image while it's required, the user is: {user}"
-            );
-        } else {
-            log!(
-                "Tried to create a product wihout an image while it's required, the user can't be found"
-            );
-        };
-        return HttpResponse::BadRequest().body("You need to provide an image");
-    }; // no file uploaded
     let new_product = NewProduct {
-        description,
-        name: name.clone(),
-        image_url: image_path,
+        description: form.description.0,
+        name: form.name.0,
+        image_url,
         price: form.price.0,
     };
-    let result = Product::create(new_product);
+    let _ = Product::create(new_product)?;
 
-    let _ = try_or_return!(
-        result.extract_http(),
-        log!(
-            "Error append when insering a new product the formData:{}",
-            form_desc
-        )
-    );
-    /*HttpResponse::SeeOther()
-    .append_header(("Location", ROUTE_PRODUCTS.web_path))
-    .finish()*/
-    HttpResponse::Ok().finish()
+    Ok(HttpResponse::Ok().body("Le produit à bien été créer !"))
 }
 
 #[derive(Deserialize)]
@@ -256,19 +231,19 @@ pub struct VisibilityPayload {
 pub async fn product_put_visibility(
     path: web::Path<i32>,
     payload: web::Json<VisibilityPayload>,
-) -> impl Responder {
+) -> DynResult<HttpResponse> {
     let visibility_value: i32 = payload.visible;
     if visibility_value != 0 && visibility_value != 1 {
-        return HttpResponse::BadRequest().body(format!(
+        return Ok(HttpResponse::BadRequest().body(format!(
             "The provided visibility is wrong: {}",
             visibility_value
-        ));
+        )));
     }
-    let b = try_or_return!(Product::update_visibility(*path, visibility_value).extract_http());
 
-    if b {
+    let response = if Product::update_visibility(*path, visibility_value)? {
         HttpResponse::Ok().body("The visibility of the product has change")
     } else {
         HttpResponse::BadRequest().body("The visibilty did not changed an error occure")
-    }
+    };
+    Ok(response)
 }
