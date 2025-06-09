@@ -1,7 +1,6 @@
 use std::{collections::HashSet, ffi::OsStr};
 
 use actix_multipart::form::{MultipartForm, tempfile::TempFile, text::Text};
-use actix_session::Session;
 use actix_web::{HttpResponse, Responder, web};
 use serde::{Deserialize, Serialize};
 use tera::Context;
@@ -13,12 +12,11 @@ use crate::{
         category_product_model::CategoryProduct,
         complex_request::{ProductWithCategories, load_products_with_categories},
         product_model::{NewProduct, Product, ProductPatchBuilder},
-        user_model::{MaybeUser, User},
+        user_model::MaybeUser,
     },
     routes::{ROUTE_CONTEXT, ROUTE_EDIT_PRODUCT, ROUTE_PRODUCTS},
     statics::TERA,
-    try_or_return,
-    utilities::{DynResult, ExtractHttp, Renderable, Responseable, render_to_response},
+    utilities::{DynResult, Renderable, Responseable, render_to_response},
 };
 #[derive(Serialize, Default)]
 pub struct Products {

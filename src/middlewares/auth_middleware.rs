@@ -112,5 +112,5 @@ where
 {
     let (req, _pl) = req.into_parts();
     let service_response = ServiceResponse::new(req, response.map_into_right_body());
-    return Box::pin(async move { Ok(service_response) });
+    Box::pin(async move { Ok(service_response) })
 }

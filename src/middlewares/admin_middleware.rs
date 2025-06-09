@@ -10,10 +10,7 @@ use std::future::{Ready, ready};
 use crate::{
     log,
     models::user_model::User,
-    routes::{
-        ROUTE_AUTH, ROUTE_CART, ROUTE_DASHBOARD, ROUTE_LOGIN, ROUTE_PRODUCTS, ROUTE_REGISTER,
-        ROUTE_VERIFY, ROUTE_WELCOME,
-    },
+    routes::{ROUTE_AUTH, ROUTE_LOGIN, ROUTE_REGISTER, ROUTE_VERIFY},
 };
 
 pub struct AdminMiddleware;
@@ -99,5 +96,5 @@ where
 {
     let (req, _pl) = req.into_parts();
     let service_response = ServiceResponse::new(req, response.map_into_right_body());
-    return Box::pin(async move { Ok(service_response) });
+    Box::pin(async move { Ok(service_response) })
 }

@@ -1,9 +1,9 @@
-use std::{error::Error, fmt::Display};
+use std::fmt::Display;
 
 use crate::{
     log,
     models::user_model::User,
-    statics::{APP_MAIL_BOX, APP_STATE, AppState, DB_POOL, MAILER},
+    statics::{APP_MAIL_BOX, DB_POOL, MAILER},
 };
 use actix_web::HttpResponse;
 use chrono::Utc;
@@ -45,7 +45,7 @@ pub fn now() -> String {
     chrono::Utc::now().format("%Y-%m-%d %H:%M:%S").to_string()
 }
 
-pub trait ExtractHttp<T> {
+/*pub trait ExtractHttp<T> {
     fn extract_http(self) -> Result<T, HttpResponse>;
 }
 impl<T> ExtractHttp<T> for Result<T, Box<dyn Error>> {
@@ -64,7 +64,7 @@ impl<T> ExtractHttp<T> for Result<T, Box<dyn Error>> {
             }
         }
     }
-}
+}*/
 
 pub type DynResult<T> = Result<T, Box<dyn std::error::Error>>;
 
